@@ -2,265 +2,286 @@
    SS ATTIRE SHOP — Immersive 3D Parallax & Clean 2D Shopping SPA
    =================================================================== */
 
-// ==================== PRODUCT DATA ====================
-const products = [
-  // ---- MEN'S WEAR ----
-  {
-    id: 1, name: 'Royal Charcoal Three-Piece Suit', brand: 'SS Collection',
-    price: 24999, oldPrice: 32999, category: 'men',
-    image: 'img/prod-suit.png', badge: 'trending',
-    rating: 4.8, reviews: 127,
-    description: 'A masterpiece of contemporary tailoring. This three-piece suit is crafted from ultra-fine Merino wool blend, offering a structured silhouette and unparalleled elegance. Perfect for black-tie events, weddings, and premium business meets.',
-    details: 'Includes jacket, waistcoat, and trousers. Slim fit. Peak lapel. Double-vented back. Functional pockets.',
-    sku: 'SS-MEN-SUIT-001', weight: '2.8 kg', material: 'Merino Wool Blend (80% Wool, 20% Polyester)', origin: 'Made in Italy',
-    warranty: '1 Year Manufacturing Warranty', availability: 'In Stock', care: 'Dry Clean Only. Store on wooden hanger.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Charcoal',hex:'#2C3539'},{name:'Midnight Navy',hex:'#1B1F3A'},{name:'Obsidian',hex:'#0F1115'}],
-    galleryImages: ['img/prod-suit.png','img/cat-men.png','img/prod-shirt.png','img/hero.png']
-  },
-  {
-    id: 2, name: 'Premium Egyptian Cotton Shirt', brand: 'SS Essentials',
-    price: 4999, oldPrice: null, category: 'men',
-    image: 'img/prod-shirt.png', badge: 'new',
-    rating: 4.6, reviews: 89,
-    description: 'Impeccably tailored from long-staple Egyptian cotton. This crisp formal shirt features a silky texture, extreme breathability, and natural luster. Designed to resist creasing for a polished look all day long.',
-    details: '100% Egyptian Cotton. Spread collar. Mitered dual-button cuffs. French placket. Curved hem.',
-    sku: 'SS-MEN-SHIRT-002', weight: '0.35 kg', material: '100% Egyptian Cotton (Thread Count 400)', origin: 'Woven in Egypt, Tailored in India',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Machine wash cold. Tumble dry low. Iron on medium heat.',
-    sizes: ['S','M','L','XL'], colors: [{name:'White Ivory',hex:'#FFFFF0'},{name:'Sky Blue',hex:'#87CEEB'},{name:'Gold Accent',hex:'#D4AF37'}],
-    galleryImages: ['img/prod-shirt.png','img/cat-men.png','img/hero.png','img/prod-suit.png']
-  },
-  {
-    id: 3, name: 'Tailored Navy Blazer', brand: 'SS Collection',
-    price: 18999, oldPrice: 22999, category: 'men',
-    image: 'img/cat-men.png', badge: 'sale',
-    rating: 4.9, reviews: 203,
-    description: 'The ultimate versatile wardrobe staple. Crafted with structured shoulders and a classic double-button closure. Effortlessly transitions from smart casual to semi-formal wear.',
-    details: 'Wool-silk-linen blend. Peak lapel. Gold brass buttons. Patch pockets. Unlined for breathable drape.',
-    sku: 'SS-MEN-BLZR-003', weight: '1.2 kg', material: 'Wool-Silk-Linen Blend (60/25/15)', origin: 'Made in Italy',
-    warranty: '1 Year Manufacturing Warranty', availability: 'In Stock', care: 'Dry Clean recommended. Steam press only.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Navy Blue',hex:'#1B1F3A'},{name:'Charcoal',hex:'#2C3539'},{name:'Camel',hex:'#C19A6B'}],
-    galleryImages: ['img/cat-men.png','img/prod-suit.png','img/prod-shirt.png','img/hero.png']
-  },
+// ==================== PRODUCT DATA ===================const products = [
   // ---- WOMEN'S WEAR ----
   {
-    id: 4, name: 'Crimson Silk Cocktail Dress', brand: 'SS Luxe',
-    price: 19999, oldPrice: 27999, category: 'women',
-    image: 'img/prod-dress.png', badge: 'sale',
-    rating: 4.9, reviews: 156,
-    description: 'Radiate pure sophistication in this fluid silk-satin cocktail dress. Features an elegant cowl neck, adjustable crossover straps, and a dramatic thigh-high slit. Drapes beautifully to highlight your silhouette.',
-    details: '100% Silk Satin. Cowl neckline. Concealed side zipper. Adjustable shoulder straps. Dry clean only.',
-    sku: 'SS-WMN-DRSS-004', weight: '0.55 kg', material: '100% Pure Silk Satin', origin: 'Handcrafted in India',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Dry Clean Only. Do not wring or bleach. Store flat.',
-    sizes: ['XS','S','M','L','XL'], colors: [{name:'Crimson Red',hex:'#DC143C'},{name:'Midnight Black',hex:'#0F1115'},{name:'Champagne',hex:'#F7E7CE'}],
+    id: 1, name: 'Chikankari Handloom Anarkali Kurta', brand: 'SS Heritage',
+    price: 3499, oldPrice: 4299, category: 'women',
+    image: 'img/prod-dress.png', badge: 'trending',
+    rating: 4.8, reviews: 127,
+    description: 'Beautifully handcrafted Chikankari Anarkali kurta in soft premium georgette fabric. Adorned with intricate shadow work embroidery from Lucknow artisans. Elegant drape, lightweight, and perfect for semi-formal gatherings.',
+    details: 'Pure georgette fabric. Intricate hand-embroidery. Long sleeves. Round neck with front button details. Includes inner slip.',
+    sku: 'SS-WMN-CHIK-001', weight: '0.65 kg', material: 'Georgette, Cotton Thread', origin: 'Handcrafted in Lucknow, India',
+    warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Gentle hand wash or dry clean only. Iron on reverse.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Peach Gold',hex:'#FFDAB9'},{name:'Ivory White',hex:'#FFFFF0'},{name:'Mint Green',hex:'#98FF98'}],
     galleryImages: ['img/prod-dress.png','img/cat-women.png','img/prod-blouse.png','img/hero.png']
   },
   {
-    id: 5, name: 'Emerald Silk Drape Blouse', brand: 'SS Luxe',
-    price: 7999, oldPrice: null, category: 'women',
-    image: 'img/prod-blouse.png', badge: 'new',
+    id: 2, name: 'Banarasi Silk Festive Saree', brand: 'SS Heritage',
+    price: 4999, oldPrice: 5999, category: 'women',
+    image: 'img/cat-traditional.png', badge: 'new',
+    rating: 4.9, reviews: 89,
+    description: 'Woven with pure gold zari threads on soft Banarasi blend silk. Features beautiful floral motifs and a grand pallu. A timeless masterpiece that embodies traditional Indian royalty for weddings and festivals.',
+    details: 'Banarasi Silk Blend. Zari borders and motifs. Length: 5.5 meters plus 0.8 meters unstitched blouse piece.',
+    sku: 'SS-WMN-SARI-002', weight: '0.8 kg', material: 'Banarasi Silk Blend with Gold Zari', origin: 'Woven in Varanasi, India',
+    warranty: '1 Year Fabric Warranty', availability: 'In Stock', care: 'Dry clean only. Store wrapped in clean muslin cloth.',
+    sizes: ['One Size'], colors: [{name:'Royal Crimson',hex:'#DC143C'},{name:'Maroon Gold',hex:'#800020'},{name:'Mustard Gold',hex:'#FFDB58'}],
+    galleryImages: ['img/cat-traditional.png','img/prod-kurta.png','img/cat-women.png','img/hero.png']
+  },
+  {
+    id: 3, name: 'Bandhani Print Georgette Lehenga Set', brand: 'SS Luxe',
+    price: 4499, oldPrice: 4999, category: 'women',
+    image: 'img/prod-dress.png', badge: 'sale',
     rating: 4.7, reviews: 94,
-    description: 'Add a touch of jewel-toned opulence to your wardrobe. This draped blouse is crafted from heavy mulberry silk and features statement cuffs and a elegant neckline drape. Perfectly pairs with trousers or high-waisted skirts.',
-    details: 'Heavy mulberry silk. Draped mock neck. Extended cuffs with gold buttons. Keyhole back closure.',
-    sku: 'SS-WMN-BLS-005', weight: '0.28 kg', material: 'Heavy Mulberry Silk (22 Momme)', origin: 'Made in India',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Dry Clean recommended. Iron on low heat with cloth.',
-    sizes: ['XS','S','M','L'], colors: [{name:'Emerald',hex:'#2E8B57'},{name:'Ruby',hex:'#9B111E'},{name:'Sapphire',hex:'#0F52BA'}],
+    description: 'Vibrant Rajasthani Bandhani tie-and-dye printed lehenga choli set. Features a flared skirt with gold gota patti border, a matching blouse, and a lightweight dupatta. Designed to dance the night away during Garba and weddings.',
+    details: 'Set includes flared lehenga skirt, semi-stitched blouse piece, and embellished dupatta. Gota patti borders.',
+    sku: 'SS-WMN-LEH-003', weight: '1.2 kg', material: 'Georgette, Cotton Lining, Zari Border', origin: 'Made in Jaipur, India',
+    warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Dry clean recommended. Low steam iron only.',
+    sizes: ['S','M','L','XL'], colors: [{name:'Marigold Orange',hex:'#FFA500'},{name:'Ruby Red',hex:'#9B111E'},{name:'Emerald Green',hex:'#2E8B57'}],
+    galleryImages: ['img/prod-dress.png','img/cat-women.png','img/prod-blouse.png','img/hero.png']
+  },
+  {
+    id: 4, name: 'Jaipuri Block Print Cotton Suit Set', brand: 'SS Essentials',
+    price: 2999, oldPrice: 3499, category: 'women',
+    image: 'img/prod-blouse.png', badge: 'trending',
+    rating: 4.6, reviews: 112,
+    description: '100% premium cotton suit set styled with hand-block prints using natural vegetable dyes. Includes a straight-fit kurta, matching trousers, and a soft mulmul dupatta. Comfortable for hot Indian summers.',
+    details: 'Set of 3: Kurta, Pants, and Dupatta. 100% Cotton. Hand-block printed.',
+    sku: 'SS-WMN-SUIT-004', weight: '0.45 kg', material: '100% Organic Cotton', origin: 'Jaipur, Rajasthan, India',
+    warranty: '6 Months Print Warranty', availability: 'In Stock', care: 'Machine wash cold inside out with mild detergent. Line dry in shade.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#000080'},{name:'Madder Red',hex:'#E32636'},{name:'Turmeric Yellow',hex:'#D4AF37'}],
     galleryImages: ['img/prod-blouse.png','img/cat-women.png','img/prod-dress.png','img/hero.png']
   },
   {
-    id: 6, name: 'Midnight Velvet Gown', brand: 'SS Couture',
-    price: 34999, oldPrice: null, category: 'women',
-    image: 'img/cat-women.png', badge: 'trending',
-    rating: 5.0, reviews: 67,
-    description: 'Command the room in this statuesque velvet gown. Crafted from plush, ultra-soft stretch velvet that contours the body. Styled with an off-the-shoulder neckline and a dramatic sweeping floor train.',
-    details: 'Premium stretch velvet. Bardot neckline. Fully lined. Concealed back zipper. Floor-length with train.',
-    sku: 'SS-WMN-GWN-006', weight: '1.1 kg', material: 'Premium Stretch Velvet (92% Polyester, 8% Spandex)', origin: 'Designed in Paris, Made in India',
-    warranty: '1 Year Manufacturing Warranty', availability: 'Limited Stock — Only 8 Left', care: 'Dry Clean Only. Do not iron directly. Steam to remove wrinkles.',
-    sizes: ['XS','S','M','L','XL'], colors: [{name:'Midnight Navy',hex:'#1B1F3A'},{name:'Plum',hex:'#4B0082'},{name:'Onyx Black',hex:'#0F1115'}],
+    id: 5, name: 'Elegant Floral Organza Dupatta Set', brand: 'SS Luxe',
+    price: 3999, oldPrice: null, category: 'women',
+    image: 'img/cat-women.png', badge: 'new',
+    rating: 4.8, reviews: 78,
+    description: 'A beautiful straight suit in soft pastel hues, paired with an exquisite hand-painted floral organza dupatta with scalloped borders. Gives an ultra-modern, feminine aesthetic to your festive wardrobe.',
+    details: 'Viscose silk straight kurta, comfortable pants, and a premium printed organza dupatta.',
+    sku: 'SS-WMN-ORGN-005', weight: '0.5 kg', material: 'Viscose Silk Blend, Organza Dupatta', origin: 'Designed & Made in India',
+    warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean or gentle hand wash. Do not wring organza dupatta.',
+    sizes: ['XS','S','M','L','XL'], colors: [{name:'Blush Pink',hex:'#FFB6C1'},{name:'Powder Blue',hex:'#B0E0E6'},{name:'Lavender Rose',hex:'#E6E6FA'}],
     galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
   },
-  // ---- FOOTWEAR ----
   {
-    id: 7, name: 'Noir & Gold Designer Sneakers', brand: 'SS Sport',
-    price: 12999, oldPrice: 16999, category: 'footwear',
-    image: 'img/prod-sneakers.png', badge: 'trending',
-    rating: 4.8, reviews: 312,
-    description: 'Streetwear meets luxury. These low-top sneakers feature panels of premium full-grain Italian leather and plush suede, detailed with striking metallic gold hardware. Comfort-engineered cupsole ensures all-day wear.',
-    details: 'Italian calf leather and suede. 24K gold-plated accents. Breathable leather lining. Rubber cupsole.',
-    sku: 'SS-FTW-SNK-007', weight: '0.9 kg (pair)', material: 'Italian Calf Leather & Suede', origin: 'Handcrafted in Italy',
-    warranty: '1 Year Manufacturing Warranty', availability: 'In Stock', care: 'Wipe clean with dry cloth. Use leather conditioner monthly. Store with shoe trees.',
-    sizes: ['UK 6','UK 7','UK 8','UK 9','UK 10','UK 11'], colors: [{name:'Noir & Gold',hex:'#0F1115'},{name:'All White',hex:'#F5F5F5'},{name:'Olive Gold',hex:'#556B2F'}],
-    galleryImages: ['img/prod-sneakers.png','img/cat-footwear.png','img/prod-heels.png','img/hero.png']
+    id: 6, name: 'Phulkari Embroidered Festive Kurti', brand: 'SS Heritage',
+    price: 1899, oldPrice: 2299, category: 'women',
+    image: 'img/prod-blouse.png', badge: 'sale',
+    rating: 4.5, reviews: 67,
+    description: 'A vibrant short kurti featuring traditional Punjabi Phulkari geometric embroidery in colorful silk threads. Made from premium khadi cotton, perfect to pair with patialas, palazzos, or jeans.',
+    details: 'Khadi cotton base. Full hand-embellished Phulkari embroidery on front. V-neck.',
+    sku: 'SS-WMN-PHUL-006', weight: '0.3 kg', material: 'Khadi Cotton, Silk Threads', origin: 'Amritsar, Punjab, India',
+    warranty: 'None', availability: 'Limited Stock', care: 'Gentle hand wash. Do not bleach. Iron on reverse side.',
+    sizes: ['S','M','L','XL'], colors: [{name:'Sun Gold',hex:'#FFD700'},{name:'Royal Blue',hex:'#4169E1'},{name:'Magenta Pink',hex:'#FF00FF'}],
+    galleryImages: ['img/prod-blouse.png','img/cat-women.png','img/prod-dress.png','img/hero.png']
   },
+
+  // ---- KIDS' WEAR ----
   {
-    id: 8, name: 'Obsidian Stiletto Heels', brand: 'SS Luxe',
-    price: 14999, oldPrice: null, category: 'footwear',
-    image: 'img/prod-heels.png', badge: 'new',
-    rating: 4.6, reviews: 78,
-    description: 'Walk with unmatched confidence. These striking stilettos feature a sleek pointed toe, dynamic cut-out sides, and a high-shine metal heel. Handcrafted in Milan from premium patent leather.',
-    details: 'Patent leather. 100mm heel height. Signature gold-inlaid leather sole. Cushioned insole.',
-    sku: 'SS-FTW-HLS-008', weight: '0.7 kg (pair)', material: 'Patent Leather Upper, Leather Sole', origin: 'Handcrafted in Milan, Italy',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Wipe clean with damp cloth. Polish with patent leather care cream. Store in dust bag.',
-    sizes: ['UK 3','UK 4','UK 5','UK 6','UK 7','UK 8'], colors: [{name:'Obsidian Black',hex:'#0F1115'},{name:'Crimson',hex:'#DC143C'},{name:'Nude',hex:'#E8C39E'}],
-    galleryImages: ['img/prod-heels.png','img/cat-footwear.png','img/prod-sneakers.png','img/hero.png']
-  },
-  // ---- ACCESSORIES ----
-  {
-    id: 9, name: 'Imperial Gold Chronograph', brand: 'SS Timepieces',
-    price: 49999, oldPrice: 64999, category: 'accessories',
-    image: 'img/prod-watch.png', badge: 'sale',
-    rating: 4.9, reviews: 241,
-    description: 'A testament to watchmaking excellence. This luxury chronograph features a solid stainless steel case plated in 18K gold, a rich obsidian dial with luminous hands, and a precision tachymeter bezel. Domed sapphire crystal provides scratch resistance.',
-    details: '18K gold plated. Swiss quartz movement. 42mm case. Water resistant to 50m. Sapphire crystal glass.',
-    sku: 'SS-ACC-WCH-009', weight: '0.18 kg', material: 'Stainless Steel, 18K Gold Plating, Sapphire Crystal', origin: 'Swiss Movement, Assembled in India',
-    warranty: '2 Years International Warranty', availability: 'In Stock', care: 'Avoid exposure to chemicals. Wipe with microfiber cloth. Service every 3 years.',
-    sizes: ['One Size'], colors: [{name:'Gold & Black',hex:'#D4AF37'},{name:'Silver & Blue',hex:'#C0C0C0'},{name:'Rose Gold',hex:'#B76E79'}],
-    galleryImages: ['img/prod-watch.png','img/cat-accessories.png','img/prod-bag.png','img/hero.png']
-  },
-  {
-    id: 10, name: 'Quilted Noir Leather Handbag', brand: 'SS Luxe',
-    price: 22999, oldPrice: null, category: 'accessories',
-    image: 'img/prod-bag.png', badge: 'new',
-    rating: 4.7, reviews: 183,
-    description: 'A classic design re-imagined for the modern lifestyle. Crafted from supple nappa leather quilted in an iconic diamond pattern. Outfitted with a gold chain strap that can be worn doubled or single as a crossbody.',
-    details: 'Nappa calfskin leather. Gold tone hardware. Double-compartment interior. Internal zip pockets.',
-    sku: 'SS-ACC-BAG-010', weight: '0.75 kg', material: 'Nappa Calfskin Leather', origin: 'Made in India',
-    warranty: '1 Year Manufacturing Warranty', availability: 'In Stock', care: 'Wipe with leather wipe. Store stuffed with tissue in dust bag. Avoid prolonged sun exposure.',
-    sizes: ['One Size'], colors: [{name:'Noir Black',hex:'#0F1115'},{name:'Cognac',hex:'#9A6324'},{name:'Cream',hex:'#FFFDD0'}],
-    galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/prod-watch.png','img/hero.png']
-  },
-  // ---- TRADITIONAL WEAR ----
-  {
-    id: 11, name: 'Royal Ivory Embroidered Kurta', brand: 'SS Heritage',
-    price: 8999, oldPrice: 11999, category: 'traditional',
+    id: 7, name: 'Boys Traditional Dhoti Kurta Set', brand: 'SS Heritage Kids',
+    price: 1499, oldPrice: 1999, category: 'kids',
     image: 'img/prod-kurta.png', badge: 'trending',
-    rating: 4.8, reviews: 145,
-    description: 'Honor heritage in style. This ivory kurta is crafted from premium raw silk, adorned with elaborate gold Zardozi embroidery around the band collar and placket. Designed for festivals, weddings, and royal gatherings.',
-    details: 'Raw silk blend. Handcrafted Zardozi embroidery. Side slits. Two side pockets. Dry clean recommended.',
-    sku: 'SS-TRD-KRT-011', weight: '0.6 kg', material: 'Raw Silk Blend (70% Silk, 30% Cotton)', origin: 'Handcrafted in Lucknow, India',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Dry Clean Only. Do not wring. Iron inside out on low heat.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Ivory Gold',hex:'#FFFFF0'},{name:'Maroon',hex:'#800020'},{name:'Royal Blue',hex:'#002366'}],
-    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/cat-men.png','img/hero.png']
+    rating: 4.8, reviews: 201,
+    description: 'A charming traditional dhoti kurta set for boys. Features a soft cotton kurta with gold piping and a pre-stitched, easy-to-wear elasticated dhoti pant. Gentle on children\'s skin and ideal for family pujas and festivals.',
+    details: 'Includes: 1 Kurta, 1 Pre-stitched Dhoti. Elasticated waistband. Front buttons on kurta.',
+    sku: 'SS-KDS-DHOT-007', weight: '0.25 kg', material: '100% Breathable Cotton', origin: 'Handcrafted in India',
+    warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Warm iron inside out.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Saffron Gold',hex:'#FFA500'},{name:'Emerald Green',hex:'#2E8B57'},{name:'Traditional Red',hex:'#B22222'}],
+    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/prod-shirt.png','img/hero.png']
   },
   {
-    id: 12, name: 'Golden Thread Silk Sherwani', brand: 'SS Heritage',
-    price: 39999, oldPrice: null, category: 'traditional',
+    id: 8, name: 'Girls Zari Border Pattu Pavadai Set', brand: 'SS Heritage Kids',
+    price: 1999, oldPrice: 2499, category: 'kids',
     image: 'img/cat-traditional.png', badge: 'new',
-    rating: 5.0, reviews: 56,
-    description: 'The epitome of traditional luxury. This sherwani is woven with pure banarasi silk brocade, featuring gold zari motifs. Features structural tailoring for a commanding, regal presence.',
-    details: 'Banarasi silk brocade. Hand-carved brass buttons. Fully lined. Vent back. Sold as set with churidar.',
-    sku: 'SS-TRD-SHR-012', weight: '1.8 kg (set)', material: 'Pure Banarasi Silk Brocade with Zari', origin: 'Handwoven in Varanasi, India',
-    warranty: '1 Year Manufacturing Warranty', availability: 'Limited Stock — Only 12 Left', care: 'Dry Clean Only. Store in breathable garment cover. Do not expose to moisture.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Gold Thread',hex:'#D4AF37'},{name:'Silver Weave',hex:'#C0C0C0'},{name:'Maroon Brocade',hex:'#800020'}],
-    galleryImages: ['img/cat-traditional.png','img/prod-kurta.png','img/cat-men.png','img/hero.png']
+    rating: 4.9, reviews: 54,
+    description: 'Traditional South Indian Pattu Pavadai set for girls, woven in rich art silk with a golden zari border. Includes an embellished crop-style top (choli) and a pleated skirt. Light, soft, and comfortable for all-day festive celebrations.',
+    details: '2-piece set: Blouse and Pavadai Skirt. Fully lined with soft cotton for kid comfort.',
+    sku: 'SS-KDS-PATT-008', weight: '0.35 kg', material: 'Art Silk, Cotton Inner Lining, Zari Thread', origin: 'Kanchipuram, Tamil Nadu, India',
+    warranty: 'None', availability: 'In Stock', care: 'Dry clean or gentle hand wash only. Store wrapped in paper.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Fuchsia & Mustard',hex:'#FF00FF'},{name:'Green & Red',hex:'#008000'},{name:'Blue & Orange',hex:'#0000FF'}],
+    galleryImages: ['img/cat-traditional.png','img/prod-kurta.png','img/cat-women.png','img/hero.png']
   },
+  {
+    id: 9, name: 'Kids Bandhani Nehru Jacket Set', brand: 'SS Heritage Kids',
+    price: 2299, oldPrice: null, category: 'kids',
+    image: 'img/prod-shirt.png', badge: 'trending',
+    rating: 4.6, reviews: 42,
+    description: 'A smart ethnic coordinates set for boys. Features a solid color cotton kurta, comfortable churidar pajama, and a printed silk Nehru jacket with Bandhani details and brass buttons.',
+    details: '3-piece set: Kurta, Pyjama, and Nehru Jacket. Jacket features functional pockets.',
+    sku: 'SS-KDS-NEHR-009', weight: '0.4 kg', material: 'Cotton Kurta/Pyjama, Art Silk Jacket', origin: 'Jaipur, Rajasthan, India',
+    warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean recommended. Jacket dry clean only.',
+    sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Teal & Orange',hex:'#008080'},{name:'Yellow & Royal Blue',hex:'#FFD700'},{name:'Peach & Maroon',hex:'#FFDAB9'}],
+    galleryImages: ['img/prod-shirt.png','img/cat-traditional.png','img/prod-kurta.png','img/hero.png']
+  },
+  {
+    id: 10, name: 'Jaipuri Block Print Cotton Frock', brand: 'SS Essentials Kids',
+    price: 999, oldPrice: 1299, category: 'kids',
+    image: 'img/cat-women.png', badge: 'sale',
+    rating: 4.7, reviews: 83,
+    description: 'A cute and breathable summer dress for girls, hand-block printed in traditional Jaipuri bootis using organic dyes. Features a comfortable round neck, adjustable back-tie sash, and soft cotton lace trims.',
+    details: '100% Cotton. Knee-length. Back zipper. Soft cotton inner lining.',
+    sku: 'SS-KDS-FRK-010', weight: '0.15 kg', material: '100% Hand-Block Cotton', origin: 'Jaipur, India',
+    warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Line dry in shade.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Turquoise Blue',hex:'#40E0D0'},{name:'Coral Pink',hex:'#F08080'},{name:'Sunny Yellow',hex:'#FFFFE0'}],
+    galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
+  },
+  {
+    id: 11, name: 'Kids Chikankari Cotton Kurta Set', brand: 'SS Essentials Kids',
+    price: 1299, oldPrice: 1499, category: 'kids',
+    image: 'img/prod-kurta.png', badge: 'trending',
+    rating: 4.7, reviews: 31,
+    description: 'Chikankari-embroidered soft cotton kurta with matching pajama set. Features light shadow work around the neck, specially crafted for kids. Extremely soft and breathable for everyday comfort.',
+    details: '2-piece set: Kurta and white pajama. Hand-embellished details.',
+    sku: 'SS-KDS-CHIK-011', weight: '0.2 kg', material: '100% Soft Cotton', origin: 'Lucknow, Uttar Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash cold. Iron on reverse.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Sky Blue',hex:'#87CEEB'},{name:'Baby Pink',hex:'#FFB6C1'},{name:'Butter Yellow',hex:'#FFFDD0'}],
+    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/prod-shirt.png','img/hero.png']
+  },
+  {
+    id: 12, name: 'Festive Silk Lehenga for Girls', brand: 'SS Heritage Kids',
+    price: 2799, oldPrice: 3299, category: 'kids',
+    image: 'img/cat-women.png', badge: 'new',
+    rating: 4.8, reviews: 29,
+    description: 'A beautiful art silk lehenga set for young girls. Includes a floral brocade skirt, a matching blouse with gold beadwork on the sleeves, and a soft net dupatta. Elasticated skirt for a comfortable fit.',
+    details: 'Set includes: Blouse, Lehenga skirt, Net dupatta. Elasticated waist.',
+    sku: 'SS-KDS-LEH-012', weight: '0.5 kg', material: 'Art Silk, Polyester Brocade, Net', origin: 'Made in India',
+    warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Gentle hand wash or dry clean. Do not rub metallic print.',
+    sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Rani Pink',hex:'#C71585'},{name:'Golden Yellow',hex:'#FFD700'},{name:'Royal Navy',hex:'#000080'}],
+    galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
+  },
+
   // ---- UNISEX ----
   {
-    id: 13, name: 'Shadow Black Premium Hoodie', brand: 'SS Street',
-    price: 5999, oldPrice: 7999, category: 'unisex',
-    image: 'img/prod-hoodie.png', badge: 'sale',
-    rating: 4.5, reviews: 428,
-    description: 'Elevated streetwear comfort. Knitted from heavyweight organic loopback cotton with a structured hood. Embellished with a minimalist, high-density embroidered gold logo on the chest.',
-    details: '450GSM Organic Loopback Cotton. Gold metal tip drawstrings. Kangaroo pocket. Ribbed trims.',
-    sku: 'SS-UNI-HDY-013', weight: '0.65 kg', material: '100% Organic Loopback Cotton (450GSM)', origin: 'Made in India',
-    warranty: '6 Months Manufacturing Warranty', availability: 'In Stock', care: 'Machine wash cold inside out. Do not bleach. Tumble dry low. Do not iron directly on print.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Shadow Black',hex:'#0F1115'},{name:'Heather Grey',hex:'#9FA6B2'},{name:'Forest Green',hex:'#228B22'}],
+    id: 13, name: 'Handloom Ikat Cotton Unisex Shirt', brand: 'SS Street',
+    price: 1999, oldPrice: 2499, category: 'unisex',
+    image: 'img/prod-shirt.png', badge: 'sale',
+    rating: 4.6, reviews: 142,
+    description: 'A stylish, structured unisex shirt woven by Pochampally artisans. Features double-pocket front utility details and a classic collar. The handloom Ikat pattern blends cultural heritage with street-smart styling.',
+    details: '100% Handloom Cotton. Front button closure. Double utility chest pockets. Relaxed unisex fit.',
+    sku: 'SS-UNI-IKAT-013', weight: '0.3 kg', material: '100% Handloom Ikat Cotton', origin: 'Pochampally, Telangana, India',
+    warranty: 'None', availability: 'In Stock', care: 'Wash separately in cold water with mild liquid detergent. Line dry.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Charcoal Ikat',hex:'#2C3539'},{name:'Indigo Weave',hex:'#3F51B5'},{name:'Madder Orange',hex:'#FF7043'}],
+    galleryImages: ['img/prod-shirt.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
+  },
+  {
+    id: 14, name: 'Unisex Khadi Cotton Nehru Jacket', brand: 'SS Essentials',
+    price: 2499, oldPrice: null, category: 'unisex',
+    image: 'img/cat-men.png', badge: 'trending',
+    rating: 4.8, reviews: 88,
+    description: 'Hand-spun and hand-woven premium Khadi cotton Nehru jacket. Designed as a versatile unisex layer. Features three functional pockets and beautiful coconut shell buttons. Adds instant ethnic charm to shirts or kurtas.',
+    details: '100% Handloom Khadi. Mandarin collar. Shell buttons. 3 external patch pockets.',
+    sku: 'SS-UNI-KHAD-014', weight: '0.4 kg', material: '100% Handloom Khadi Cotton', origin: 'Khadi Village Industries, India',
+    warranty: '1 Year Fabric Warranty', availability: 'In Stock', care: 'Dry clean recommended. Gentle hand wash and press with warm iron.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Natural Ivory',hex:'#FDF5E6'},{name:'Oatmeal Beige',hex:'#F5F5DC'},{name:'Mustard Gold',hex:'#E1AD01'}],
+    galleryImages: ['img/cat-men.png','img/prod-kurta.png','img/cat-traditional.png','img/hero.png']
+  },
+  {
+    id: 15, name: 'Artisan Indigo Block-Print Hoodie', brand: 'SS Street',
+    price: 3299, oldPrice: 3999, category: 'unisex',
+    image: 'img/prod-hoodie.png', badge: 'trending',
+    rating: 4.7, reviews: 215,
+    description: 'Where traditional block-printing meets modern streetwear. Made in heavy organic cotton loopback fabric, printed in authentic indigo Dabu blocks by Rajasthan artisans. Outfitted with double-lined hood and gold-tipped drawstrings.',
+    details: '380GSM Organic Loopback Cotton. Authentic Dabu print. Double-lined hood. Ribbed trims.',
+    sku: 'SS-UNI-DABU-015', weight: '0.58 kg', material: '100% Organic Cotton', origin: 'Crafted in Akola, Rajasthan, India',
+    warranty: '6 Months Print Warranty', availability: 'In Stock', care: 'Wash separately inside out. Indigo dyes bleed slightly on first washes.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#002FA7'},{name:'Charcoal Dabu',hex:'#2F2F2F'},{name:'Rust Terracotta',hex:'#C04000'}],
     galleryImages: ['img/prod-hoodie.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
   },
   {
-    id: 14, name: 'Urban Gold-Accent Bomber Jacket', brand: 'SS Street',
-    price: 15999, oldPrice: null, category: 'unisex',
-    image: 'img/cat-unisex.png', badge: 'trending',
-    rating: 4.7, reviews: 167,
-    description: 'A striking statement jacket. Features a water-resistant matte satin shell, satin lining, and luxury ribbed trims. Detailed with bold gold zipper hardware and an utility sleeve pocket.',
-    details: 'Water-resistant nylon-satin. Gold double zip pull. Interior breast pocket. Ribbed collar, cuffs, and hem.',
-    sku: 'SS-UNI-BMR-014', weight: '0.85 kg', material: 'Water-Resistant Nylon-Satin Shell, Satin Lining', origin: 'Designed in Milan, Made in India',
-    warranty: '1 Year Manufacturing Warranty', availability: 'In Stock', care: 'Spot clean or dry clean. Do not machine wash. Hang dry.',
-    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Matte Black Gold',hex:'#0F1115'},{name:'Olive',hex:'#556B2F'},{name:'Burgundy',hex:'#800020'}],
+    id: 16, name: 'Handcrafted Jute Tote & Dupatta Set', brand: 'SS Accessories',
+    price: 1799, oldPrice: 2299, category: 'unisex',
+    image: 'img/prod-bag.png', badge: 'new',
+    rating: 4.6, reviews: 37,
+    description: 'A thoughtful unisex gift set featuring a high-quality quilted jute canvas tote bag with leather straps, paired with a matching natural dye block-printed cotton stole. Perfect for sustainable everyday styling.',
+    details: 'Set includes: 1 Jute Tote (14x16 inches, zipper pocket) and 1 Cotton Stole (2 meters).',
+    sku: 'SS-UNI-GIFT-016', weight: '0.5 kg', material: 'Premium Jute, Genuine Leather Straps, Cotton Mulmul', origin: 'Handcrafted in West Bengal, India',
+    warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Wipe jute bag clean. Hand wash cotton stole separately.',
+    sizes: ['One Size'], colors: [{name:'Natural Tan',hex:'#D2B48C'},{name:'Indigo Blue',hex:'#0F52BA'},{name:'Forest Green',hex:'#228B22'}],
+    galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/prod-watch.png','img/hero.png']
+  },
+  {
+    id: 17, name: 'Unisex Pure Pashmina Blend Stole', brand: 'SS Heritage',
+    price: 4299, oldPrice: null, category: 'unisex',
+    image: 'img/cat-unisex.png', badge: 'new',
+    rating: 5.0, reviews: 49,
+    description: 'Luxuriously soft stole woven with a blend of pure Kashmiri Pashmina wool and fine merino fibers. Features traditional Kashmiri checks and fine fringes. Extremely warm, featherlight, and ideal as a luxury unisex gift.',
+    details: 'Woven blend of 50% Pashmina, 50% Merino. Dimensions: 70 x 200 cm. Fringed hems.',
+    sku: 'SS-UNI-PASH-017', weight: '0.15 kg', material: 'Kashmiri Pashmina, Fine Merino Wool', origin: 'Handwoven in Srinagar, Kashmir, India',
+    warranty: '1 Year Fabric Warranty', availability: 'Limited Stock', care: 'Dry clean only. Store in protective bag with cedar balls.',
+    sizes: ['One Size'], colors: [{name:'Charcoal Black',hex:'#121212'},{name:'Camel Beige',hex:'#C19A6B'},{name:'Slate Grey',hex:'#708090'}],
     galleryImages: ['img/cat-unisex.png','img/prod-hoodie.png','img/cat-men.png','img/hero.png']
+  },
+  {
+    id: 18, name: 'Handloom Indigo Unisex Short Kurta', brand: 'SS Street',
+    price: 1699, oldPrice: 1999, category: 'unisex',
+    image: 'img/prod-kurta.png', badge: 'sale',
+    rating: 4.8, reviews: 73,
+    description: 'A contemporary short kurta for men or women, hand-woven in premium handloom cotton and dyed using organic indigo vat processes. Features single chest utility pocket and comfortable side slits. Looks great with denim or pyjamas.',
+    details: 'Handloom cotton. Front short placket. Single pocket. Regular unisex fit.',
+    sku: 'SS-UNI-SKRT-018', weight: '0.22 kg', material: '100% Handloom Cotton, Indigo Dye', origin: 'Made in India',
+    warranty: 'None', availability: 'In Stock', care: 'Wash separately. Mild detergent. Steam press.',
+    sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#002FA7'},{name:'Oatmeal',hex:'#F5F5DC'},{name:'Charcoal Grey',hex:'#3A3A3A'}],
+    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/cat-men.png','img/hero.png']
   }
 ];
 
 // Product reviews database (simulated — realistic per-product reviews)
 const reviewDB = {
   1: [
-    { author: 'Rahul K.', rating: 5, date: '2025-06-10', verified: true, helpful: 34, title: 'Absolutely phenomenal suit', text: 'Wore this to my sister\'s wedding and received more compliments than the groom. The fit is impeccable — no alterations needed for my M size. The waistcoat is a beautiful touch. Fabric feels extremely premium.' },
-    { author: 'Ananya R.', rating: 5, date: '2025-05-22', verified: true, helpful: 21, title: 'Perfect anniversary gift', text: 'Bought this for my husband. The charcoal color is elegant and the wool blend is super soft to the touch. Packaging was luxurious too — came in a beautiful SS Attire garment bag.' },
-    { author: 'Devesh M.', rating: 4, date: '2025-04-15', verified: true, helpful: 12, title: 'Great quality, slightly long sleeves', text: 'Quality is top notch, but the jacket sleeves were a tad long for me. Got them adjusted easily. The three-piece together looks stunning. Would buy from SS Collection again.' },
-    { author: 'Siddharth P.', rating: 5, date: '2025-03-28', verified: false, helpful: 8, title: 'Board meeting power suit', text: 'This suit commands respect. I\'ve gotten several inquiries about where I got it during business meetings. The double-vented back is a nice modern touch.' },
-    { author: 'Meera J.', rating: 4, date: '2025-02-11', verified: true, helpful: 15, title: 'Gifted to my father — he loved it', text: 'Dad is extremely picky about formal wear but was genuinely impressed. The peak lapel styling is classic yet contemporary. Only minor gripe is the trousers could use a slightly slimmer cut around the calves.' }
+    { author: 'Neha R.', rating: 5, date: '2025-06-10', verified: true, helpful: 14, title: 'Intricate Lucknowi craft!', text: 'The Chikankari handwork on this Anarkali is absolute perfection. Soft georgette fabric drapes beautifully. The inner slip matches perfectly.' },
+    { author: 'Meera K.', rating: 4, date: '2025-05-18', verified: true, helpful: 8, title: 'Lovely color, very comfortable', text: 'Soft color, and it looks very elegant. Got it for a family puja and everyone loved it. Iron on reverse as recommended!' }
   ],
   2: [
-    { author: 'Priya S.', rating: 5, date: '2025-06-02', verified: true, helpful: 18, title: 'Best shirt I own', text: 'The Egyptian cotton is incredibly soft and breathable. Wore it to a full-day conference and it stayed crisp until evening. No creasing at all. The spread collar sits beautifully under a blazer.' },
-    { author: 'Karan V.', rating: 4, date: '2025-05-18', verified: true, helpful: 9, title: 'Excellent quality for the price', text: 'At ₹5,000 this is a steal for genuine Egyptian cotton. The dual-button cuffs are a nice luxury detail. Runs slightly slim though — size up if you prefer a relaxed fit.' },
-    { author: 'Nisha T.', rating: 5, date: '2025-04-30', verified: true, helpful: 22, title: 'Office wardrobe staple', text: 'Ordered 3 in different colors. The luster on this cotton is unreal. After 10+ washes, they still look brand new. Will definitely reorder when new colors drop.' },
-    { author: 'Amit G.', rating: 4, date: '2025-03-15', verified: false, helpful: 5, title: 'Solid daily driver shirt', text: 'Good construction, nice placket. The curved hem tucks neatly. Wish there were more color options available — would love a lavender and a light pink.' }
+    { author: 'Priyanka S.', rating: 5, date: '2025-06-15', verified: true, helpful: 22, title: 'Pure royal feel', text: 'The zari work on this Banarasi silk saree is breathtaking. Wore it to a wedding reception and got endless compliments. At under ₹5000, it\'s an incredible value.' }
   ],
   3: [
-    { author: 'Vikram S.', rating: 5, date: '2025-06-08', verified: true, helpful: 27, title: 'Best blazer purchase ever', text: 'The wool-silk-linen blend is genius — incredibly lightweight yet structured. I can wear it in Indian summers without overheating. The gold brass buttons are a magnificent touch.' },
-    { author: 'Ravi K.', rating: 5, date: '2025-05-25', verified: true, helpful: 19, title: 'Versatile piece for any occasion', text: 'Wore it with jeans for brunch, then with chinos for dinner — works perfectly both ways. The unlined construction drapes beautifully. This is what smart casual should look like.' },
-    { author: 'Deepa M.', rating: 4, date: '2025-04-12', verified: true, helpful: 11, title: 'Lovely blazer with minor sizing note', text: 'Great blazer overall. The sale price made it even better. Just note that it runs slightly slim through the chest — I\'d recommend sizing up one if you\'re between sizes.' },
-    { author: 'Arjun T.', rating: 5, date: '2025-03-20', verified: true, helpful: 16, title: 'Compliments everywhere', text: 'The navy color is rich and deep, not the faded navy you see on cheaper blazers. Patch pockets add a nice casual element. This has replaced my go-to dinner jacket.' }
+    { author: 'Anjali D.', rating: 5, date: '2025-06-08', verified: true, helpful: 19, title: 'Flared and festive!', text: 'Vibrant colors and a huge flare! Perfect for garba nights. The tie-dye pattern is very authentic.' }
   ],
   4: [
-    { author: 'Neha R.', rating: 5, date: '2025-06-14', verified: true, helpful: 31, title: 'Dream dress — stop scrolling and buy', text: 'The silk satin flows like liquid gold (well, liquid crimson). The cowl neck is incredibly flattering. I wore this to a cocktail party and literally stopped conversations. The thigh slit is tasteful, not overdone.' },
-    { author: 'Pooja N.', rating: 5, date: '2025-05-30', verified: true, helpful: 24, title: 'Worth every penny at sale price', text: 'At 28% off this was an absolute steal. The quality of the silk is unmistakable — heavy, smooth, and drapes exactly like the photos. I\'m 5\'7" and the length was perfect in size M.' },
-    { author: 'Kavita S.', rating: 4, date: '2025-04-22', verified: true, helpful: 14, title: 'Beautiful but delicate', text: 'Stunning dress. The side zipper is well-concealed. Only giving 4 stars because pure silk does wrinkle easily during transport. Had to steam it before the event. But the look — 10/10.' },
-    { author: 'Sonal M.', rating: 5, date: '2025-03-05', verified: false, helpful: 7, title: 'My engagement dinner dress', text: 'Chose the champagne color for my engagement dinner and it was magical. The adjustable straps are a thoughtful touch. Every guest asked about the dress. Thank you SS Luxe!' }
+    { author: 'Sonal B.', rating: 4, date: '2025-06-01', verified: true, helpful: 12, title: 'Perfect for summers', text: 'Highly breathable cotton. The Jaipuri hand-block print details are very fine. Extremely satisfied.' }
   ],
   5: [
-    { author: 'Isha P.', rating: 5, date: '2025-06-01', verified: true, helpful: 16, title: 'Jewel-toned perfection', text: 'The emerald color is so rich and vibrant in person — even more beautiful than in photos. The heavy silk has a gorgeous weight and drape. The gold buttons on the cuffs are a stunning detail.' },
-    { author: 'Divya R.', rating: 4, date: '2025-05-15', verified: true, helpful: 10, title: 'Lovely but runs slightly small', text: 'Beautiful blouse. The mulberry silk quality is evident. I usually wear M but found it a bit snug around the shoulders — L fits perfectly. The draped mock neck is very elegant.' },
-    { author: 'Rekha D.', rating: 5, date: '2025-04-28', verified: true, helpful: 19, title: 'Perfect for formal events', text: 'I\'ve paired this with high-waisted trousers and pencil skirts. Works beautifully for both. The keyhole back closure is a nice subtle detail. The silk feels incredibly luxurious against the skin.' }
+    { author: 'Kriti A.', rating: 5, date: '2025-06-20', verified: true, helpful: 7, title: 'Stunning organza dupatta', text: 'The painted dupatta with scalloped borders makes the outfit stand out. Very delicate and premium.' }
   ],
   6: [
-    { author: 'Aishwarya M.', rating: 5, date: '2025-06-12', verified: true, helpful: 28, title: 'Show-stopping gown', text: 'I walked into the gala and people literally turned their heads. The stretch velvet hugs the body perfectly — no need for tailoring. The bardot neckline is classic and timeless. Worth every rupee.' },
-    { author: 'Prerna K.', rating: 5, date: '2025-05-20', verified: true, helpful: 22, title: 'Felt like royalty', text: 'The floor-length train made me feel like I was walking a red carpet. The concealed zipper is well-engineered. The navy shade has a beautiful depth to it. My photographer was obsessed.' },
-    { author: 'Tanya B.', rating: 5, date: '2025-04-08', verified: true, helpful: 15, title: 'My dream wedding reception outfit', text: 'Changed into this for my reception and the reaction was incredible. The velvet is unbelievably soft and doesn\'t look cheap or shiny. SS Couture has a customer for life.' }
+    { author: 'Harpreet K.', rating: 5, date: '2025-05-22', verified: true, helpful: 15, title: 'True Punjabi heritage', text: 'Beautiful hand Phulkari work in vibrant silk threads. I wear it with both jeans and patialas. Stunning kurti.' }
   ],
   7: [
-    { author: 'Rohit S.', rating: 5, date: '2025-06-16', verified: true, helpful: 45, title: 'Best sneakers I\'ve ever owned', text: 'The Italian leather is butter-soft right out of the box. No break-in period needed. The gold hardware is subtle and classy, not loud. The cupsole is incredibly comfortable for all-day walking.' },
-    { author: 'Aakash P.', rating: 5, date: '2025-05-28', verified: true, helpful: 33, title: 'Luxury meets streetwear', text: 'These sneakers bridge the gap between formal and casual perfectly. I wear them with suits and with joggers. The suede panels contrast beautifully with the leather. After 3 months of heavy use, they still look mint.' },
-    { author: 'Simran K.', rating: 4, date: '2025-04-18', verified: true, helpful: 17, title: 'Great quality, slightly narrow', text: 'Build quality is exceptional. The 24K gold-plated accents are a luxury touch. Only concern: they run narrow. I have wide feet and UK 10 was snug. Would recommend sizing up half a size for wider feet.' },
-    { author: 'Varun M.', rating: 5, date: '2025-03-10', verified: true, helpful: 25, title: 'Investment piece', text: 'Yes, they\'re pricey for sneakers, but the quality justifies it entirely. The leather patinas beautifully over time. These are the kind of sneakers that get better with age.' }
+    { author: 'Ramesh P.', rating: 5, date: '2025-06-05', verified: true, helpful: 31, title: 'Very easy to wear for kids', text: 'The pre-stitched dhoti is a lifesaver! My 5-year old ran around all day without it slipping or causing skin irritation. 10/10.' }
   ],
   8: [
-    { author: 'Meera T.', rating: 5, date: '2025-06-05', verified: true, helpful: 20, title: 'Stunning heels — Milan quality', text: 'You can feel the Italian craftsmanship. The patent leather catches light beautifully. The cushioned insole makes the 100mm height surprisingly comfortable. Wore them for 5 hours without pain.' },
-    { author: 'Anita G.', rating: 4, date: '2025-05-12', verified: true, helpful: 13, title: 'Beautiful but high', text: 'Absolutely gorgeous stilettos. The gold-inlaid sole is a gorgeous hidden detail. The cut-out sides are very flattering. Just a heads up — 100mm is quite high. Not for the faint of heart!' },
-    { author: 'Nandini R.', rating: 5, date: '2025-04-01', verified: true, helpful: 9, title: 'Perfect date night heels', text: 'These made my outfit. The pointed toe elongates the leg beautifully. The metal heel gives a modern edge. Came in a beautiful dust bag and box. SS Luxe packaging is always impressive.' }
+    { author: 'Lakshmi N.', rating: 5, date: '2025-06-11', verified: true, helpful: 14, title: 'Absolutely adorable!', text: 'Traditional South Indian Pattu Pavadai. The art silk is soft and didn\'t scratch my daughter at all. Very bright, gorgeous colors.' }
   ],
   9: [
-    { author: 'Arjun M.', rating: 5, date: '2025-06-18', verified: true, helpful: 52, title: 'Horological masterpiece', text: 'The attention to detail on this watch is extraordinary. The sapphire crystal is flawless, the obsidian dial catches light beautifully, and the 18K gold plating looks indistinguishable from solid gold. The Swiss movement keeps impeccable time.' },
-    { author: 'Rajesh K.', rating: 5, date: '2025-05-25', verified: true, helpful: 38, title: 'Best value luxury timepiece', text: 'I\'ve owned watches 5x this price that don\'t feel this premium. The tachymeter bezel is functional and looks incredible. The weight of the watch on the wrist feels substantial. At ₹50k (especially on sale at ₹35k), this is unbeatable.' },
-    { author: 'Vikram P.', rating: 4, date: '2025-04-10', verified: true, helpful: 21, title: 'Beautiful watch, just one note', text: 'Gorgeous timepiece. The luminous hands work well in low light. The only thing preventing 5 stars is the clasp — it\'s good but I would have preferred a butterfly deployment clasp at this price point. Otherwise, perfection.' },
-    { author: 'Suresh N.', rating: 5, date: '2025-03-15', verified: false, helpful: 14, title: 'Birthday gift from wife — she nailed it', text: 'My wife surprised me with this and I haven\'t taken it off since. The 42mm case is the perfect size. Goes with everything from kurtas to business suits. This is a lifelong companion.' }
+    { author: 'Amit K.', rating: 4, date: '2025-05-29', verified: true, helpful: 9, title: 'Very stylish set', text: 'The Nehru jacket with Bandhani print looks so smart on my son. Great fit and good fabric quality.' }
   ],
   10: [
-    { author: 'Priya M.', rating: 5, date: '2025-06-08', verified: true, helpful: 26, title: 'My everyday luxury bag', text: 'The nappa leather is incredibly soft and the diamond quilting is immaculate. The gold chain strap is versatile — I double it for a shoulder bag or use it single as a crossbody. Interior organization is well thought out.' },
-    { author: 'Kavitha S.', rating: 4, date: '2025-05-19', verified: true, helpful: 18, title: 'Beautiful bag, moderate capacity', text: 'Gorgeous craftsmanship and the noir color is pure elegance. It fits my essentials (phone, wallet, keys, lipstick) but not much more. Perfect for outings, not ideal for office days when you carry more.' },
-    { author: 'Sneha R.', rating: 5, date: '2025-04-22', verified: true, helpful: 14, title: 'Worth the investment', text: 'I\'ve been using this bag daily for 2 months and it still looks brand new. The nappa leather actually gets more beautiful with use. The gold hardware has zero tarnishing. SS Luxe quality is real.' }
+    { author: 'Ritu M.', rating: 5, date: '2025-06-02', verified: true, helpful: 11, title: 'Lovely hand-block cotton frock', text: 'Super soft and breathable for summer. The block print is beautiful. Great value for under 1000 rupees!' }
   ],
   11: [
-    { author: 'Manish K.', rating: 5, date: '2025-06-20', verified: true, helpful: 29, title: 'Wedding-ready masterpiece', text: 'The Zardozi embroidery is museum-quality. Each stitch is precise and the gold thread catches light beautifully. The raw silk has a gorgeous texture. Wore it to my mehendi ceremony and it was the talk of the evening.' },
-    { author: 'Ravi S.', rating: 5, date: '2025-05-15', verified: true, helpful: 22, title: 'Heritage craftsmanship at its finest', text: 'You can tell this kurta was made by artisans who take pride in their work. The band collar embroidery is intricate and dense. Very comfortable despite the rich embellishment. The side pockets are practical.' },
-    { author: 'Deepak T.', rating: 4, date: '2025-04-05', verified: true, helpful: 11, title: 'Beautiful kurta, sizing note', text: 'Absolutely gorgeous piece. The ivory color is pure and bright. The embroidery hasn\'t snagged after one dry clean. Just note: runs slightly long on shorter frames (I\'m 5\'6"). Getting it shortened was easy though.' },
-    { author: 'Arun M.', rating: 5, date: '2025-03-18', verified: true, helpful: 17, title: 'Diwali show-stealer', text: 'Bought for Diwali and received so many compliments. The raw silk catches light beautifully under festive lighting. Paired with gold mojaris, it was perfection. Will order the maroon version for the next wedding season.' }
+    { author: 'Karan G.', rating: 5, date: '2025-06-18', verified: true, helpful: 8, title: 'Softest cotton ever', text: 'Perfect for kid\'s skin. The Chikankari embroidery is subtle and doesn\'t pinch from the inside.' }
   ],
   12: [
-    { author: 'Rajat V.', rating: 5, date: '2025-06-15', verified: true, helpful: 35, title: 'Groom-worthy perfection', text: 'I was the groom and this sherwani made the entire wedding. The Banarasi silk brocade is genuinely handwoven — you can see the artisan\'s touch in every zari motif. The included churidar matched perfectly. My wedding photos are magazine-worthy.' },
-    { author: 'Amit S.', rating: 5, date: '2025-05-28', verified: true, helpful: 28, title: 'Living heritage, wearable luxury', text: 'This is not just clothing — it\'s wearable art. The gold zari work against the silk is breathtaking. The brass buttons feel antique and sophisticated. Even the lining is silk. SS Heritage knows traditional wear.' },
-    { author: 'Gaurav P.', rating: 5, date: '2025-04-20', verified: true, helpful: 19, title: 'Royal presence guaranteed', text: 'Put this on and you stand 2 inches taller (figuratively). The structural tailoring gives a commanding silhouette. The vent back allows comfortable movement. Worth every rupee of ₹40,000.' }
+    { author: 'Nisha S.', rating: 5, date: '2025-06-14', verified: true, helpful: 16, title: 'Stunning festive look', text: 'Flared skirt and pretty choli. My daughter felt like a princess at her cousin\'s birthday.' }
   ],
   13: [
-    { author: 'Simran P.', rating: 5, date: '2025-06-18', verified: true, helpful: 42, title: 'Best hoodie I\'ve ever owned', text: 'The 450GSM cotton is insanely thick and structured. This isn\'t your typical flimsy hoodie — it has real weight and shape. The gold metal drawstring tips are a classy touch. The kangaroo pocket is generously sized.' },
-    { author: 'Rohan K.', rating: 4, date: '2025-05-30', verified: true, helpful: 23, title: 'Great quality but runs large', text: 'The organic cotton feels premium and the embroidered logo is clean and subtle. However, it runs at least one size large. I\'m usually L and M fits perfectly. Check the size chart!' },
-    { author: 'Nisha T.', rating: 5, date: '2025-04-15', verified: true, helpful: 31, title: 'Luxury streetwear done right', text: 'This is what happens when a luxury brand makes streetwear. Every detail is considered — from the ribbed trims to the structured hood that actually stays up. At ₹6K (₹8K retail), it\'s a steal on sale.' },
-    { author: 'Varun D.', rating: 4, date: '2025-03-22', verified: false, helpful: 9, title: 'Solid daily hoodie', text: 'Comfortable and well-made. The shadow black color is a true deep black, not grey-black. Holds up well to machine washing (cold, inside out as recommended). Would love more color options.' }
+    { author: 'Arjun P.', rating: 5, date: '2025-06-04', verified: true, helpful: 25, title: 'Beautiful handloom ikat', text: 'Great unisex fit. The ikat pattern is very unique. Sturdy and well-structured handloom cotton.' }
   ],
   14: [
-    { author: 'Karan M.', rating: 5, date: '2025-06-12', verified: true, helpful: 28, title: 'Statement jacket of the year', text: 'The matte satin finish is incredible — it looks expensive without being shiny. The gold zipper hardware is bold but tasteful. The sleeve pocket is actually useful. Every jacket in my wardrobe is jealous of this one.' },
-    { author: 'Priyanka S.', rating: 5, date: '2025-05-25', verified: true, helpful: 20, title: 'Unisex and universally flattering', text: 'I bought this from the men\'s display and it fits my frame beautifully (size S). The water-resistant shell has already saved me in unexpected rain. The satin lining makes it easy to slide on over anything.' },
-    { author: 'Aditya R.', rating: 4, date: '2025-04-18', verified: true, helpful: 13, title: 'Almost perfect bomber', text: 'Great quality, great design. The ribbed collar and cuffs are thick and don\'t stretch out. Only reason for 4 stars: the interior breast pocket could be deeper. Small phones fit, but larger ones don\'t feel secure.' },
-    { author: 'Rhea N.', rating: 5, date: '2025-03-30', verified: true, helpful: 17, title: 'Transition season essential', text: 'Perfect weight for those in-between weather days. Not too heavy, not too light. The olive color with gold hardware is chef\'s kiss. SS Street really understands modern luxury streetwear.' }
+    { author: 'Vikram S.', rating: 5, date: '2025-05-25', verified: true, helpful: 18, title: 'Classy and sustainable', text: 'Beautiful Khadi texture. It fits both me and my partner perfectly. Coconut buttons are a nice artisan detail.' }
+  ],
+  15: [
+    { author: 'Rohan D.', rating: 4, date: '2025-06-12', verified: true, helpful: 14, title: 'Unique street fusion style', text: 'Heavy organic hoodie with Rajasthan block prints. Amazing blend of street style and Indian culture.' }
+  ],
+  16: [
+    { author: 'Deepa T.', rating: 5, date: '2025-06-09', verified: true, helpful: 6, title: 'Wonderful gift set', text: 'Tote is spacious with strong leather handles. The matching mulmul stole is extremely soft. Highly recommend.' }
+  ],
+  17: [
+    { author: 'Shabnam B.', rating: 5, date: '2025-06-16', verified: true, helpful: 10, title: 'Featherlight warmth', text: 'So soft and warm. Woven beautifully. Excellent unisex pashmina blend. Absolute luxury!' }
+  ],
+  18: [
+    { author: 'Siddharth M.', rating: 4, date: '2025-06-07', verified: true, helpful: 12, title: 'Vibrant indigo dye', text: 'Great short kurta. Fits nicely and looks very casual-chic. Note: wash separately first as it bleeds slightly.' }
   ]
 };
 
@@ -268,7 +289,7 @@ const reviewDB = {
 let cart = [];
 let wishlist = new Set();
 let activePLPFilter = 'all';
-let maxPriceFilter = 50000;
+let maxPriceFilter = 5000;
 let plpSortOrder = 'default';
 let plpSearchQuery = '';
 
@@ -1730,8 +1751,8 @@ function renderCartPage() {
   // Promo calculation
   discountAmount = appliedPromo === 'LUXURY10' ? Math.round(subtotal * 0.1) : 0;
   
-  // Shipping calculation (free over ₹10k)
-  const shipping = subtotal > 10000 ? 0 : 499;
+  // Shipping calculation (free over ₹3k)
+  const shipping = subtotal > 3000 ? 0 : 149;
   const tax = Math.round((subtotal - discountAmount) * 0.18); // 18% included GST estimate
   const finalTotal = subtotal - discountAmount + shipping;
 
@@ -1835,7 +1856,7 @@ function renderCheckoutSummary() {
   if (!wrapper) return;
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const shipping = subtotal > 10000 ? 0 : 499;
+  const shipping = subtotal > 3000 ? 0 : 149;
   const finalTotal = subtotal - discountAmount + shipping;
 
   wrapper.innerHTML = `

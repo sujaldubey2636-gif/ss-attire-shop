@@ -81,11 +81,10 @@
               <div class="hero-bg-gradient"></div>
               <div class="hero-particles-3d"></div>
             </div>
-            
-            <!-- Layer 2: Deep Back Left Floating Image Card (Men's Look) -->
+                  <!-- Layer 2: Deep Back Left Floating Image Card (Traditional Look) -->
             <div class="hero-layer layer-back-left">
               <div class="floating-img-card">
-                <img src="img/cat-men.png" alt="SS Attire Men's Look" />
+                <img src="img/cat-traditional.png" alt="SS Attire Heritage Look" />
                 <div class="card-glow"></div>
               </div>
             </div>
@@ -101,15 +100,15 @@
             <!-- Layer 4: Focal Plane (Main Text Content & CTA) -->
             <div class="hero-layer layer-middle">
               <div class="hero-content">
-                <span class="hero-label">✦ New Season Collection 2025</span>
+                <span class="hero-label">✦ Festive Season Collection 2025</span>
                 <h1 class="hero-title">
                   Redefine Your<br />
-                  <span class="highlight">Elegance</span> with<br />
-                  Premium Fashion
+                  <span class="highlight">Heritage</span> with<br />
+                  Premium Handlooms
                 </h1>
                 <p class="hero-description">
-                  Discover curated collections of luxury clothing, footwear, and 
-                  accessories. Crafted for those who refuse to compromise on style.
+                  Discover curated collections of luxury traditional wear, designer kidswear, and 
+                  contemporary handloom styles. Crafted for those who cherish authentic Indian heritage.
                 </p>
                 <div class="hero-actions">
                   <a href="#/shop" class="btn btn-primary">Explore Collection</a>
@@ -118,19 +117,19 @@
               </div>
             </div>
             
-            <!-- Layer 5: Foreground Left Card (Watch Detail) -->
+            <!-- Layer 5: Foreground Left Card (Artisan Kurta) -->
             <div class="hero-layer layer-front-left">
               <div class="floating-img-card mini-card">
-                <img src="img/prod-watch.png" alt="Imperial Gold Chronograph" />
-                <div class="mini-card-label">Timeless Pieces</div>
+                <img src="img/prod-kurta.png" alt="Royal Handwoven Kurta" />
+                <div class="mini-card-label">Artisan Kurtas</div>
               </div>
             </div>
             
-            <!-- Layer 6: Foreground Right Card (Sneaker Detail) -->
+            <!-- Layer 6: Foreground Right Card (Indigo Hoodie) -->
             <div class="hero-layer layer-front-right">
               <div class="floating-img-card mini-card">
-                <img src="img/prod-sneakers.png" alt="Noir & Gold Sneakers" />
-                <div class="mini-card-label">Street Luxe</div>
+                <img src="img/prod-hoodie.png" alt="Indigo Dabu Unisex Hoodie" />
+                <div class="mini-card-label">Indigo Dabu</div>
               </div>
             </div>
             
@@ -142,11 +141,11 @@
           <div class="scroll-line"></div>
         </div>
       </section>
-
+ 
       <!-- MARQUEE BANNER -->
       <div class="marquee-banner">
         <div class="marquee-track">
-          <span class="marquee-item">Free Shipping Over ₹10,000</span>
+          <span class="marquee-item">Free Shipping Over ₹3,000</span>
           <span class="marquee-item">Premium Quality Guaranteed</span>
           <span class="marquee-item">New Arrivals Every Week</span>
           <span class="marquee-item">Exclusive Members Discounts</span>
@@ -165,16 +164,7 @@
             <div class="gold-line"></div>
           </div>
 
-          <div class="categories-grid animate-on-scroll">
-            <div class="category-card" onclick="filterCategory('men')">
-              <img src="img/cat-men.png" alt="Men's Collection" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Men's Wear</h3>
-                <span class="category-count">124 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
-
+          <div class="categories-grid animate-on-scroll" style="grid-template-columns: repeat(3, 1fr);">
             <div class="category-card" onclick="filterCategory('women')">
               <img src="img/cat-women.png" alt="Women's Collection" loading="lazy" />
               <div class="category-overlay">
@@ -184,29 +174,11 @@
               <div class="category-arrow">→</div>
             </div>
 
-            <div class="category-card" onclick="filterCategory('footwear')">
-              <img src="img/cat-footwear.png" alt="Footwear Collection" loading="lazy" />
+            <div class="category-card" onclick="filterCategory('kids')">
+              <img src="img/cat-traditional.png" alt="Kids' Collection" loading="lazy" />
               <div class="category-overlay">
-                <h3 class="category-name">Footwear</h3>
-                <span class="category-count">93 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category-card" onclick="filterCategory('accessories')">
-              <img src="img/cat-accessories.png" alt="Accessories" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Accessories</h3>
-                <span class="category-count">157 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category-card" onclick="filterCategory('traditional')">
-              <img src="img/cat-traditional.png" alt="Traditional Wear" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Traditional Wear</h3>
-                <span class="category-count">78 Products</span>
+                <h3 class="category-name">Kids' Wear</h3>
+                <span class="category-count">94 Products</span>
               </div>
               <div class="category-arrow">→</div>
             </div>
@@ -214,7 +186,7 @@
             <div class="category-card" onclick="filterCategory('unisex')">
               <img src="img/cat-unisex.png" alt="Unisex Collection" loading="lazy" />
               <div class="category-overlay">
-                <h3 class="category-name">Unisex</h3>
+                <h3 class="category-name">Unisex Wear</h3>
                 <span class="category-count">112 Products</span>
               </div>
               <div class="category-arrow">→</div>
@@ -235,11 +207,8 @@
 
           <div class="product-filters animate-on-scroll">
             <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="men">Men</button>
-            <button class="filter-btn" data-filter="women">Women</button>
-            <button class="filter-btn" data-filter="footwear">Footwear</button>
-            <button class="filter-btn" data-filter="accessories">Accessories</button>
-            <button class="filter-btn" data-filter="traditional">Traditional</button>
+            <button class="filter-btn" data-filter="women">Womens</button>
+            <button class="filter-btn" data-filter="kids">Kids</button>
             <button class="filter-btn" data-filter="unisex">Unisex</button>
           </div>
 
@@ -470,22 +439,19 @@
               <h4>Collections</h4>
               <div class="filter-group category-links-filter">
                 <button class="shop-filter-link active" data-category="all">All Collections</button>
-                <button class="shop-filter-link" data-category="men">Men's Wear</button>
                 <button class="shop-filter-link" data-category="women">Women's Wear</button>
-                <button class="shop-filter-link" data-category="footwear">Footwear</button>
-                <button class="shop-filter-link" data-category="accessories">Accessories</button>
-                <button class="shop-filter-link" data-category="traditional">Traditional Wear</button>
-                <button class="shop-filter-link" data-category="unisex">Unisex</button>
+                <button class="shop-filter-link" data-category="kids">Kids' Wear</button>
+                <button class="shop-filter-link" data-category="unisex">Unisex Wear</button>
               </div>
             </div>
             
             <div class="sidebar-widget">
               <h4>Filter by Price</h4>
               <div class="filter-group price-filter">
-                <input type="range" id="price-range-slider" min="4000" max="50000" step="1000" value="50000" />
+                <input type="range" id="price-range-slider" min="500" max="5000" step="100" value="5000" />
                 <div class="price-range-values">
-                  <span>Min: ₹4,000</span>
-                  <span id="price-max-val">Max: ₹50,000</span>
+                  <span>Min: ₹500</span>
+                  <span id="price-max-val">Max: ₹5,000</span>
                 </div>
               </div>
             </div>
