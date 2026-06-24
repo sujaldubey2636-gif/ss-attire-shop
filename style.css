@@ -4455,4 +4455,87 @@ input, textarea, select {
   }
 }
 
+/* ==================== PRODUCT PRICING BREAKDOWN & OFFERS GRID ==================== */
+.pdp-offers-container {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  background: var(--surface-light, #121212);
+  border: 1px solid var(--border, #222);
+  border-radius: 8px;
+}
+
+.pdp-offers-title {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted, #888);
+  margin-bottom: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pdp-pricing-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.pdp-pricing-item {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  background: var(--bg-body, #0A0A0A);
+  border: 1px solid var(--border, #222);
+  border-radius: 6px;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pdp-pricing-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold, #C5A880);
+  box-shadow: 0 4px 12px rgba(197, 168, 128, 0.15);
+}
+
+.pdp-pricing-item-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary, #aaa);
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.pdp-pricing-item-value {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #fff);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pdp-pricing-item-note {
+  font-size: 0.7rem;
+  color: var(--text-muted, #777);
+  margin-top: 0.15rem;
+}
+
+.pdp-pricing-badge {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.4rem;
+  background: rgba(197, 168, 128, 0.15);
+  color: var(--gold, #C5A880);
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+@media (max-width: 576px) {
+  .pdp-pricing-list {
+    grid-template-columns: 1fr;
+  }
+  .pdp-pricing-item-emi {
+    grid-column: auto !important;
+  }
+}
+
 

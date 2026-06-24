@@ -1448,6 +1448,52 @@ function formatReviewDate(dateStr) {
   return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`;
 }
 
+// Helper: generate pricing breakdown and offers grid HTML markup
+function generatePricingBreakdownMarkup(product) {
+  const prepaidPrice = Math.round(product.price * 0.95);
+  const codPrice = product.price + 50;
+  const giftPrice = product.price + 99;
+  const emiPrice = Math.round(product.price / 3);
+  
+  return `
+    <div class="pdp-offers-container">
+      <div class="pdp-offers-title">
+        <span>🏷️ Pricing & Offers Details</span>
+      </div>
+      <div class="pdp-pricing-list">
+        <div class="pdp-pricing-item">
+          <span class="pdp-pricing-item-label">Regular Store Price</span>
+          <span class="pdp-pricing-item-value">₹${product.price.toLocaleString()}</span>
+          <span class="pdp-pricing-item-note">Inclusive of GST</span>
+        </div>
+        <div class="pdp-pricing-item">
+          <span class="pdp-pricing-item-label">Prepaid Special Discount</span>
+          <span class="pdp-pricing-item-value">
+            ₹${prepaidPrice.toLocaleString()} 
+            <span class="pdp-pricing-badge">Save 5%</span>
+          </span>
+          <span class="pdp-pricing-item-note">Auto-applied for Online Payments</span>
+        </div>
+        <div class="pdp-pricing-item">
+          <span class="pdp-pricing-item-label">Cash on Delivery (COD)</span>
+          <span class="pdp-pricing-item-value">₹${codPrice.toLocaleString()}</span>
+          <span class="pdp-pricing-item-note">Includes ₹50 COD convenience fee</span>
+        </div>
+        <div class="pdp-pricing-item">
+          <span class="pdp-pricing-item-label">Premium Gift Wrap Price</span>
+          <span class="pdp-pricing-item-value">₹${giftPrice.toLocaleString()}</span>
+          <span class="pdp-pricing-item-note">Includes Silk Potli wrapping + Card</span>
+        </div>
+        <div class="pdp-pricing-item pdp-pricing-item-emi" style="grid-column: span 2;">
+          <span class="pdp-pricing-item-label">Flexible No-Cost EMI Options</span>
+          <span class="pdp-pricing-item-value">₹${emiPrice.toLocaleString()}/mo</span>
+          <span class="pdp-pricing-item-note">Interest-free installments for 3 months</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderProductDetails(product) {
   const container = document.getElementById('pdp-content-wrapper');
   if (!container) return;
@@ -1552,8 +1598,11 @@ function renderProductDetails(product) {
         <span class="pdp-price-current">₹${product.price.toLocaleString()}</span>
         ${product.oldPrice ? `<span class="pdp-price-old">₹${product.oldPrice.toLocaleString()}</span>` : ''}
         ${discountPct > 0 ? `<span class="pdp-discount-badge">${discountPct}% OFF</span>` : ''}
-        <div class="pdp-tax-info">Inclusive of all taxes. Free shipping on orders above ₹10,000.</div>
+        <div class="pdp-tax-info">Inclusive of all taxes. Free shipping on orders above ₹3,000.</div>
       </div>
+
+      <!-- Pricing & Offers Breakdown -->
+      ${generatePricingBreakdownMarkup(product)}
 
       <p class="pdp-short-desc">${product.description}</p>
       
@@ -3177,6 +3226,9 @@ function openQuickView(productId) {
         <span class="quickview-price">₹${product.price.toLocaleString()}</span>
         ${product.oldPrice ? `<span class="quickview-price-old">₹${product.oldPrice.toLocaleString()}</span>` : ''}
       </div>
+
+      <!-- Pricing & Offers Breakdown -->
+      ${generatePricingBreakdownMarkup(product)}
 
       <div class="product-rating" style="margin-bottom: 1.25rem;">
         <span class="stars">${stars}</span>
