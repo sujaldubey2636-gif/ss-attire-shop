@@ -2,7 +2,8 @@
    SS ATTIRE SHOP — Immersive 3D Parallax & Clean 2D Shopping SPA
    =================================================================== */
 
-// ==================== PRODUCT DATA ===================const products = [
+// ==================== PRODUCT DATA ====================
+const products = [
   // ---- WOMEN'S WEAR ----
   {
     id: 1, name: 'Chikankari Handloom Anarkali Kurta', brand: 'SS Heritage',
