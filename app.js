@@ -77,10 +77,58 @@ const products = [
     sizes: ['S','M','L','XL'], colors: [{name:'Sun Gold',hex:'#FFD700'},{name:'Royal Blue',hex:'#4169E1'},{name:'Magenta Pink',hex:'#FF00FF'}],
     galleryImages: ['img/prod-blouse.png','img/cat-women.png','img/prod-dress.png','img/hero.png']
   },
+  {
+    id: 7, name: 'Kanjeevaram Art Silk Bridal Saree', brand: 'SS Heritage',
+    price: 4799, oldPrice: 5499, category: 'women',
+    image: 'img/prod-women-saree.png', badge: 'new',
+    rating: 4.9, reviews: 45,
+    description: 'A grand Kanjeevaram style art silk saree woven with traditional temple borders and motifs. Perfect for weddings, receptions, and festivals. Elegant red and gold contrast blouse piece included.',
+    details: 'Kanjeevaram Silk Blend. Temple zari borders. Length: 5.5 meters plus 0.8 meters unstitched blouse.',
+    sku: 'SS-WMN-KANJ-007', weight: '0.75 kg', material: 'Art Silk with Gold Zari', origin: 'Kanchipuram style weave, India',
+    warranty: '1 Year Quality Warranty', availability: 'In Stock', care: 'Dry clean only. Store wrapped in cotton cloth.',
+    sizes: ['One Size'], colors: [{name:'Vermillion Red',hex:'#E34234'},{name:'Deep Crimson',hex:'#990000'}],
+    galleryImages: ['img/prod-women-saree.png','img/cat-women.png','img/cat-traditional.png']
+  },
+  {
+    id: 8, name: 'Ajrakh Hand-Block Print Indigo Kurta', brand: 'SS Essentials',
+    price: 2199, oldPrice: 2699, category: 'women',
+    image: 'img/prod-women-ajrakh.png', badge: 'trending',
+    rating: 4.7, reviews: 52,
+    description: 'An authentic Ajrakh hand-block printed straight kurta using natural indigo dye. Styled with traditional geometric tiles from Barmer artisans. Highly comfortable cotton and extremely stylish.',
+    details: '100% Cotton. Straight fit. Side slits. Three-quarter sleeves. Natural dyes.',
+    sku: 'SS-WMN-AJRK-008', weight: '0.35 kg', material: '100% Premium Cotton', origin: 'Barmer, Rajasthan, India',
+    warranty: '6 Months Fabric Warranty', availability: 'In Stock', care: 'Wash separately in cold water. Natural dyes bleed slightly.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#0021A5'},{name:'Terracotta Red',hex:'#C24641'}],
+    galleryImages: ['img/prod-women-ajrakh.png','img/cat-women.png','img/prod-blouse.png']
+  },
+  {
+    id: 9, name: 'Chanderi Silk A-Line Kurta Set', brand: 'SS Luxe',
+    price: 4299, oldPrice: null, category: 'women',
+    image: 'img/prod-women-chanderi.png', badge: 'new',
+    rating: 4.8, reviews: 38,
+    description: 'A pastel peach Chanderi silk A-line kurta set with delicate hand embroidery around the neckline. Styled with a matching pajama and a sheer organza dupatta. Soft, sophisticated, and grand.',
+    details: 'Includes: Kurta, Pajama, Organza Dupatta. Fully lined with cotton inner.',
+    sku: 'SS-WMN-CHND-009', weight: '0.55 kg', material: 'Chanderi Silk, Cotton Lining, Organza', origin: 'Chanderi, Madhya Pradesh, India',
+    warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean only. Low steam iron.',
+    sizes: ['XS','S','M','L','XL'], colors: [{name:'Pastel Peach',hex:'#FFDAB9'},{name:'Soft Mint',hex:'#AAF0D1'}],
+    galleryImages: ['img/prod-women-chanderi.png','img/cat-women.png','img/prod-dress.png']
+  },
+  {
+    id: 10, name: 'Gujarati Rabari Embroidered Shrug Jacket', brand: 'SS Street',
+    price: 2499, oldPrice: 2999, category: 'women',
+    image: 'img/prod-women-shrug.png', badge: 'sale',
+    rating: 4.6, reviews: 31,
+    description: 'A vibrant Gujarati Rabari mirror-work embroidered shrug jacket. Hand-embellished by Kutch artisans with colorful threads and tiny mirrors. Perfect to wear over solid kurtas or contemporary crop tops.',
+    details: 'Open front shrug. Full mirror embroidery. Tassels on side seams.',
+    sku: 'SS-WMN-RABR-010', weight: '0.4 kg', material: 'Cotton Canvas, Mirrors, Silk Threads', origin: 'Kutch, Gujarat, India',
+    warranty: 'None', availability: 'Limited Stock', care: 'Dry clean only. Handle mirrors with care.',
+    sizes: ['Free Size'], colors: [{name:'Multicolor',hex:'#FFFFFF'}],
+    galleryImages: ['img/prod-women-shrug.png','img/cat-women.png','img/prod-blouse.png']
+  },
 
   // ---- KIDS' WEAR ----
   {
-    id: 7, name: 'Boys Traditional Dhoti Kurta Set', brand: 'SS Heritage Kids',
+    id: 11, name: 'Boys Traditional Dhoti Kurta Set', brand: 'SS Heritage Kids',
     price: 1499, oldPrice: 1999, category: 'kids',
     image: 'img/prod-kids-dhoti.png', badge: 'trending',
     rating: 4.8, reviews: 201,
@@ -92,7 +140,7 @@ const products = [
     galleryImages: ['img/prod-kids-dhoti.png','img/cat-kids.png','img/prod-kids-nehru.png','img/prod-kids-chikankari.png']
   },
   {
-    id: 8, name: 'Girls Zari Border Pattu Pavadai Set', brand: 'SS Heritage Kids',
+    id: 12, name: 'Girls Zari Border Pattu Pavadai Set', brand: 'SS Heritage Kids',
     price: 1999, oldPrice: 2499, category: 'kids',
     image: 'img/prod-kids-pattu.png', badge: 'new',
     rating: 4.9, reviews: 54,
@@ -104,7 +152,7 @@ const products = [
     galleryImages: ['img/prod-kids-pattu.png','img/cat-kids.png','img/prod-kids-lehenga.png','img/prod-kids-frock.png']
   },
   {
-    id: 9, name: 'Kids Bandhani Nehru Jacket Set', brand: 'SS Heritage Kids',
+    id: 13, name: 'Kids Bandhani Nehru Jacket Set', brand: 'SS Heritage Kids',
     price: 2299, oldPrice: null, category: 'kids',
     image: 'img/prod-kids-nehru.png', badge: 'trending',
     rating: 4.6, reviews: 42,
@@ -116,7 +164,7 @@ const products = [
     galleryImages: ['img/prod-kids-nehru.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-chikankari.png']
   },
   {
-    id: 10, name: 'Jaipuri Block Print Cotton Frock', brand: 'SS Essentials Kids',
+    id: 14, name: 'Jaipuri Block Print Cotton Frock', brand: 'SS Essentials Kids',
     price: 999, oldPrice: 1299, category: 'kids',
     image: 'img/prod-kids-frock.png', badge: 'sale',
     rating: 4.7, reviews: 83,
@@ -128,7 +176,7 @@ const products = [
     galleryImages: ['img/prod-kids-frock.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-lehenga.png']
   },
   {
-    id: 11, name: 'Kids Chikankari Cotton Kurta Set', brand: 'SS Essentials Kids',
+    id: 15, name: 'Kids Chikankari Cotton Kurta Set', brand: 'SS Essentials Kids',
     price: 1299, oldPrice: 1499, category: 'kids',
     image: 'img/prod-kids-chikankari.png', badge: 'trending',
     rating: 4.7, reviews: 31,
@@ -140,7 +188,7 @@ const products = [
     galleryImages: ['img/prod-kids-chikankari.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-nehru.png']
   },
   {
-    id: 12, name: 'Festive Silk Lehenga for Girls', brand: 'SS Heritage Kids',
+    id: 16, name: 'Festive Silk Lehenga for Girls', brand: 'SS Heritage Kids',
     price: 2799, oldPrice: 3299, category: 'kids',
     image: 'img/prod-kids-lehenga.png', badge: 'new',
     rating: 4.8, reviews: 29,
@@ -151,10 +199,58 @@ const products = [
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Rani Pink',hex:'#C71585'},{name:'Golden Yellow',hex:'#FFD700'},{name:'Royal Navy',hex:'#000080'}],
     galleryImages: ['img/prod-kids-lehenga.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-frock.png']
   },
+  {
+    id: 17, name: 'Boys South Indian Veshti Kurta Set', brand: 'SS Heritage Kids',
+    price: 1399, oldPrice: 1799, category: 'kids',
+    image: 'img/prod-kids-veshti.png', badge: 'new',
+    rating: 4.8, reviews: 18,
+    description: 'Classic South Indian traditional look for boys. Woven in soft cream art silk kurta paired with a matching gold zari bordered pre-stitched veshti. Extremely easy to wear and comfortable.',
+    details: '2-piece set: Kurta and pre-stitched gold zari border veshti (dhoti). Waist band elasticated.',
+    sku: 'SS-KDS-VESH-017', weight: '0.28 kg', material: 'Art Silk Blend, Cotton Lining', origin: 'Tamil Nadu, India',
+    warranty: 'None', availability: 'In Stock', care: 'Dry clean or gentle hand wash. Warm iron on silk setting.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Cream & Gold',hex:'#FFFDD0'}],
+    galleryImages: ['img/prod-kids-veshti.png','img/cat-kids.png','img/prod-kids-pattu.png']
+  },
+  {
+    id: 18, name: 'Girls Bandhani Tiered Anarkali Dress', brand: 'SS Essentials Kids',
+    price: 1899, oldPrice: 2299, category: 'kids',
+    image: 'img/prod-kids-tiered.png', badge: 'trending',
+    rating: 4.7, reviews: 22,
+    description: 'A bright tiered cotton Anarkali gown dress for girls in authentic Bandhani print. Designed with cute tassels on the shoulder straps and a wide, beautiful flare. Perfect for garba, diwali, or casual festive wear.',
+    details: 'Tiered cotton dress. Fully lined. Tassels on sleeves. Ankle length.',
+    sku: 'SS-KDS-TIER-018', weight: '0.3 kg', material: '100% Soft Cotton', origin: 'Rajasthan, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash cold separately. Do not soak.',
+    sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Bright Yellow',hex:'#FFD700'},{name:'Festive Fuchsia',hex:'#FF007F'}],
+    galleryImages: ['img/prod-kids-tiered.png','img/cat-kids.png','img/prod-kids-frock.png']
+  },
+  {
+    id: 19, name: 'Boys Cotton Linen Pathani Suit Set', brand: 'SS Essentials Kids',
+    price: 1699, oldPrice: null, category: 'kids',
+    image: 'img/prod-kids-pathani.png', badge: 'new',
+    rating: 4.6, reviews: 14,
+    description: 'A stylish and comfortable green Pathani suit set for boys. Made from premium cotton linen blend, featuring a classic collared shirt-style kurta and loose salwar pants.',
+    details: '2-piece set: Pathani Kurta and Salwar pajama. Features roll-up sleeves and double chest pockets.',
+    sku: 'SS-KDS-PATH-019', weight: '0.32 kg', material: 'Cotton-Linen Blend', origin: 'Crafted in India',
+    warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Machine wash warm with like colors. Iron on medium.',
+    sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Olive Green',hex:'#556B2F'},{name:'Steel Blue',hex:'#4682B4'}],
+    galleryImages: ['img/prod-kids-pathani.png','img/cat-kids.png','img/prod-kids-dhoti.png']
+  },
+  {
+    id: 20, name: 'Girls Angrakha Style Festive Frock', brand: 'SS Luxe Kids',
+    price: 1299, oldPrice: 1599, category: 'kids',
+    image: 'img/prod-kids-angrakha.png', badge: 'sale',
+    rating: 4.9, reviews: 25,
+    description: 'An elegant traditional Angrakha style pink cotton frock for young girls. Embellished with beautiful gota patti work borders and tie-up dori details on the side. Extremely skin-friendly cotton.',
+    details: 'Angrakha tie-up pattern frock. Flare skirt with gota lace trims. Full cotton lining.',
+    sku: 'SS-KDS-ANG-020', weight: '0.22 kg', material: '100% Premium Cotton', origin: 'Jaipur, India',
+    warranty: 'None', availability: 'In Stock', care: 'Gentle hand wash inside out. Warm iron.',
+    sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Rose Pink',hex:'#FFC0CB'},{name:'Turquoise Blue',hex:'#40E0D0'}],
+    galleryImages: ['img/prod-kids-angrakha.png','img/cat-kids.png','img/prod-kids-lehenga.png']
+  },
 
   // ---- UNISEX ----
   {
-    id: 13, name: 'Handloom Ikat Cotton Unisex Shirt', brand: 'SS Street',
+    id: 21, name: 'Handloom Ikat Cotton Unisex Shirt', brand: 'SS Street',
     price: 1999, oldPrice: 2499, category: 'unisex',
     image: 'img/prod-shirt.png', badge: 'sale',
     rating: 4.6, reviews: 142,
@@ -166,7 +262,7 @@ const products = [
     galleryImages: ['img/prod-shirt.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
   },
   {
-    id: 14, name: 'Unisex Khadi Cotton Nehru Jacket', brand: 'SS Essentials',
+    id: 22, name: 'Unisex Khadi Cotton Nehru Jacket', brand: 'SS Essentials',
     price: 2499, oldPrice: null, category: 'unisex',
     image: 'img/cat-men.png', badge: 'trending',
     rating: 4.8, reviews: 88,
@@ -178,7 +274,7 @@ const products = [
     galleryImages: ['img/cat-men.png','img/prod-kurta.png','img/cat-traditional.png','img/hero.png']
   },
   {
-    id: 15, name: 'Artisan Indigo Block-Print Hoodie', brand: 'SS Street',
+    id: 23, name: 'Artisan Indigo Block-Print Hoodie', brand: 'SS Street',
     price: 3299, oldPrice: 3999, category: 'unisex',
     image: 'img/prod-hoodie.png', badge: 'trending',
     rating: 4.7, reviews: 215,
@@ -190,7 +286,7 @@ const products = [
     galleryImages: ['img/prod-hoodie.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
   },
   {
-    id: 16, name: 'Handcrafted Jute Tote & Dupatta Set', brand: 'SS Accessories',
+    id: 24, name: 'Handcrafted Jute Tote & Dupatta Set', brand: 'SS Accessories',
     price: 1799, oldPrice: 2299, category: 'unisex',
     image: 'img/prod-bag.png', badge: 'new',
     rating: 4.6, reviews: 37,
@@ -202,7 +298,7 @@ const products = [
     galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/prod-watch.png','img/hero.png']
   },
   {
-    id: 17, name: 'Unisex Pure Pashmina Blend Stole', brand: 'SS Heritage',
+    id: 25, name: 'Unisex Pure Pashmina Blend Stole', brand: 'SS Heritage',
     price: 4299, oldPrice: null, category: 'unisex',
     image: 'img/cat-unisex.png', badge: 'new',
     rating: 5.0, reviews: 49,
@@ -214,7 +310,7 @@ const products = [
     galleryImages: ['img/cat-unisex.png','img/prod-hoodie.png','img/cat-men.png','img/hero.png']
   },
   {
-    id: 18, name: 'Handloom Indigo Unisex Short Kurta', brand: 'SS Street',
+    id: 26, name: 'Handloom Indigo Unisex Short Kurta', brand: 'SS Street',
     price: 1699, oldPrice: 1999, category: 'unisex',
     image: 'img/prod-kurta.png', badge: 'sale',
     rating: 4.8, reviews: 73,
@@ -224,6 +320,54 @@ const products = [
     warranty: 'None', availability: 'In Stock', care: 'Wash separately. Mild detergent. Steam press.',
     sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#002FA7'},{name:'Oatmeal',hex:'#F5F5DC'},{name:'Charcoal Grey',hex:'#3A3A3A'}],
     galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/cat-men.png','img/hero.png']
+  },
+  {
+    id: 27, name: 'Hand-woven Khadi Unisex Bomber Jacket', brand: 'SS Street',
+    price: 3499, oldPrice: 3999, category: 'unisex',
+    image: 'img/prod-unisex-bomber.png', badge: 'new',
+    rating: 4.8, reviews: 17,
+    description: 'A modern, sustainable bomber jacket hand-spun in authentic Khadi cotton. Features ribbed collar and cuffs, sturdy front brass zippers, and clean minimalist lines. Fits both men and women seamlessly.',
+    details: '100% Khadi Cotton. Brass zipper. Two side pockets. Ribbed cuffs and hem.',
+    sku: 'SS-UNI-BOMB-027', weight: '0.45 kg', material: 'Handloom Khadi Cotton', origin: 'Made in Gujarat, India',
+    warranty: '6 Months Fabric Warranty', availability: 'In Stock', care: 'Gentle hand wash inside out. Warm iron.',
+    sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Kora Beige',hex:'#F5F5DC'},{name:'Charcoal Grey',hex:'#333333'}],
+    galleryImages: ['img/prod-unisex-bomber.png','img/cat-unisex.png','img/prod-hoodie.png']
+  },
+  {
+    id: 28, name: 'Unisex Sambalpuri Ikat Cotton Scarf', brand: 'SS Essentials',
+    price: 1199, oldPrice: 1499, category: 'unisex',
+    image: 'img/prod-unisex-scarf.png', badge: 'trending',
+    rating: 4.9, reviews: 23,
+    description: 'A beautiful unisex muffler stole woven by Sambalpuri weavers. Showcases traditional red, black, and white shell patterns in thick premium handloom cotton. Highly durable and adds instant character to any outfit.',
+    details: 'Sambalpuri handloom Ikat weave. Length: 1.8 meters. Fringed ends.',
+    sku: 'SS-UNI-SAMB-028', weight: '0.18 kg', material: '100% Handloom Cotton', origin: 'Sambalpur, Odisha, India',
+    warranty: 'None', availability: 'In Stock', care: 'Dry clean recommended. Hand wash in salt water separately.',
+    sizes: ['One Size'], colors: [{name:'Traditional Black & Red',hex:'#000000'}],
+    galleryImages: ['img/prod-unisex-scarf.png','img/cat-unisex.png','img/prod-shirt.png']
+  },
+  {
+    id: 29, name: 'Unisex Kalamkari Cotton Short Kurta', brand: 'SS Street',
+    price: 1899, oldPrice: null, category: 'unisex',
+    image: 'img/prod-kurta.png', badge: 'new',
+    rating: 4.7, reviews: 19,
+    description: 'An earthy short kurta block-printed in traditional Kalamkari mythology patterns by Srikalahasti artisans. Features a mandarin collar, short button placket, and a relaxed unisex fit.',
+    details: 'Kalamkari block print. Mandarin collar. Straight cut. Side slits.',
+    sku: 'SS-UNI-KALM-029', weight: '0.24 kg', material: '100% Cotton, Vegetable Dyes', origin: 'Andhra Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Iron inside out.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Mustard Ochre',hex:'#DF73FF'},{name:'Earthy Terracotta',hex:'#D2691E'}],
+    galleryImages: ['img/prod-kurta.png','img/cat-unisex.png','img/prod-shirt.png']
+  },
+  {
+    id: 30, name: 'Unisex Indigo Dabu Canvas Backpack', brand: 'SS Accessories',
+    price: 2799, oldPrice: 3299, category: 'unisex',
+    image: 'img/prod-bag.png', badge: 'new',
+    rating: 4.8, reviews: 15,
+    description: 'A stylish and durable backpack crafted in thick organic cotton canvas, printed with authentic indigo Dabu mud-resist blocks. Features genuine leather accents and laptop compartment.',
+    details: 'Organic canvas base. Padded laptop compartment (up to 15.6"). Antique brass hardware. Leather straps.',
+    sku: 'SS-UNI-BPAK-030', weight: '0.62 kg', material: 'Organic Cotton Canvas, Leather, Cotton lining', origin: 'Rajasthan, India',
+    warranty: '6 Months Zipper Warranty', availability: 'In Stock', care: 'Wipe with damp cloth. Do not machine wash.',
+    sizes: ['One Size'], colors: [{name:'Indigo Dabu',hex:'#0F52BA'}],
+    galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/cat-unisex.png']
   }
 ];
 
@@ -249,40 +393,76 @@ const reviewDB = {
     { author: 'Harpreet K.', rating: 5, date: '2025-05-22', verified: true, helpful: 15, title: 'True Punjabi heritage', text: 'Beautiful hand Phulkari work in vibrant silk threads. I wear it with both jeans and patialas. Stunning kurti.' }
   ],
   7: [
-    { author: 'Ramesh P.', rating: 5, date: '2025-06-05', verified: true, helpful: 31, title: 'Very easy to wear for kids', text: 'The pre-stitched dhoti is a lifesaver! My 5-year old ran around all day without it slipping or causing skin irritation. 10/10.' }
+    { author: 'Pooja V.', rating: 5, date: '2025-06-21', verified: true, helpful: 16, title: 'Spectacular gold borders!', text: 'This Kanjeevaram saree is absolutely majestic. The art silk is soft and the zari border looks highly premium. Perfect for family weddings!' }
   ],
   8: [
-    { author: 'Lakshmi N.', rating: 5, date: '2025-06-11', verified: true, helpful: 14, title: 'Absolutely adorable!', text: 'Traditional South Indian Pattu Pavadai. The art silk is soft and didn\'t scratch my daughter at all. Very bright, gorgeous colors.' }
+    { author: 'Aarti P.', rating: 4, date: '2025-06-19', verified: true, helpful: 9, title: 'Stunning block prints', text: 'Love the geometric pattern and the natural indigo color. Drapes beautifully and is so comfortable for hot days.' }
   ],
   9: [
-    { author: 'Amit K.', rating: 4, date: '2025-05-29', verified: true, helpful: 9, title: 'Very stylish set', text: 'The Nehru jacket with Bandhani print looks so smart on my son. Great fit and good fabric quality.' }
+    { author: 'Shweta S.', rating: 5, date: '2025-06-18', verified: true, helpful: 11, title: 'Sophisticated festive set', text: 'The peach color is lovely and the Chanderi silk has a very rich sheen. Got many compliments during the housewarming ceremony.' }
   ],
   10: [
-    { author: 'Ritu M.', rating: 5, date: '2025-06-02', verified: true, helpful: 11, title: 'Lovely hand-block cotton frock', text: 'Super soft and breathable for summer. The block print is beautiful. Great value for under 1000 rupees!' }
+    { author: 'Divya M.', rating: 5, date: '2025-06-15', verified: true, helpful: 7, title: 'Beautiful mirror details!', text: 'Highly detailed threadwork and tiny mirrors. Wore it over a solid white kurti and it instantly elevated the look.' }
   ],
   11: [
-    { author: 'Karan G.', rating: 5, date: '2025-06-18', verified: true, helpful: 8, title: 'Softest cotton ever', text: 'Perfect for kid\'s skin. The Chikankari embroidery is subtle and doesn\'t pinch from the inside.' }
+    { author: 'Ramesh P.', rating: 5, date: '2025-06-05', verified: true, helpful: 31, title: 'Very easy to wear for kids', text: 'The pre-stitched dhoti is a lifesaver! My 5-year old ran around all day without it slipping or causing skin irritation. 10/10.' }
   ],
   12: [
-    { author: 'Nisha S.', rating: 5, date: '2025-06-14', verified: true, helpful: 16, title: 'Stunning festive look', text: 'Flared skirt and pretty choli. My daughter felt like a princess at her cousin\'s birthday.' }
+    { author: 'Lakshmi N.', rating: 5, date: '2025-06-11', verified: true, helpful: 14, title: 'Absolutely adorable!', text: 'Traditional South Indian Pattu Pavadai. The art silk is soft and didn\'t scratch my daughter at all. Very bright, gorgeous colors.' }
   ],
   13: [
-    { author: 'Arjun P.', rating: 5, date: '2025-06-04', verified: true, helpful: 25, title: 'Beautiful handloom ikat', text: 'Great unisex fit. The ikat pattern is very unique. Sturdy and well-structured handloom cotton.' }
+    { author: 'Amit K.', rating: 4, date: '2025-05-29', verified: true, helpful: 9, title: 'Very stylish set', text: 'The Nehru jacket with Bandhani print looks so smart on my son. Great fit and good fabric quality.' }
   ],
   14: [
-    { author: 'Vikram S.', rating: 5, date: '2025-05-25', verified: true, helpful: 18, title: 'Classy and sustainable', text: 'Beautiful Khadi texture. It fits both me and my partner perfectly. Coconut buttons are a nice artisan detail.' }
+    { author: 'Ritu M.', rating: 5, date: '2025-06-02', verified: true, helpful: 11, title: 'Lovely hand-block cotton frock', text: 'Super soft and breathable for summer. The block print is beautiful. Great value for under 1000 rupees!' }
   ],
   15: [
-    { author: 'Rohan D.', rating: 4, date: '2025-06-12', verified: true, helpful: 14, title: 'Unique street fusion style', text: 'Heavy organic hoodie with Rajasthan block prints. Amazing blend of street style and Indian culture.' }
+    { author: 'Karan G.', rating: 5, date: '2025-06-18', verified: true, helpful: 8, title: 'Softest cotton ever', text: 'Perfect for kid\'s skin. The Chikankari embroidery is subtle and doesn\'t pinch from the inside.' }
   ],
   16: [
-    { author: 'Deepa T.', rating: 5, date: '2025-06-09', verified: true, helpful: 6, title: 'Wonderful gift set', text: 'Tote is spacious with strong leather handles. The matching mulmul stole is extremely soft. Highly recommend.' }
+    { author: 'Nisha S.', rating: 5, date: '2025-06-14', verified: true, helpful: 16, title: 'Stunning festive look', text: 'Flared skirt and pretty choli. My daughter felt like a princess at her cousin\'s birthday.' }
   ],
   17: [
-    { author: 'Shabnam B.', rating: 5, date: '2025-06-16', verified: true, helpful: 10, title: 'Featherlight warmth', text: 'So soft and warm. Woven beautifully. Excellent unisex pashmina blend. Absolute luxury!' }
+    { author: 'Karthik S.', rating: 5, date: '2025-06-20', verified: true, helpful: 6, title: 'Authentic South Indian look', text: 'The veshti is pre-stitched which is super convenient for toddlers. Excellent quality silk fabric!' }
   ],
   18: [
+    { author: 'Sunita D.', rating: 5, date: '2025-06-19', verified: true, helpful: 10, title: 'Vibrant yellow and huge flare', text: 'Beautiful Bandhani dress. My daughter wore it for Navratri and danced comfortably all night.' }
+  ],
+  19: [
+    { author: 'Zaheer A.', rating: 4, date: '2025-06-17', verified: true, helpful: 8, title: 'Very stylish pathani', text: 'The linen blend looks neat and stays crisp. Green color is very pleasant. Highly recommend.' }
+  ],
+  20: [
+    { author: 'Simran K.', rating: 5, date: '2025-06-16', verified: true, helpful: 12, title: 'Elegant gota border frock', text: 'Very traditional angrakha style. The cotton is soft and the pink color is lovely. Fits perfectly.' }
+  ],
+  21: [
+    { author: 'Arjun P.', rating: 5, date: '2025-06-04', verified: true, helpful: 25, title: 'Beautiful handloom ikat', text: 'Great unisex fit. The ikat pattern is very unique. Sturdy and well-structured handloom cotton.' }
+  ],
+  22: [
+    { author: 'Vikram S.', rating: 5, date: '2025-05-25', verified: true, helpful: 18, title: 'Classy and sustainable', text: 'Beautiful Khadi texture. It fits both me and my partner perfectly. Coconut buttons are a nice artisan detail.' }
+  ],
+  23: [
+    { author: 'Rohan D.', rating: 4, date: '2025-06-12', verified: true, helpful: 14, title: 'Unique street fusion style', text: 'Heavy organic hoodie with Rajasthan block prints. Amazing blend of street style and Indian culture.' }
+  ],
+  24: [
+    { author: 'Deepa T.', rating: 5, date: '2025-06-09', verified: true, helpful: 6, title: 'Wonderful gift set', text: 'Tote is spacious with strong leather handles. The matching mulmul stole is extremely soft. Highly recommend.' }
+  ],
+  25: [
+    { author: 'Shabnam B.', rating: 5, date: '2025-06-16', verified: true, helpful: 10, title: 'Featherlight warmth', text: 'So soft and warm. Woven beautifully. Excellent unisex pashmina blend. Absolute luxury!' }
+  ],
+  26: [
     { author: 'Siddharth M.', rating: 4, date: '2025-06-07', verified: true, helpful: 12, title: 'Vibrant indigo dye', text: 'Great short kurta. Fits nicely and looks very casual-chic. Note: wash separately first as it bleeds slightly.' }
+  ],
+  27: [
+    { author: 'Kabir G.', rating: 5, date: '2025-06-20', verified: true, helpful: 15, title: 'Incredible sustainable jacket', text: 'Fits beautifully. The Khadi texture gives a rugged, premium feel. Highly versatile styling option.' }
+  ],
+  28: [
+    { author: 'Pragya T.', rating: 5, date: '2025-06-18', verified: true, helpful: 8, title: 'Beautiful Sambalpuri weave', text: 'The shell pattern is gorgeous. Fabric is premium and feels very comfortable around the neck.' }
+  ],
+  29: [
+    { author: 'Nitin J.', rating: 4, date: '2025-06-16', verified: true, helpful: 11, title: 'Artistic short kurta', text: 'Very unique Kalamkari print. Natural colors look beautiful. Ideal everyday wear for summers.' }
+  ],
+  30: [
+    { author: 'Sneha L.', rating: 5, date: '2025-06-14', verified: true, helpful: 14, title: 'Extremely durable and aesthetic', text: 'Very spacious with a secure laptop sleeve. The indigo Dabu print pattern looks very sophisticated.' }
   ]
 };
 
