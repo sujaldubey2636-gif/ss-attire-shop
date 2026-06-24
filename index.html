@@ -750,6 +750,13 @@
       <h3>Shopping Bag <span class="cart-item-count">(0 items)</span></h3>
       <button class="cart-close" aria-label="Close cart">✕</button>
     </div>
+    <!-- Free Shipping Progress Tracker -->
+    <div class="cart-shipping-bar" id="cart-shipping-bar">
+      <span class="cart-shipping-bar-text" id="cart-shipping-bar-text">Spend ₹3,000 more for Free Shipping!</span>
+      <div class="cart-shipping-bar-track">
+        <div class="cart-shipping-bar-fill" id="cart-shipping-bar-fill" style="width: 0%"></div>
+      </div>
+    </div>
     <div class="cart-items">
       <div class="cart-empty">
         <div class="cart-empty-icon">🛒</div>
@@ -758,6 +765,16 @@
       </div>
     </div>
     <div class="cart-footer" style="display:none">
+      <!-- Gifting Option in Cart -->
+      <div class="cart-gifting-container" style="padding: 0.75rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0.75rem;">
+        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer; font-size: 0.85rem; color: var(--text-secondary);">
+          <input type="checkbox" id="cart-gifting-checkbox" style="width:16px; height:16px; accent-color: var(--gold);" />
+          <span>🎁 This order is a gift (+₹99 Silk Potli Wrap)</span>
+        </label>
+        <div id="cart-gifting-note-wrapper" style="display: none; margin-top: 0.5rem;">
+          <textarea id="cart-gifting-note" placeholder="Write your personalized greeting card message..." rows="2" style="width: 100%; padding: 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-size: 0.8rem; resize: none;"></textarea>
+        </div>
+      </div>
       <div class="cart-subtotal">
         <span>Subtotal</span>
         <span class="amount">₹0</span>
@@ -795,6 +812,38 @@
         <button class="search-close-btn">ESC</button>
       </div>
       <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- ============ CHATBOT WIDGET ============ -->
+  <div class="chatbot-widget" id="support-chatbot-widget">
+    <button class="chatbot-toggle-btn" id="chatbot-toggle-btn" title="Heritage Stylist Assistance">
+      <span class="chatbot-icon">💬</span>
+      <span class="chatbot-badge" id="chatbot-badge">1</span>
+    </button>
+    <div class="chatbot-panel" id="chatbot-panel">
+      <div class="chatbot-header">
+        <div class="chatbot-agent-info">
+          <div class="chatbot-avatar">👑</div>
+          <div>
+            <h4 class="chatbot-agent-name" style="margin:0; font-size:0.95rem; font-weight:600;">Aria</h4>
+            <span class="chatbot-agent-status" style="font-size:0.7rem; color:var(--accent-green);">Heritage Stylist Guide • Online</span>
+          </div>
+        </div>
+        <button class="chatbot-close-panel" id="chatbot-close-panel">✕</button>
+      </div>
+      <div class="chatbot-messages" id="chatbot-messages-container">
+        <!-- Messages rendered by JS -->
+      </div>
+      <div class="chatbot-quick-replies" id="chatbot-quick-replies">
+        <!-- Quick replies rendered by JS -->
+      </div>
+      <form class="chatbot-input-area" id="chatbot-input-form">
+        <input type="text" id="chatbot-user-msg" class="chatbot-input-field" placeholder="Ask about handlooms, sizing, orders..." required />
+        <button type="submit" class="chatbot-send-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
     </div>
   </div>
 

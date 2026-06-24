@@ -12,7 +12,7 @@ const products = [
     rating: 4.8, reviews: 127,
     description: 'Beautifully handcrafted Chikankari Anarkali kurta in soft premium georgette fabric. Adorned with intricate shadow work embroidery from Lucknow artisans. Elegant drape, lightweight, and perfect for semi-formal gatherings.',
     details: 'Pure georgette fabric. Intricate hand-embroidery. Long sleeves. Round neck with front button details. Includes inner slip.',
-    sku: 'SS-WMN-CHIK-001', weight: '0.65 kg', material: 'Georgette, Cotton Thread', origin: 'Handcrafted in Lucknow, India',
+    sku: 'SS-WMN-CHIK-001', weight: '0.65 kg', material: 'Georgette, Cotton Thread', origin: 'Handcrafted in Lucknow, India', originCompany: 'Lucknow Artisans Handloom Guild',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Gentle hand wash or dry clean only. Iron on reverse.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Peach Gold',hex:'#FFDAB9'},{name:'Ivory White',hex:'#FFFFF0'},{name:'Mint Green',hex:'#98FF98'}],
     galleryImages: ['img/prod-dress.png','img/cat-women.png','img/prod-blouse.png','img/hero.png']
@@ -24,7 +24,7 @@ const products = [
     rating: 4.9, reviews: 89,
     description: 'Woven with pure gold zari threads on soft Banarasi blend silk. Features beautiful floral motifs and a grand pallu. A timeless masterpiece that embodies traditional Indian royalty for weddings and festivals.',
     details: 'Banarasi Silk Blend. Zari borders and motifs. Length: 5.5 meters plus 0.8 meters unstitched blouse piece.',
-    sku: 'SS-WMN-SARI-002', weight: '0.8 kg', material: 'Banarasi Silk Blend with Gold Zari', origin: 'Woven in Varanasi, India',
+    sku: 'SS-WMN-SARI-002', weight: '0.8 kg', material: 'Banarasi Silk Blend with Gold Zari', origin: 'Woven in Varanasi, India', originCompany: 'Varanasi Silk Weavers Co-operative',
     warranty: '1 Year Fabric Warranty', availability: 'In Stock', care: 'Dry clean only. Store wrapped in clean muslin cloth.',
     sizes: ['One Size'], colors: [{name:'Royal Crimson',hex:'#DC143C'},{name:'Maroon Gold',hex:'#800020'},{name:'Mustard Gold',hex:'#FFDB58'}],
     galleryImages: ['img/cat-traditional.png','img/prod-kurta.png','img/cat-women.png','img/hero.png']
@@ -36,7 +36,7 @@ const products = [
     rating: 4.7, reviews: 94,
     description: 'Vibrant Rajasthani Bandhani tie-and-dye printed lehenga choli set. Features a flared skirt with gold gota patti border, a matching blouse, and a lightweight dupatta. Designed to dance the night away during Garba and weddings.',
     details: 'Set includes flared lehenga skirt, semi-stitched blouse piece, and embellished dupatta. Gota patti borders.',
-    sku: 'SS-WMN-LEH-003', weight: '1.2 kg', material: 'Georgette, Cotton Lining, Zari Border', origin: 'Made in Jaipur, India',
+    sku: 'SS-WMN-LEH-003', weight: '1.2 kg', material: 'Georgette, Cotton Lining, Zari Border', origin: 'Made in Jaipur, India', originCompany: 'Jaipur Bandhani Craft Collective',
     warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Dry clean recommended. Low steam iron only.',
     sizes: ['S','M','L','XL'], colors: [{name:'Marigold Orange',hex:'#FFA500'},{name:'Ruby Red',hex:'#9B111E'},{name:'Emerald Green',hex:'#2E8B57'}],
     galleryImages: ['img/prod-dress.png','img/cat-women.png','img/prod-blouse.png','img/hero.png']
@@ -48,7 +48,7 @@ const products = [
     rating: 4.6, reviews: 112,
     description: '100% premium cotton suit set styled with hand-block prints using natural vegetable dyes. Includes a straight-fit kurta, matching trousers, and a soft mulmul dupatta. Comfortable for hot Indian summers.',
     details: 'Set of 3: Kurta, Pants, and Dupatta. 100% Cotton. Hand-block printed.',
-    sku: 'SS-WMN-SUIT-004', weight: '0.45 kg', material: '100% Organic Cotton', origin: 'Jaipur, Rajasthan, India',
+    sku: 'SS-WMN-SUIT-004', weight: '0.45 kg', material: '100% Organic Cotton', origin: 'Jaipur, Rajasthan, India', originCompany: 'Jaipuri Block Print Artisans Association',
     warranty: '6 Months Print Warranty', availability: 'In Stock', care: 'Machine wash cold inside out with mild detergent. Line dry in shade.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#000080'},{name:'Madder Red',hex:'#E32636'},{name:'Turmeric Yellow',hex:'#D4AF37'}],
     galleryImages: ['img/prod-blouse.png','img/cat-women.png','img/prod-dress.png','img/hero.png']
@@ -60,7 +60,7 @@ const products = [
     rating: 4.8, reviews: 78,
     description: 'A beautiful straight suit in soft pastel hues, paired with an exquisite hand-painted floral organza dupatta with scalloped borders. Gives an ultra-modern, feminine aesthetic to your festive wardrobe.',
     details: 'Viscose silk straight kurta, comfortable pants, and a premium printed organza dupatta.',
-    sku: 'SS-WMN-ORGN-005', weight: '0.5 kg', material: 'Viscose Silk Blend, Organza Dupatta', origin: 'Designed & Made in India',
+    sku: 'SS-WMN-ORGN-005', weight: '0.5 kg', material: 'Viscose Silk Blend, Organza Dupatta', origin: 'Designed & Made in India', originCompany: 'Himachal Handloom Development Corp',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean or gentle hand wash. Do not wring organza dupatta.',
     sizes: ['XS','S','M','L','XL'], colors: [{name:'Blush Pink',hex:'#FFB6C1'},{name:'Powder Blue',hex:'#B0E0E6'},{name:'Lavender Rose',hex:'#E6E6FA'}],
     galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
@@ -72,7 +72,7 @@ const products = [
     rating: 4.5, reviews: 67,
     description: 'A vibrant short kurti featuring traditional Punjabi Phulkari geometric embroidery in colorful silk threads. Made from premium khadi cotton, perfect to pair with patialas, palazzos, or jeans.',
     details: 'Khadi cotton base. Full hand-embellished Phulkari embroidery on front. V-neck.',
-    sku: 'SS-WMN-PHUL-006', weight: '0.3 kg', material: 'Khadi Cotton, Silk Threads', origin: 'Amritsar, Punjab, India',
+    sku: 'SS-WMN-PHUL-006', weight: '0.3 kg', material: 'Khadi Cotton, Silk Threads', origin: 'Amritsar, Punjab, India', originCompany: 'Amritsar Phulkari Craft Guild',
     warranty: 'None', availability: 'Limited Stock', care: 'Gentle hand wash. Do not bleach. Iron on reverse side.',
     sizes: ['S','M','L','XL'], colors: [{name:'Sun Gold',hex:'#FFD700'},{name:'Royal Blue',hex:'#4169E1'},{name:'Magenta Pink',hex:'#FF00FF'}],
     galleryImages: ['img/prod-blouse.png','img/cat-women.png','img/prod-dress.png','img/hero.png']
@@ -84,7 +84,7 @@ const products = [
     rating: 4.9, reviews: 45,
     description: 'A grand Kanjeevaram style art silk saree woven with traditional temple borders and motifs. Perfect for weddings, receptions, and festivals. Elegant red and gold contrast blouse piece included.',
     details: 'Kanjeevaram Silk Blend. Temple zari borders. Length: 5.5 meters plus 0.8 meters unstitched blouse.',
-    sku: 'SS-WMN-KANJ-007', weight: '0.75 kg', material: 'Art Silk with Gold Zari', origin: 'Kanchipuram style weave, India',
+    sku: 'SS-WMN-KANJ-007', weight: '0.75 kg', material: 'Art Silk with Gold Zari', origin: 'Kanchipuram style weave, India', originCompany: 'Kanchipuram Heritage Silk Weavers',
     warranty: '1 Year Quality Warranty', availability: 'In Stock', care: 'Dry clean only. Store wrapped in cotton cloth.',
     sizes: ['One Size'], colors: [{name:'Vermillion Red',hex:'#E34234'},{name:'Deep Crimson',hex:'#990000'}],
     galleryImages: ['img/prod-women-saree.png','img/cat-women.png','img/cat-traditional.png']
@@ -96,7 +96,7 @@ const products = [
     rating: 4.7, reviews: 52,
     description: 'An authentic Ajrakh hand-block printed straight kurta using natural indigo dye. Styled with traditional geometric tiles from Barmer artisans. Highly comfortable cotton and extremely stylish.',
     details: '100% Cotton. Straight fit. Side slits. Three-quarter sleeves. Natural dyes.',
-    sku: 'SS-WMN-AJRK-008', weight: '0.35 kg', material: '100% Premium Cotton', origin: 'Barmer, Rajasthan, India',
+    sku: 'SS-WMN-AJRK-008', weight: '0.35 kg', material: '100% Premium Cotton', origin: 'Barmer, Rajasthan, India', originCompany: 'Barmer Ajrakh Artisans Society',
     warranty: '6 Months Fabric Warranty', availability: 'In Stock', care: 'Wash separately in cold water. Natural dyes bleed slightly.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#0021A5'},{name:'Terracotta Red',hex:'#C24641'}],
     galleryImages: ['img/prod-women-ajrakh.png','img/cat-women.png','img/prod-blouse.png']
@@ -108,7 +108,7 @@ const products = [
     rating: 4.8, reviews: 38,
     description: 'A pastel peach Chanderi silk A-line kurta set with delicate hand embroidery around the neckline. Styled with a matching pajama and a sheer organza dupatta. Soft, sophisticated, and grand.',
     details: 'Includes: Kurta, Pajama, Organza Dupatta. Fully lined with cotton inner.',
-    sku: 'SS-WMN-CHND-009', weight: '0.55 kg', material: 'Chanderi Silk, Cotton Lining, Organza', origin: 'Chanderi, Madhya Pradesh, India',
+    sku: 'SS-WMN-CHND-009', weight: '0.55 kg', material: 'Chanderi Silk, Cotton Lining, Organza', origin: 'Chanderi, Madhya Pradesh, India', originCompany: 'Chanderi Weavers Co-operative',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean only. Low steam iron.',
     sizes: ['XS','S','M','L','XL'], colors: [{name:'Pastel Peach',hex:'#FFDAB9'},{name:'Soft Mint',hex:'#AAF0D1'}],
     galleryImages: ['img/prod-women-chanderi.png','img/cat-women.png','img/prod-dress.png']
@@ -120,7 +120,7 @@ const products = [
     rating: 4.6, reviews: 31,
     description: 'A vibrant Gujarati Rabari mirror-work embroidered shrug jacket. Hand-embellished by Kutch artisans with colorful threads and tiny mirrors. Perfect to wear over solid kurtas or contemporary crop tops.',
     details: 'Open front shrug. Full mirror embroidery. Tassels on side seams.',
-    sku: 'SS-WMN-RABR-010', weight: '0.4 kg', material: 'Cotton Canvas, Mirrors, Silk Threads', origin: 'Kutch, Gujarat, India',
+    sku: 'SS-WMN-RABR-010', weight: '0.4 kg', material: 'Cotton Canvas, Mirrors, Silk Threads', origin: 'Kutch, Gujarat, India', originCompany: 'Kutch Rabari Embroidery Society',
     warranty: 'None', availability: 'Limited Stock', care: 'Dry clean only. Handle mirrors with care.',
     sizes: ['Free Size'], colors: [{name:'Multicolor',hex:'#FFFFFF'}],
     galleryImages: ['img/prod-women-shrug.png','img/cat-women.png','img/prod-blouse.png']
@@ -134,7 +134,7 @@ const products = [
     rating: 4.8, reviews: 201,
     description: 'A charming traditional dhoti kurta set for boys. Features a soft cotton kurta with gold piping and a pre-stitched, easy-to-wear elasticated dhoti pant. Gentle on children\'s skin and ideal for family pujas and festivals.',
     details: 'Includes: 1 Kurta, 1 Pre-stitched Dhoti. Elasticated waistband. Front buttons on kurta.',
-    sku: 'SS-KDS-DHOT-007', weight: '0.25 kg', material: '100% Breathable Cotton', origin: 'Handcrafted in India',
+    sku: 'SS-KDS-DHOT-007', weight: '0.25 kg', material: '100% Breathable Cotton', origin: 'Handcrafted in India', originCompany: 'Jaipur Traditional Garments Guild',
     warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Warm iron inside out.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Saffron Gold',hex:'#FFA500'},{name:'Emerald Green',hex:'#2E8B57'},{name:'Traditional Red',hex:'#B22222'}],
     galleryImages: ['img/prod-kids-dhoti.png','img/cat-kids.png','img/prod-kids-nehru.png','img/prod-kids-chikankari.png']
@@ -146,7 +146,7 @@ const products = [
     rating: 4.9, reviews: 54,
     description: 'Traditional South Indian Pattu Pavadai set for girls, woven in rich art silk with a golden zari border. Includes an embellished crop-style top (choli) and a pleated skirt. Light, soft, and comfortable for all-day festive celebrations.',
     details: '2-piece set: Blouse and Pavadai Skirt. Fully lined with soft cotton for kid comfort.',
-    sku: 'SS-KDS-PATT-008', weight: '0.35 kg', material: 'Art Silk, Cotton Inner Lining, Zari Thread', origin: 'Kanchipuram, Tamil Nadu, India',
+    sku: 'SS-KDS-PATT-008', weight: '0.35 kg', material: 'Art Silk, Cotton Inner Lining, Zari Thread', origin: 'Kanchipuram, Tamil Nadu, India', originCompany: 'Kanchipuram Heritage Silk Weavers',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean or gentle hand wash only. Store wrapped in paper.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Fuchsia & Mustard',hex:'#FF00FF'},{name:'Green & Red',hex:'#008000'},{name:'Blue & Orange',hex:'#0000FF'}],
     galleryImages: ['img/prod-kids-pattu.png','img/cat-kids.png','img/prod-kids-lehenga.png','img/prod-kids-frock.png']
@@ -158,7 +158,7 @@ const products = [
     rating: 4.6, reviews: 42,
     description: 'A smart ethnic coordinates set for boys. Features a solid color cotton kurta, comfortable churidar pajama, and a printed silk Nehru jacket with Bandhani details and brass buttons.',
     details: '3-piece set: Kurta, Pyjama, and Nehru Jacket. Jacket features functional pockets.',
-    sku: 'SS-KDS-NEHR-009', weight: '0.4 kg', material: 'Cotton Kurta/Pyjama, Art Silk Jacket', origin: 'Jaipur, Rajasthan, India',
+    sku: 'SS-KDS-NEHR-009', weight: '0.4 kg', material: 'Cotton Kurta/Pyjama, Art Silk Jacket', origin: 'Jaipur, Rajasthan, India', originCompany: 'Jaipur Bandhani Craft Collective',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean recommended. Jacket dry clean only.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Teal & Orange',hex:'#008080'},{name:'Yellow & Royal Blue',hex:'#FFD700'},{name:'Peach & Maroon',hex:'#FFDAB9'}],
     galleryImages: ['img/prod-kids-nehru.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-chikankari.png']
@@ -170,7 +170,7 @@ const products = [
     rating: 4.7, reviews: 83,
     description: 'A cute and breathable summer dress for girls, hand-block printed in traditional Jaipuri bootis using organic dyes. Features a comfortable round neck, adjustable back-tie sash, and soft cotton lace trims.',
     details: '100% Cotton. Knee-length. Back zipper. Soft cotton inner lining.',
-    sku: 'SS-KDS-FRK-010', weight: '0.15 kg', material: '100% Hand-Block Cotton', origin: 'Jaipur, India',
+    sku: 'SS-KDS-FRK-010', weight: '0.15 kg', material: '100% Hand-Block Cotton', origin: 'Jaipur, India', originCompany: 'Jaipuri Block Print Artisans Association',
     warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Line dry in shade.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Turquoise Blue',hex:'#40E0D0'},{name:'Coral Pink',hex:'#F08080'},{name:'Sunny Yellow',hex:'#FFFFE0'}],
     galleryImages: ['img/prod-kids-frock.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-lehenga.png']
@@ -182,7 +182,7 @@ const products = [
     rating: 4.7, reviews: 31,
     description: 'Chikankari-embroidered soft cotton kurta with matching pajama set. Features light shadow work around the neck, specially crafted for kids. Extremely soft and breathable for everyday comfort.',
     details: '2-piece set: Kurta and white pajama. Hand-embellished details.',
-    sku: 'SS-KDS-CHIK-011', weight: '0.2 kg', material: '100% Soft Cotton', origin: 'Lucknow, Uttar Pradesh, India',
+    sku: 'SS-KDS-CHIK-011', weight: '0.2 kg', material: '100% Soft Cotton', origin: 'Lucknow, Uttar Pradesh, India', originCompany: 'Lucknow Artisans Handloom Guild',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash cold. Iron on reverse.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Sky Blue',hex:'#87CEEB'},{name:'Baby Pink',hex:'#FFB6C1'},{name:'Butter Yellow',hex:'#FFFDD0'}],
     galleryImages: ['img/prod-kids-chikankari.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-nehru.png']
@@ -194,7 +194,7 @@ const products = [
     rating: 4.8, reviews: 29,
     description: 'A beautiful art silk lehenga set for young girls. Includes a floral brocade skirt, a matching blouse with gold beadwork on the sleeves, and a soft net dupatta. Elasticated skirt for a comfortable fit.',
     details: 'Set includes: Blouse, Lehenga skirt, Net dupatta. Elasticated waist.',
-    sku: 'SS-KDS-LEH-012', weight: '0.5 kg', material: 'Art Silk, Polyester Brocade, Net', origin: 'Made in India',
+    sku: 'SS-KDS-LEH-012', weight: '0.5 kg', material: 'Art Silk, Polyester Brocade, Net', origin: 'Made in India', originCompany: 'Varanasi Silk Weavers Co-operative',
     warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Gentle hand wash or dry clean. Do not rub metallic print.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Rani Pink',hex:'#C71585'},{name:'Golden Yellow',hex:'#FFD700'},{name:'Royal Navy',hex:'#000080'}],
     galleryImages: ['img/prod-kids-lehenga.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-frock.png']
@@ -206,7 +206,7 @@ const products = [
     rating: 4.8, reviews: 18,
     description: 'Classic South Indian traditional look for boys. Woven in soft cream art silk kurta paired with a matching gold zari bordered pre-stitched veshti. Extremely easy to wear and comfortable.',
     details: '2-piece set: Kurta and pre-stitched gold zari border veshti (dhoti). Waist band elasticated.',
-    sku: 'SS-KDS-VESH-017', weight: '0.28 kg', material: 'Art Silk Blend, Cotton Lining', origin: 'Tamil Nadu, India',
+    sku: 'SS-KDS-VESH-017', weight: '0.28 kg', material: 'Art Silk Blend, Cotton Lining', origin: 'Tamil Nadu, India', originCompany: 'Tamil Nadu Weavers Co-op Society',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean or gentle hand wash. Warm iron on silk setting.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Cream & Gold',hex:'#FFFDD0'}],
     galleryImages: ['img/prod-kids-veshti.png','img/cat-kids.png','img/prod-kids-pattu.png']
@@ -218,7 +218,7 @@ const products = [
     rating: 4.7, reviews: 22,
     description: 'A bright tiered cotton Anarkali gown dress for girls in authentic Bandhani print. Designed with cute tassels on the shoulder straps and a wide, beautiful flare. Perfect for garba, diwali, or casual festive wear.',
     details: 'Tiered cotton dress. Fully lined. Tassels on sleeves. Ankle length.',
-    sku: 'SS-KDS-TIER-018', weight: '0.3 kg', material: '100% Soft Cotton', origin: 'Rajasthan, India',
+    sku: 'SS-KDS-TIER-018', weight: '0.3 kg', material: '100% Soft Cotton', origin: 'Rajasthan, India', originCompany: 'Rajasthan Bandhani Craft Guild',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash cold separately. Do not soak.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Bright Yellow',hex:'#FFD700'},{name:'Festive Fuchsia',hex:'#FF007F'}],
     galleryImages: ['img/prod-kids-tiered.png','img/cat-kids.png','img/prod-kids-frock.png']
@@ -230,7 +230,7 @@ const products = [
     rating: 4.6, reviews: 14,
     description: 'A stylish and comfortable green Pathani suit set for boys. Made from premium cotton linen blend, featuring a classic collared shirt-style kurta and loose salwar pants.',
     details: '2-piece set: Pathani Kurta and Salwar pajama. Features roll-up sleeves and double chest pockets.',
-    sku: 'SS-KDS-PATH-019', weight: '0.32 kg', material: 'Cotton-Linen Blend', origin: 'Crafted in India',
+    sku: 'SS-KDS-PATH-019', weight: '0.32 kg', material: 'Cotton-Linen Blend', origin: 'Crafted in India', originCompany: 'Jaipur Khadi & Handloom Board',
     warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Machine wash warm with like colors. Iron on medium.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Olive Green',hex:'#556B2F'},{name:'Steel Blue',hex:'#4682B4'}],
     galleryImages: ['img/prod-kids-pathani.png','img/cat-kids.png','img/prod-kids-dhoti.png']
@@ -242,7 +242,7 @@ const products = [
     rating: 4.9, reviews: 25,
     description: 'An elegant traditional Angrakha style pink cotton frock for young girls. Embellished with beautiful gota patti work borders and tie-up dori details on the side. Extremely skin-friendly cotton.',
     details: 'Angrakha tie-up pattern frock. Flare skirt with gota lace trims. Full cotton lining.',
-    sku: 'SS-KDS-ANG-020', weight: '0.22 kg', material: '100% Premium Cotton', origin: 'Jaipur, India',
+    sku: 'SS-KDS-ANG-020', weight: '0.22 kg', material: '100% Premium Cotton', origin: 'Jaipur, India', originCompany: 'Jaipuri Block Print Artisans Association',
     warranty: 'None', availability: 'In Stock', care: 'Gentle hand wash inside out. Warm iron.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Rose Pink',hex:'#FFC0CB'},{name:'Turquoise Blue',hex:'#40E0D0'}],
     galleryImages: ['img/prod-kids-angrakha.png','img/cat-kids.png','img/prod-kids-lehenga.png']
@@ -256,7 +256,7 @@ const products = [
     rating: 4.6, reviews: 142,
     description: 'A stylish, structured unisex shirt woven by Pochampally artisans. Features double-pocket front utility details and a classic collar. The handloom Ikat pattern blends cultural heritage with street-smart styling.',
     details: '100% Handloom Cotton. Front button closure. Double utility chest pockets. Relaxed unisex fit.',
-    sku: 'SS-UNI-IKAT-013', weight: '0.3 kg', material: '100% Handloom Ikat Cotton', origin: 'Pochampally, Telangana, India',
+    sku: 'SS-UNI-IKAT-013', weight: '0.3 kg', material: '100% Handloom Ikat Cotton', origin: 'Pochampally, Telangana, India', originCompany: 'Pochampally Ikat Handloom Society',
     warranty: 'None', availability: 'In Stock', care: 'Wash separately in cold water with mild liquid detergent. Line dry.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Charcoal Ikat',hex:'#2C3539'},{name:'Indigo Weave',hex:'#3F51B5'},{name:'Madder Orange',hex:'#FF7043'}],
     galleryImages: ['img/prod-shirt.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
@@ -268,7 +268,7 @@ const products = [
     rating: 4.8, reviews: 88,
     description: 'Hand-spun and hand-woven premium Khadi cotton Nehru jacket. Designed as a versatile unisex layer. Features three functional pockets and beautiful coconut shell buttons. Adds instant ethnic charm to shirts or kurtas.',
     details: '100% Handloom Khadi. Mandarin collar. Shell buttons. 3 external patch pockets.',
-    sku: 'SS-UNI-KHAD-014', weight: '0.4 kg', material: '100% Handloom Khadi Cotton', origin: 'Khadi Village Industries, India',
+    sku: 'SS-UNI-KHAD-014', weight: '0.4 kg', material: '100% Handloom Khadi Cotton', origin: 'Khadi Village Industries, India', originCompany: 'Khadi Village Industries Commission',
     warranty: '1 Year Fabric Warranty', availability: 'In Stock', care: 'Dry clean recommended. Gentle hand wash and press with warm iron.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Natural Ivory',hex:'#FDF5E6'},{name:'Oatmeal Beige',hex:'#F5F5DC'},{name:'Mustard Gold',hex:'#E1AD01'}],
     galleryImages: ['img/cat-men.png','img/prod-kurta.png','img/cat-traditional.png','img/hero.png']
@@ -280,7 +280,7 @@ const products = [
     rating: 4.7, reviews: 215,
     description: 'Where traditional block-printing meets modern streetwear. Made in heavy organic cotton loopback fabric, printed in authentic indigo Dabu blocks by Rajasthan artisans. Outfitted with double-lined hood and gold-tipped drawstrings.',
     details: '380GSM Organic Loopback Cotton. Authentic Dabu print. Double-lined hood. Ribbed trims.',
-    sku: 'SS-UNI-DABU-015', weight: '0.58 kg', material: '100% Organic Cotton', origin: 'Crafted in Akola, Rajasthan, India',
+    sku: 'SS-UNI-DABU-015', weight: '0.58 kg', material: '100% Organic Cotton', origin: 'Crafted in Akola, Rajasthan, India', originCompany: 'Akola Dabu Print Printers Collective',
     warranty: '6 Months Print Warranty', availability: 'In Stock', care: 'Wash separately inside out. Indigo dyes bleed slightly on first washes.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#002FA7'},{name:'Charcoal Dabu',hex:'#2F2F2F'},{name:'Rust Terracotta',hex:'#C04000'}],
     galleryImages: ['img/prod-hoodie.png','img/cat-unisex.png','img/cat-men.png','img/hero.png']
@@ -292,7 +292,7 @@ const products = [
     rating: 4.6, reviews: 37,
     description: 'A thoughtful unisex gift set featuring a high-quality quilted jute canvas tote bag with leather straps, paired with a matching natural dye block-printed cotton stole. Perfect for sustainable everyday styling.',
     details: 'Set includes: 1 Jute Tote (14x16 inches, zipper pocket) and 1 Cotton Stole (2 meters).',
-    sku: 'SS-UNI-GIFT-016', weight: '0.5 kg', material: 'Premium Jute, Genuine Leather Straps, Cotton Mulmul', origin: 'Handcrafted in West Bengal, India',
+    sku: 'SS-UNI-GIFT-016', weight: '0.5 kg', material: 'Premium Jute, Genuine Leather Straps, Cotton Mulmul', origin: 'Handcrafted in West Bengal, India', originCompany: 'Bengal Jute Artisans Association',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Wipe jute bag clean. Hand wash cotton stole separately.',
     sizes: ['One Size'], colors: [{name:'Natural Tan',hex:'#D2B48C'},{name:'Indigo Blue',hex:'#0F52BA'},{name:'Forest Green',hex:'#228B22'}],
     galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/prod-watch.png','img/hero.png']
@@ -304,7 +304,7 @@ const products = [
     rating: 5.0, reviews: 49,
     description: 'Luxuriously soft stole woven with a blend of pure Kashmiri Pashmina wool and fine merino fibers. Features traditional Kashmiri checks and fine fringes. Extremely warm, featherlight, and ideal as a luxury unisex gift.',
     details: 'Woven blend of 50% Pashmina, 50% Merino. Dimensions: 70 x 200 cm. Fringed hems.',
-    sku: 'SS-UNI-PASH-017', weight: '0.15 kg', material: 'Kashmiri Pashmina, Fine Merino Wool', origin: 'Handwoven in Srinagar, Kashmir, India',
+    sku: 'SS-UNI-PASH-017', weight: '0.15 kg', material: 'Kashmiri Pashmina, Fine Merino Wool', origin: 'Handwoven in Srinagar, Kashmir, India', originCompany: 'Srinagar Kashmiri Artisans Co-op',
     warranty: '1 Year Fabric Warranty', availability: 'Limited Stock', care: 'Dry clean only. Store in protective bag with cedar balls.',
     sizes: ['One Size'], colors: [{name:'Charcoal Black',hex:'#121212'},{name:'Camel Beige',hex:'#C19A6B'},{name:'Slate Grey',hex:'#708090'}],
     galleryImages: ['img/cat-unisex.png','img/prod-hoodie.png','img/cat-men.png','img/hero.png']
@@ -316,7 +316,7 @@ const products = [
     rating: 4.8, reviews: 73,
     description: 'A contemporary short kurta for men or women, hand-woven in premium handloom cotton and dyed using organic indigo vat processes. Features single chest utility pocket and comfortable side slits. Looks great with denim or pyjamas.',
     details: 'Handloom cotton. Front short placket. Single pocket. Regular unisex fit.',
-    sku: 'SS-UNI-SKRT-018', weight: '0.22 kg', material: '100% Handloom Cotton, Indigo Dye', origin: 'Made in India',
+    sku: 'SS-UNI-SKRT-018', weight: '0.22 kg', material: '100% Handloom Cotton, Indigo Dye', origin: 'Made in India', originCompany: 'India Handloom Brand Collective',
     warranty: 'None', availability: 'In Stock', care: 'Wash separately. Mild detergent. Steam press.',
     sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Indigo Blue',hex:'#002FA7'},{name:'Oatmeal',hex:'#F5F5DC'},{name:'Charcoal Grey',hex:'#3A3A3A'}],
     galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/cat-men.png','img/hero.png']
@@ -328,7 +328,7 @@ const products = [
     rating: 4.8, reviews: 17,
     description: 'A modern, sustainable bomber jacket hand-spun in authentic Khadi cotton. Features ribbed collar and cuffs, sturdy front brass zippers, and clean minimalist lines. Fits both men and women seamlessly.',
     details: '100% Khadi Cotton. Brass zipper. Two side pockets. Ribbed cuffs and hem.',
-    sku: 'SS-UNI-BOMB-027', weight: '0.45 kg', material: 'Handloom Khadi Cotton', origin: 'Made in Gujarat, India',
+    sku: 'SS-UNI-BOMB-027', weight: '0.45 kg', material: 'Handloom Khadi Cotton', origin: 'Made in Gujarat, India', originCompany: 'Gujarat Khadi Gramodyog Board',
     warranty: '6 Months Fabric Warranty', availability: 'In Stock', care: 'Gentle hand wash inside out. Warm iron.',
     sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Kora Beige',hex:'#F5F5DC'},{name:'Charcoal Grey',hex:'#333333'}],
     galleryImages: ['img/prod-unisex-bomber.png','img/cat-unisex.png','img/prod-hoodie.png']
@@ -340,7 +340,7 @@ const products = [
     rating: 4.9, reviews: 23,
     description: 'A beautiful unisex muffler stole woven by Sambalpuri weavers. Showcases traditional red, black, and white shell patterns in thick premium handloom cotton. Highly durable and adds instant character to any outfit.',
     details: 'Sambalpuri handloom Ikat weave. Length: 1.8 meters. Fringed ends.',
-    sku: 'SS-UNI-SAMB-028', weight: '0.18 kg', material: '100% Handloom Cotton', origin: 'Sambalpur, Odisha, India',
+    sku: 'SS-UNI-SAMB-028', weight: '0.18 kg', material: '100% Handloom Cotton', origin: 'Sambalpur, Odisha, India', originCompany: 'Sambalpur Ikat Weavers Co-operative',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean recommended. Hand wash in salt water separately.',
     sizes: ['One Size'], colors: [{name:'Traditional Black & Red',hex:'#000000'}],
     galleryImages: ['img/prod-unisex-scarf.png','img/cat-unisex.png','img/prod-shirt.png']
@@ -352,7 +352,7 @@ const products = [
     rating: 4.7, reviews: 19,
     description: 'An earthy short kurta block-printed in traditional Kalamkari mythology patterns by Srikalahasti artisans. Features a mandarin collar, short button placket, and a relaxed unisex fit.',
     details: 'Kalamkari block print. Mandarin collar. Straight cut. Side slits.',
-    sku: 'SS-UNI-KALM-029', weight: '0.24 kg', material: '100% Cotton, Vegetable Dyes', origin: 'Andhra Pradesh, India',
+    sku: 'SS-UNI-KALM-029', weight: '0.24 kg', material: '100% Cotton, Vegetable Dyes', origin: 'Andhra Pradesh, India', originCompany: 'Srikalahasti Kalamkari Artisans Association',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Iron inside out.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Mustard Ochre',hex:'#DF73FF'},{name:'Earthy Terracotta',hex:'#D2691E'}],
     galleryImages: ['img/prod-kurta.png','img/cat-unisex.png','img/prod-shirt.png']
@@ -364,7 +364,7 @@ const products = [
     rating: 4.8, reviews: 15,
     description: 'A stylish and durable backpack crafted in thick organic cotton canvas, printed with authentic indigo Dabu mud-resist blocks. Features genuine leather accents and laptop compartment.',
     details: 'Organic canvas base. Padded laptop compartment (up to 15.6"). Antique brass hardware. Leather straps.',
-    sku: 'SS-UNI-BPAK-030', weight: '0.62 kg', material: 'Organic Cotton Canvas, Leather, Cotton lining', origin: 'Rajasthan, India',
+    sku: 'SS-UNI-BPAK-030', weight: '0.62 kg', material: 'Organic Cotton Canvas, Leather, Cotton lining', origin: 'Rajasthan, India', originCompany: 'Rajasthan Dabu Handloom Printers',
     warranty: '6 Months Zipper Warranty', availability: 'In Stock', care: 'Wipe with damp cloth. Do not machine wash.',
     sizes: ['One Size'], colors: [{name:'Indigo Dabu',hex:'#0F52BA'}],
     galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/cat-unisex.png']
@@ -377,7 +377,7 @@ const products = [
     rating: 4.9, reviews: 14,
     description: "A majestic double-ikat silk saree handwoven by Pochampally artisans. Showcases bold geometric patterns and a gold zari border, ideal for formal and festive celebrations.",
     details: "Handloom double-ikat weave. 5.5 meters length with 0.8 meters blouse piece. Pure Mulberry Silk.",
-    sku: 'SS-WOM-IKAT-031', weight: '0.58 kg', material: 'Mulberry Silk, Zari threads', origin: 'Pochampally, Telangana, India',
+    sku: 'SS-WOM-IKAT-031', weight: '0.58 kg', material: 'Mulberry Silk, Zari threads', origin: 'Pochampally, Telangana, India', originCompany: 'Pochampally Ikat Handloom Society',
     warranty: 'Silk Mark Certified', availability: 'In Stock', care: 'Dry clean only. Iron on silk setting.',
     sizes: ['One Size'], colors: [{name:'Royal Purple & Teal',hex:'#4B0082'}],
     galleryImages: ['img/prod-women-ikat-saree.png','img/cat-women.png']
@@ -389,7 +389,7 @@ const products = [
     rating: 4.8, reviews: 26,
     description: "A breezy georgette kurta and palazzo set with elaborate hand-embroidered Lucknowi Chikankari details. Includes a matching inner slip and semi-sheer chiffon dupatta.",
     details: "Hand Chikankari embroidery. Set contains Kurta, Palazzo, Dupatta and Slip.",
-    sku: 'SS-WOM-CHIK-032', weight: '0.48 kg', material: 'Georgette Kurta & Palazzo, Cotton Slip, Chiffon Dupatta', origin: 'Lucknow, Uttar Pradesh, India',
+    sku: 'SS-WOM-CHIK-032', weight: '0.48 kg', material: 'Georgette Kurta & Palazzo, Cotton Slip, Chiffon Dupatta', origin: 'Lucknow, Uttar Pradesh, India', originCompany: 'Lucknow Artisans Handloom Guild',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash in cold water with mild detergent.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Ivory White',hex:'#FFFFF0'}],
     galleryImages: ['img/prod-women-palazzo-suit.png','img/cat-women.png']
@@ -401,7 +401,7 @@ const products = [
     rating: 4.7, reviews: 18,
     description: "A premium wool-blend winter kurti featuring colorful all-over Aari floral chain-stitch embroidery. Perfectly blend traditional Kashmiri craft with a modern straight silhouette.",
     details: "Aari chain-stitch embroidery. Long sleeves. Mandarin collar.",
-    sku: 'SS-WOM-KASH-033', weight: '0.52 kg', material: '70% Wool, 30% Acrylic', origin: 'Srinagar, Jammu & Kashmir, India',
+    sku: 'SS-WOM-KASH-033', weight: '0.52 kg', material: '70% Wool, 30% Acrylic', origin: 'Srinagar, Jammu & Kashmir, India', originCompany: 'Srinagar Kashmiri Artisans Co-op',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean only.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Crimson Maroon',hex:'#800000'}],
     galleryImages: ['img/prod-women-kashmiri-kurti.png','img/cat-women.png']
@@ -413,7 +413,7 @@ const products = [
     rating: 4.9, reviews: 12,
     description: "A soft, flowing crepe silk saree featuring authentic Mysore temple gold zari border. Excellent drape that stays elegant throughout long ceremonies.",
     details: "Pure art crepe silk. Traditional temple border design. Comes with matching blouse fabric.",
-    sku: 'SS-WOM-MYSR-034', weight: '0.45 kg', material: 'Crepe Silk, Metallic Zari', origin: 'Mysore, Karnataka, India',
+    sku: 'SS-WOM-MYSR-034', weight: '0.45 kg', material: 'Crepe Silk, Metallic Zari', origin: 'Mysore, Karnataka, India', originCompany: 'Mysore Crepe Silk Weavers Guild',
     warranty: 'Silk Mark Certified', availability: 'In Stock', care: 'Dry clean only.',
     sizes: ['One Size'], colors: [{name:'Marigold Gold',hex:'#FFD700'}],
     galleryImages: ['img/prod-women-temple-saree.png','img/cat-women.png']
@@ -425,7 +425,7 @@ const products = [
     rating: 4.6, reviews: 21,
     description: "A daily wear pure cotton A-line kurta and trousers set adorned with authentic Madhubani paintings of peacocks and tree-of-life motifs printed using natural pigments.",
     details: "A-line silhouette. Two side pockets. Matching printed trousers.",
-    sku: 'SS-WOM-MADH-035', weight: '0.38 kg', material: '100% Organic Cotton', origin: 'Madhubani, Bihar, India',
+    sku: 'SS-WOM-MADH-035', weight: '0.38 kg', material: '100% Organic Cotton', origin: 'Madhubani, Bihar, India', originCompany: 'Madhubani Painters & Craft Guild',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash inside out with mild liquid soap.',
     sizes: ['S','M','L','XL','XXL'], colors: [{name:'Earthy Terracotta',hex:'#E2725B'}],
     galleryImages: ['img/prod-women-madhubani-kurta.png','img/cat-women.png']
@@ -438,7 +438,7 @@ const products = [
     rating: 4.8, reviews: 14,
     description: "A traditional tie-and-dye Rajasthani Bandhej cotton kurta paired with comfortable pre-stitched cowled dhoti pants, ideal for festive celebrations and cultural school events.",
     details: "Pure cotton base. Pre-stitched dhoti pants. Hand-tied tie-dye pattern.",
-    sku: 'SS-KID-RAJ-036', weight: '0.22 kg', material: '100% Cotton', origin: 'Jaipur, Rajasthan, India',
+    sku: 'SS-KID-RAJ-036', weight: '0.22 kg', material: '100% Cotton', origin: 'Jaipur, Rajasthan, India', originCompany: 'Rajasthan Bandhani Craft Guild',
     warranty: 'None', availability: 'In Stock', care: 'Wash separately in cold water.',
     sizes: ['2-3Y','3-4Y','5-6Y','7-8Y','9-10Y'], colors: [{name:'Festive Red & Yellow',hex:'#FF4500'}],
     galleryImages: ['img/prod-kids-bandhej-kurta.png','img/cat-kids.png']
@@ -450,7 +450,7 @@ const products = [
     rating: 4.9, reviews: 9,
     description: "A classic girls' Pattu Pavadai/Langa Voni set inspired by Kerala Kasavu style. Cream cotton with sparkling gold-threaded temple borders and cotton lining.",
     details: "Soft cream cotton with golden tissue borders. Breathable inner lining.",
-    sku: 'SS-KID-KASV-037', weight: '0.25 kg', material: '100% South Cotton, Cotton Lining', origin: 'Kanchipuram, Tamil Nadu, India',
+    sku: 'SS-KID-KASV-037', weight: '0.25 kg', material: '100% South Cotton, Cotton Lining', origin: 'Kanchipuram, Tamil Nadu, India', originCompany: 'Kerala Kasavu Weavers Co-op',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Warm iron.',
     sizes: ['2-3Y','4-5Y','6-7Y','8-9Y'], colors: [{name:'Traditional Off-White & Gold',hex:'#F5F5DC'}],
     galleryImages: ['img/prod-kids-kasavu-skirt.png','img/cat-kids.png']
@@ -462,7 +462,7 @@ const products = [
     rating: 4.5, reviews: 15,
     description: "A fusion jumpsuit for kids featuring minimalist Warli tribal paintings printed on pure handloom cotton. Extremely comfortable with an elasticated waistband and back zip.",
     details: "Handloom cotton fabric. Elasticated waist. YKK zipper closure.",
-    sku: 'SS-KID-WARL-038', weight: '0.19 kg', material: '100% Handloom Cotton', origin: 'Maharashtra, India',
+    sku: 'SS-KID-WARL-038', weight: '0.19 kg', material: '100% Handloom Cotton', origin: 'Maharashtra, India', originCompany: 'Maharashtra Tribal Art Cooperative',
     warranty: 'None', availability: 'In Stock', care: 'Machine wash cold on gentle cycle.',
     sizes: ['2-3Y','4-5Y','6-7Y','8-9Y','10-11Y'], colors: [{name:'Ecru & Charcoal Black',hex:'#FDF5E6'}],
     galleryImages: ['img/prod-kids-warli-jumpsuit.png','img/cat-kids.png']
@@ -474,7 +474,7 @@ const products = [
     rating: 4.7, reviews: 11,
     description: "A smart cotton kurta set showcasing the red-and-white patterns of the Assamese Gamosa weave. Lightweight, comfortable, and perfect for national days and celebrations.",
     details: "Includes Kurta and Pajama pants. Authentic red borders.",
-    sku: 'SS-KID-GAMO-039', weight: '0.24 kg', material: '100% Khadi Cotton', origin: 'Guwahati, Assam, India',
+    sku: 'SS-KID-GAMO-039', weight: '0.24 kg', material: '100% Khadi Cotton', origin: 'Guwahati, Assam, India', originCompany: 'Assam Khadi & Village Industries Board',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash separately.',
     sizes: ['3-4Y','5-6Y','7-8Y','9-10Y'], colors: [{name:'Assamese Red & White',hex:'#FFFFFF'}],
     galleryImages: ['img/prod-kids-gamosa-kurta.png','img/cat-kids.png']
@@ -486,7 +486,7 @@ const products = [
     rating: 4.8, reviews: 20,
     description: "A gorgeous Banarasi art brocade ghagra choli set for girls. Features heavy golden zari patterns, soft cotton lining, and a lightweight net dupatta with gota-patti border.",
     details: "Heavy brocade pattern. Cotton lining for scratch-free comfort. Set of 3 pieces.",
-    sku: 'SS-KID-BANR-040', weight: '0.35 kg', material: 'Polyester Brocade, 100% Cotton Lining, Nylon Net Dupatta', origin: 'Varanasi, Uttar Pradesh, India',
+    sku: 'SS-KID-BANR-040', weight: '0.35 kg', material: 'Polyester Brocade, 100% Cotton Lining, Nylon Net Dupatta', origin: 'Varanasi, Uttar Pradesh, India', originCompany: 'Varanasi Silk Weavers Co-operative',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean only.',
     sizes: ['4-5Y','6-7Y','8-9Y','10-11Y','12-13Y'], colors: [{name:'Festive Pink & Gold',hex:'#FF69B4'}],
     galleryImages: ['img/prod-kids-brocade-ghagra.png','img/cat-kids.png']
@@ -499,7 +499,7 @@ const products = [
     rating: 4.7, reviews: 17,
     description: "A premium linen shirt featuring authentic Bagru hand-block prints using natural vegetable dyes. Designed with a relaxed unisex fit, chest pocket, and coconut shell buttons.",
     details: "Linen cotton blend. Natural vegetable block printing. Chest pocket. Curved hem.",
-    sku: 'SS-UNI-BAGR-041', weight: '0.28 kg', material: '55% Linen, 45% Cotton', origin: 'Bagru, Rajasthan, India',
+    sku: 'SS-UNI-BAGR-041', weight: '0.28 kg', material: '55% Linen, 45% Cotton', origin: 'Bagru, Rajasthan, India', originCompany: 'Bagru Block Printers Collective',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Dry in shade.',
     sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Indigo & Ochre',hex:'#0F52BA'}],
     galleryImages: ['img/prod-unisex-bagru-shirt.png','img/cat-unisex.png']
@@ -511,7 +511,7 @@ const products = [
     rating: 4.9, reviews: 13,
     description: "An authentic Toda embroidered shawl (Pootkuly) hand-stitched by the Toda tribal community of Nilgiris. Features iconic red and black geometric bands on a cream cotton base.",
     details: "Handmade Toda embroidery. Large wrap dimensions: 2.1 x 1.1 meters. Heavy woven cotton.",
-    sku: 'SS-UNI-TODA-042', weight: '0.65 kg', material: '100% Organic Woven Cotton', origin: 'Nilgiris, Tamil Nadu, India',
+    sku: 'SS-UNI-TODA-042', weight: '0.65 kg', material: '100% Organic Woven Cotton', origin: 'Nilgiris, Tamil Nadu, India', originCompany: 'Nilgiri Toda Tribal Artisans Co-op',
     warranty: 'GI Tagged Craft Certificate', availability: 'In Stock', care: 'Dry clean only.',
     sizes: ['One Size'], colors: [{name:'Toda Cream & Red',hex:'#FDF5E6'}],
     galleryImages: ['img/prod-unisex-toda-shawl.png','img/cat-unisex.png']
@@ -523,7 +523,7 @@ const products = [
     rating: 4.6, reviews: 19,
     description: "A luxurious pastel Chanderi silk scarf with fine golden zari weaving. Comes in a matching reusable silk drawstring pouch, making it the perfect gift set.",
     details: "Chanderi silk-cotton weave. Golden zari threads. Set includes scarf and drawstring pouch.",
-    sku: 'SS-UNI-CHAN-043', weight: '0.12 kg', material: '60% Silk, 40% Cotton, Metallic Zari', origin: 'Chanderi, Madhya Pradesh, India',
+    sku: 'SS-UNI-CHAN-043', weight: '0.12 kg', material: '60% Silk, 40% Cotton, Metallic Zari', origin: 'Chanderi, Madhya Pradesh, India', originCompany: 'Chanderi Weavers Co-operative',
     warranty: 'None', availability: 'In Stock', care: 'Gentle hand wash. Iron on low silk setting.',
     sizes: ['One Size'], colors: [{name:'Pastel Lavender',hex:'#E6E6FA'}],
     galleryImages: ['img/prod-unisex-chanderi-scarf.png','img/cat-unisex.png']
@@ -535,7 +535,7 @@ const products = [
     rating: 4.8, reviews: 22,
     description: "A spacious and sturdy everyday canvas tote bag, block-printed in authentic Kutchi Ajrakh patterns. Features full cotton lining, interior zip pockets, and sturdy cotton-rope handles.",
     details: "Ajrakh mud-resist block printing. Leather-reinforced handle bases. Heavy organic cotton canvas.",
-    sku: 'SS-UNI-AJRK-044', weight: '0.42 kg', material: 'Organic Cotton Canvas, Genuine Leather Details', origin: 'Kutch, Gujarat, India',
+    sku: 'SS-UNI-AJRK-044', weight: '0.42 kg', material: 'Organic Cotton Canvas, Genuine Leather Details', origin: 'Kutch, Gujarat, India', originCompany: 'Kutch Ajrakh Weavers Society',
     warranty: '3 Months Stitching Warranty', availability: 'In Stock', care: 'Spot clean only. Do not wash leather details.',
     sizes: ['One Size'], colors: [{name:'Indigo & Madder Red',hex:'#002FA7'}],
     galleryImages: ['img/prod-unisex-ajrakh-tote.png','img/cat-unisex.png']
@@ -547,7 +547,7 @@ const products = [
     rating: 4.7, reviews: 16,
     description: "A heavyweight shacket/overshirt made from authentic Mangalagiri handloom cotton. Showcases the signature golden-threaded Nizam border along the cuffs and interior placket.",
     details: "Heavy Mangalagiri handloom weave. Golden Nizam border trims. Double chest pockets. Relaxed layering fit.",
-    sku: 'SS-UNI-MANG-045', weight: '0.38 kg', material: '100% Handloom Cotton, Zari border', origin: 'Mangalagiri, Andhra Pradesh, India',
+    sku: 'SS-UNI-MANG-045', weight: '0.38 kg', material: '100% Handloom Cotton, Zari border', origin: 'Mangalagiri, Andhra Pradesh, India', originCompany: 'Mangalagiri Handloom Weaving Society',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Iron on cotton setting.',
     sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Sage Green',hex:'#8FBC8F'}],
     galleryImages: ['img/prod-unisex-mangalagiri-overshirt.png','img/cat-unisex.png']
@@ -711,6 +711,8 @@ let pdpProductQty = 1;
 // Promo Code state
 let appliedPromo = '';
 let discountAmount = 0;
+let isGiftOrder = false;
+let giftCardNote = '';
 
 // ==================== INITIALIZATION ====================
 document.addEventListener('DOMContentLoaded', () => {
@@ -733,6 +735,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Custom UX Updates
   updateCategoryCounts();
   initQuickView();
+  initSupportChatbot();
 });
 
 // Load state from localStorage
@@ -753,6 +756,28 @@ function loadState() {
       wishlist = new Set(JSON.parse(savedWishlist));
     } catch (e) {
       wishlist = new Set();
+    }
+  }
+
+  const savedCustomReviews = localStorage.getItem('ss-custom-reviews');
+  if (savedCustomReviews) {
+    try {
+      const customReviews = JSON.parse(savedCustomReviews);
+      Object.keys(customReviews).forEach(pid => {
+        const id = parseInt(pid);
+        if (!reviewDB[id]) reviewDB[id] = [];
+        reviewDB[id] = [...customReviews[pid], ...reviewDB[id]];
+        
+        const product = products.find(p => p.id === id);
+        if (product) {
+          const reviews = reviewDB[id];
+          product.reviews = reviews.length;
+          const sum = reviews.reduce((s, r) => s + r.rating, 0);
+          product.rating = parseFloat((sum / reviews.length).toFixed(1));
+        }
+      });
+    } catch (e) {
+      console.error("Error loading custom reviews", e);
     }
   }
 }
@@ -1317,7 +1342,6 @@ function createProductCardMarkup(product) {
     <div class="product-card" data-id="${product.id}">
       <div class="product-image">
         <img src="${product.image}" alt="${product.name}" loading="lazy" />
-        ${product.badge ? `<span class="product-badge badge-${product.badge}">${product.badge}</span>` : ''}
         <div class="product-actions">
           <button class="product-action-btn wishlist-btn-card ${isWishlisted ? 'wishlisted' : ''}" 
                   data-id="${product.id}" title="Add to Wishlist">
@@ -1503,8 +1527,10 @@ function renderProductDetails(product) {
     
     <!-- ===== Product Details ===== -->
     <div class="pdp-details">
-      <div class="pdp-topline-meta">
+      <div class="pdp-topline-meta" style="display:flex; align-items:center; gap:0.5rem">
         <span class="pdp-brand">${product.brand}</span>
+        <span style="font-size: 0.8rem; color: var(--text-muted)">|</span>
+        <span style="font-size: 0.85rem; color: var(--gold); font-weight: 500">${product.originCompany}</span>
         ${product.availability ? `<span class="pdp-availability ${product.availability.includes('Limited') ? 'limited' : 'in-stock'}">${product.availability}</span>` : ''}
       </div>
       <h1 class="pdp-title">${product.name}</h1>
@@ -1541,23 +1567,55 @@ function renderProductDetails(product) {
         <div class="pdp-size-btn-group">
           ${sizes.map((s, i) => `<button class="pdp-size-btn ${i === Math.min(1, sizes.length - 1) ? 'active' : ''}">${s}</button>`).join('')}
         </div>
-        <!-- Size Guide Popup -->
+        <!-- Size Guide Popup with Advisor Tab -->
         <div class="pdp-size-guide" id="pdp-size-guide" style="display: none;">
           <div class="pdp-size-guide-header">
-            <h4>Size Guide</h4>
+            <div class="pdp-size-tabs" style="display:flex; gap:0.5rem;">
+              <button class="pdp-size-tab-btn active" id="btn-size-tab-table" style="background:none; border:none; border-bottom:2px solid var(--gold); color:var(--text-primary); cursor:pointer; font-weight:600; font-size:0.85rem; padding: 0.25rem 0.5rem;">Size Table</button>
+              <button class="pdp-size-tab-btn" id="btn-size-tab-advisor" style="background:none; border:none; border-bottom:2px solid transparent; color:var(--text-secondary); cursor:pointer; font-weight:500; font-size:0.85rem; padding: 0.25rem 0.5rem;">Size Advisor</button>
+            </div>
             <button class="pdp-size-guide-close" id="pdp-size-guide-close">✕</button>
           </div>
-          <table class="pdp-size-table">
-            <thead><tr><th>Size</th><th>Chest (in)</th><th>Waist (in)</th><th>Length (in)</th></tr></thead>
-            <tbody>
-              <tr><td>S</td><td>36-38</td><td>30-32</td><td>27</td></tr>
-              <tr><td>M</td><td>38-40</td><td>32-34</td><td>28</td></tr>
-              <tr><td>L</td><td>40-42</td><td>34-36</td><td>29</td></tr>
-              <tr><td>XL</td><td>42-44</td><td>36-38</td><td>30</td></tr>
-              <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>31</td></tr>
-            </tbody>
-          </table>
-          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">* Measurements are approximate. We recommend measuring a garment you already own for comparison.</p>
+          
+          <!-- Tab Content 1: Table -->
+          <div class="pdp-size-tab-content" id="pdp-size-tab-content-table">
+            <table class="pdp-size-table">
+              <thead><tr><th>Size</th><th>Chest (in)</th><th>Waist (in)</th><th>Length (in)</th></tr></thead>
+              <tbody>
+                <tr><td>S</td><td>36-38</td><td>30-32</td><td>27</td></tr>
+                <tr><td>M</td><td>38-40</td><td>32-34</td><td>28</td></tr>
+                <tr><td>L</td><td>40-42</td><td>34-36</td><td>29</td></tr>
+                <tr><td>XL</td><td>42-44</td><td>36-38</td><td>30</td></tr>
+                <tr><td>XXL</td><td>44-46</td><td>38-40</td><td>31</td></tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Tab Content 2: Advisor -->
+          <div class="pdp-size-tab-content" id="pdp-size-tab-content-advisor" style="display: none;">
+            <div class="size-advisor-form" style="display: flex; flex-direction: column; gap: 0.75rem; padding: 0.5rem 0;">
+              <p style="font-size: 0.8rem; color: var(--text-secondary);">Enter your details to calculate your recommended size:</p>
+              <div class="form-group-row" style="display: flex; gap: 0.5rem;">
+                <div class="form-group" style="flex: 1; display:flex; flex-direction:column; gap:0.25rem;">
+                  <label style="font-size: 0.75rem; color: var(--text-muted);">Height (cm)</label>
+                  <input type="number" id="advisor-height" class="pdp-form-input" style="height:38px; font-size:0.85rem; padding: 0 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color:var(--text-primary);" placeholder="e.g. 175" min="100" max="250" />
+                </div>
+                <div class="form-group" style="flex: 1; display:flex; flex-direction:column; gap:0.25rem;">
+                  <label style="font-size: 0.75rem; color: var(--text-muted);">Fit Preference</label>
+                  <select id="advisor-fit" class="pdp-form-select" style="height:38px; font-size:0.85rem; padding: 0 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color:var(--text-primary);">
+                    <option value="slim">Slim Fit</option>
+                    <option value="regular" selected>Regular Fit</option>
+                    <option value="relaxed">Relaxed Fit</option>
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary" id="btn-calculate-size" style="padding: 0.5rem; font-size:0.85rem; height:38px; width:100%;">Calculate Best Size</button>
+              <div id="advisor-result" class="size-advisor-result" style="display:none; text-align: center; padding: 0.75rem; background: rgba(212, 175, 55, 0.05); border: 1px dashed var(--gold-border); border-radius: 4px; font-weight: 600; color: var(--gold); font-size: 0.9rem;">
+                Recommended Size: M
+              </div>
+            </div>
+          </div>
+          <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">* Measurements are approximate. Sizing may vary depending on style and fit type.</p>
         </div>
       </div>
       
@@ -1842,6 +1900,80 @@ function renderProductDetails(product) {
     if (sizeGuideClose) sizeGuideClose.addEventListener('click', () => { sizeGuide.style.display = 'none'; });
   }
 
+  // Size Guide tabs and calculation listeners
+  const btnTable = document.getElementById('btn-size-tab-table');
+  const btnAdvisor = document.getElementById('btn-size-tab-advisor');
+  const contentTable = document.getElementById('pdp-size-tab-content-table');
+  const contentAdvisor = document.getElementById('pdp-size-tab-content-advisor');
+
+  if (btnTable && btnAdvisor && contentTable && contentAdvisor) {
+    btnTable.addEventListener('click', () => {
+      btnTable.classList.add('active');
+      btnTable.style.borderBottomColor = 'var(--gold)';
+      btnTable.style.color = 'var(--text-primary)';
+      btnAdvisor.classList.remove('active');
+      btnAdvisor.style.borderBottomColor = 'transparent';
+      btnAdvisor.style.color = 'var(--text-secondary)';
+      contentTable.style.display = 'block';
+      contentAdvisor.style.display = 'none';
+    });
+
+    btnAdvisor.addEventListener('click', () => {
+      btnAdvisor.classList.add('active');
+      btnAdvisor.style.borderBottomColor = 'var(--gold)';
+      btnAdvisor.style.color = 'var(--text-primary)';
+      btnTable.classList.remove('active');
+      btnTable.style.borderBottomColor = 'transparent';
+      btnTable.style.color = 'var(--text-secondary)';
+      contentTable.style.display = 'none';
+      contentAdvisor.style.display = 'block';
+    });
+  }
+
+  const btnCalc = document.getElementById('btn-calculate-size');
+  if (btnCalc) {
+    btnCalc.addEventListener('click', () => {
+      const height = parseInt(document.getElementById('advisor-height').value);
+      const fit = document.getElementById('advisor-fit').value;
+      const resultDiv = document.getElementById('advisor-result');
+
+      if (!height || height < 100 || height > 250) {
+        if (resultDiv) {
+          resultDiv.textContent = 'Please enter a valid height (100cm - 250cm)';
+          resultDiv.style.display = 'block';
+          resultDiv.style.color = 'var(--accent-red)';
+        }
+        return;
+      }
+
+      // Dynamic calculation logic
+      let recommended = 'M';
+      if (height < 155) {
+        recommended = fit === 'slim' ? 'XS' : 'S';
+      } else if (height >= 155 && height < 168) {
+        recommended = fit === 'slim' ? 'S' : (fit === 'relaxed' ? 'L' : 'M');
+      } else if (height >= 168 && height < 180) {
+        recommended = fit === 'slim' ? 'M' : (fit === 'relaxed' ? 'XL' : 'L');
+      } else if (height >= 180 && height < 192) {
+        recommended = fit === 'slim' ? 'L' : (fit === 'relaxed' ? 'XXL' : 'XL');
+      } else {
+        recommended = 'XXL';
+      }
+
+      if (resultDiv) {
+        resultDiv.innerHTML = `Recommended Size: <span style="font-weight:700; color:var(--text-primary);">${recommended}</span>`;
+        resultDiv.style.display = 'block';
+        resultDiv.style.color = 'var(--gold)';
+        
+        // Auto-select size in the size group!
+        const targetBtn = Array.from(container.querySelectorAll('.pdp-size-btn')).find(b => b.textContent.trim() === recommended);
+        if (targetBtn) {
+          targetBtn.click();
+        }
+      }
+    });
+  }
+
   // Scroll to reviews
   const scrollToReviews = document.getElementById('pdp-scroll-to-reviews');
   if (scrollToReviews) {
@@ -1949,36 +2081,39 @@ function renderProductDetails(product) {
 
     if (!authorVal || !textVal || !titleVal) return;
 
-    // Save review
     const newReview = { 
       author: authorVal, 
       rating: ratingVal, 
       title: titleVal, 
       text: textVal,
       date: new Date().toISOString().split('T')[0],
-      verified: false,
+      verified: true,
       helpful: 0
     };
+
+    // Save to custom reviews in localStorage
+    const savedCustomReviews = localStorage.getItem('ss-custom-reviews');
+    let customReviews = {};
+    if (savedCustomReviews) {
+      try {
+        customReviews = JSON.parse(savedCustomReviews);
+      } catch (err) {}
+    }
+    if (!customReviews[product.id]) customReviews[product.id] = [];
+    customReviews[product.id].unshift(newReview);
+    localStorage.setItem('ss-custom-reviews', JSON.stringify(customReviews));
+
+    // Prepend to current session DB
     reviewDB[product.id].unshift(newReview);
 
-    // Re-render review list
-    const wrapper = document.getElementById('pdp-reviews-list-wrapper');
-    if (wrapper) wrapper.innerHTML = renderReviewListMarkup(reviewDB[product.id]);
-    
-    // Re-attach helpfulness buttons
-    wrapper.querySelectorAll('.pdp-helpful-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const countEl = btn.querySelector('.helpful-count');
-        if (countEl && !btn.classList.contains('voted')) {
-          countEl.textContent = parseInt(countEl.textContent) + 1;
-          btn.classList.add('voted');
-          btn.style.color = 'var(--accent-gold)';
-        }
-      });
-    });
-    
-    // Reset Form
-    reviewForm.reset();
+    // Recalculate average rating & counts
+    const reviews = reviewDB[product.id];
+    product.reviews = reviews.length;
+    const sum = reviews.reduce((s, r) => s + r.rating, 0);
+    product.rating = parseFloat((sum / reviews.length).toFixed(1));
+
+    // Re-render PDP details page content (updates stars, counts, and lists immediately)
+    renderProductDetails(product);
     showToast('✅ Review submitted successfully! Thank you for your feedback.');
   });
 }
@@ -2309,7 +2444,8 @@ function renderCheckoutSummary() {
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   const shipping = subtotal > 3000 ? 0 : 149;
-  const finalTotal = subtotal - discountAmount + shipping;
+  const giftFee = isGiftOrder ? 99 : 0;
+  const finalTotal = subtotal - discountAmount + shipping + giftFee;
 
   wrapper.innerHTML = `
     <h3 style="font-family: var(--font-display); font-size:1.3rem; border-bottom: 1px solid var(--border); padding-bottom:0.5rem; margin-bottom: 1.5rem">Summary</h3>
@@ -2342,11 +2478,25 @@ function renderCheckoutSummary() {
       <span>Shipping</span>
       <span>${shipping === 0 ? 'FREE' : `₹${shipping}`}</span>
     </div>
+
+    ${isGiftOrder ? `
+    <div class="summary-row">
+      <span>Potli Wrapping</span>
+      <span>₹99</span>
+    </div>
+    ` : ''}
     
     <div class="summary-row total" style="margin-top:1rem; padding-top:1rem">
       <span>Total</span>
       <span>₹${finalTotal.toLocaleString()}</span>
     </div>
+
+    ${isGiftOrder && giftCardNote ? `
+    <div class="summary-row" style="flex-direction:column; align-items:flex-start; gap:0.25rem; font-size:0.8rem; border-top: 1px dashed var(--border); padding-top:0.75rem; margin-top:0.75rem;">
+      <span style="color:var(--text-secondary); font-weight:500;">Greeting Card Note:</span>
+      <p style="font-style:italic; color:var(--text-muted); margin:0; line-height: 1.4;">"${giftCardNote}"</p>
+    </div>
+    ` : ''}
   `;
 }
 
@@ -2414,6 +2564,14 @@ window.processCheckout = function(e) {
     cart = [];
     appliedPromo = '';
     discountAmount = 0;
+    isGiftOrder = false;
+    giftCardNote = '';
+    const giftCheckbox = document.getElementById('cart-gifting-checkbox');
+    if (giftCheckbox) giftCheckbox.checked = false;
+    const giftNoteWrapper = document.getElementById('cart-gifting-note-wrapper');
+    if (giftNoteWrapper) giftNoteWrapper.style.display = 'none';
+    const giftNoteTextarea = document.getElementById('cart-gifting-note');
+    if (giftNoteTextarea) giftNoteTextarea.value = '';
     saveCart();
     
     // Clear Form inputs
@@ -2438,6 +2596,27 @@ function initCartDrawer() {
   if (cartBtn) cartBtn.addEventListener('click', openCart);
   if (cartClose) cartClose.addEventListener('click', closeCart);
   if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+  // Gifting Options Listeners
+  const giftCheckbox = document.getElementById('cart-gifting-checkbox');
+  const giftNoteWrapper = document.getElementById('cart-gifting-note-wrapper');
+  const giftNoteTextarea = document.getElementById('cart-gifting-note');
+
+  if (giftCheckbox) {
+    giftCheckbox.addEventListener('change', () => {
+      isGiftOrder = giftCheckbox.checked;
+      if (giftNoteWrapper) {
+        giftNoteWrapper.style.display = isGiftOrder ? 'block' : 'none';
+      }
+      renderDrawerCart();
+    });
+  }
+
+  if (giftNoteTextarea) {
+    giftNoteTextarea.addEventListener('input', (e) => {
+      giftCardNote = e.target.value;
+    });
+  }
 }
 
 function openCart() {
@@ -2542,8 +2721,9 @@ function renderDrawerCart() {
 
   // Update Drawer Totals
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-  const shipping = subtotal > 10000 ? 0 : 499;
-  const total = subtotal + shipping;
+  const shipping = subtotal > 3000 ? 0 : 149;
+  const giftFee = isGiftOrder ? 99 : 0;
+  const total = subtotal + shipping + giftFee;
 
   const subtotalEl = document.querySelector('.cart-subtotal .amount');
   const shippingEl = document.querySelector('.cart-shipping .amount');
@@ -2552,6 +2732,50 @@ function renderDrawerCart() {
   if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString()}`;
   if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `₹${shipping}`;
   if (totalEl) totalEl.textContent = `₹${total.toLocaleString()}`;
+
+  // Gifting row toggle
+  let giftFeeEl = document.getElementById('cart-drawer-gift-row');
+  if (isGiftOrder) {
+    if (!giftFeeEl) {
+      const shippingRow = document.querySelector('.cart-shipping');
+      if (shippingRow) {
+        giftFeeEl = document.createElement('div');
+        giftFeeEl.className = 'cart-subtotal';
+        giftFeeEl.id = 'cart-drawer-gift-row';
+        giftFeeEl.innerHTML = `<span>Potli Wrap</span><span class="amount">₹99</span>`;
+        shippingRow.parentNode.insertBefore(giftFeeEl, shippingRow.nextSibling);
+      }
+    }
+  } else {
+    if (giftFeeEl) {
+      giftFeeEl.remove();
+    }
+  }
+
+  // Update Free Shipping Progress Bar
+  const shippingBar = document.getElementById('cart-shipping-bar');
+  const shippingBarText = document.getElementById('cart-shipping-bar-text');
+  const shippingBarFill = document.getElementById('cart-shipping-bar-fill');
+
+  if (shippingBar) {
+    if (subtotal === 0) {
+      shippingBar.style.display = 'none';
+    } else {
+      shippingBar.style.display = 'block';
+      const limit = 3000;
+      const diff = limit - subtotal;
+      const pct = Math.min(100, (subtotal / limit) * 100);
+      if (shippingBarFill) shippingBarFill.style.width = `${pct}%`;
+      
+      if (shippingBarText) {
+        if (diff > 0) {
+          shippingBarText.textContent = `Spend ₹${diff.toLocaleString()} more for Free Shipping!`;
+        } else {
+          shippingBarText.textContent = `🎉 Your order qualifies for FREE Shipping!`;
+        }
+      }
+    }
+  }
 }
 
 // Drawer globals
@@ -2942,7 +3166,11 @@ function openQuickView(productId) {
       <img src="${product.image}" alt="${product.name}" />
     </div>
     <div class="quickview-details">
-      <span class="quickview-brand">${product.brand}</span>
+      <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
+        <span class="quickview-brand" style="margin-bottom:0">${product.brand}</span>
+        <span style="font-size: 0.75rem; color: var(--text-muted)">|</span>
+        <span style="font-size: 0.8rem; color: var(--gold); font-weight: 500">${product.originCompany}</span>
+      </div>
       <h2 class="quickview-title">${product.name}</h2>
       
       <div class="quickview-price-row">
@@ -3014,3 +3242,153 @@ window.addQuickViewToCart = function(productId) {
   addToCart(productId, quickViewQty, selectedQuickViewSize, selectedQuickViewColor);
   closeQuickView();
 };
+
+// ============ FLOATING AI CHATBOT LOGIC ============
+function initSupportChatbot() {
+  const toggleBtn = document.getElementById('chatbot-toggle-btn');
+  const chatbotPanel = document.getElementById('chatbot-panel');
+  const closeBtn = document.getElementById('chatbot-close-panel');
+  const inputForm = document.getElementById('chatbot-input-form');
+  const userMsgInput = document.getElementById('chatbot-user-msg');
+  const messagesContainer = document.getElementById('chatbot-messages-container');
+  const quickRepliesContainer = document.getElementById('chatbot-quick-replies');
+  const badge = document.getElementById('chatbot-badge');
+
+  if (!toggleBtn || !chatbotPanel) return;
+
+  // Toggle chatbot panel visibility
+  toggleBtn.addEventListener('click', () => {
+    chatbotPanel.classList.toggle('open');
+    if (badge) badge.style.display = 'none'; // Hide badge on first open
+    if (chatbotPanel.classList.contains('open')) {
+      if (messagesContainer && messagesContainer.children.length === 0) {
+        // Render initial welcome messages
+        renderBotMessage("Namaste! 🙏 Welcome to SS Attire Shop. I am Aria, your Heritage Stylist Guide.");
+        setTimeout(() => {
+          renderBotMessage("I can help you find authentic weaves, calculate your size, check order status, or explain our return policies. What are you looking for today?");
+          renderQuickReplies();
+        }, 800);
+      }
+      setTimeout(() => {
+        if (userMsgInput) userMsgInput.focus();
+      }, 300);
+    }
+  });
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      chatbotPanel.classList.remove('open');
+    });
+  }
+
+  // Handle user custom message submission
+  if (inputForm) {
+    inputForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const text = userMsgInput.value.trim();
+      if (!text) return;
+
+      renderUserMessage(text);
+      userMsgInput.value = '';
+
+      // Bot typing animation
+      renderBotTypingIndicator();
+
+      setTimeout(() => {
+        removeBotTypingIndicator();
+        processBotReply(text);
+      }, 1200);
+    });
+  }
+
+  function renderUserMessage(text) {
+    if (!messagesContainer) return;
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message user';
+    msgDiv.innerHTML = `<div class="chat-bubble">${text}</div>`;
+    messagesContainer.appendChild(msgDiv);
+    scrollChatToBottom();
+  }
+
+  function renderBotMessage(text) {
+    if (!messagesContainer) return;
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message bot';
+    msgDiv.innerHTML = `
+      <div class="chat-avatar-mini">👑</div>
+      <div class="chat-bubble">${text}</div>
+    `;
+    messagesContainer.appendChild(msgDiv);
+    scrollChatToBottom();
+  }
+
+  function renderBotTypingIndicator() {
+    if (!messagesContainer) return;
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'chat-message bot typing-indicator';
+    typingDiv.id = 'chatbot-typing-indicator';
+    typingDiv.innerHTML = `
+      <div class="chat-avatar-mini">👑</div>
+      <div class="chat-bubble typing">
+        <span></span><span></span><span></span>
+      </div>
+    `;
+    messagesContainer.appendChild(typingDiv);
+    scrollChatToBottom();
+  }
+
+  function removeBotTypingIndicator() {
+    const indicator = document.getElementById('chatbot-typing-indicator');
+    if (indicator) indicator.remove();
+  }
+
+  function scrollChatToBottom() {
+    if (messagesContainer) {
+      messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+  }
+
+  function renderQuickReplies() {
+    if (!quickRepliesContainer) return;
+    const prompts = [
+      { text: "📦 Return Policy", reply: "What is your return policy?" },
+      { text: "📏 Size Guide Help", reply: "How do I choose the correct size?" },
+      { text: "🌟 Fabric Purity", reply: "Are your fabrics authentic handlooms?" },
+      { text: "🎟 Active Promo Codes", reply: "Do you have any discount codes?" }
+    ];
+
+    quickRepliesContainer.innerHTML = prompts.map(p => `
+      <button type="button" class="chatbot-quick-reply-btn" onclick="triggerChatbotQuickReply('${p.reply}')">${p.text}</button>
+    `).join('');
+  }
+
+  window.triggerChatbotQuickReply = function(replyText) {
+    renderUserMessage(replyText);
+    renderBotTypingIndicator();
+    setTimeout(() => {
+      removeBotTypingIndicator();
+      processBotReply(replyText);
+    }, 1000);
+  };
+
+  function processBotReply(userText) {
+    const text = userText.toLowerCase();
+    
+    if (text.includes('return') || text.includes('refund') || text.includes('exchange')) {
+      renderBotMessage("We offer an easy 30-day return and exchange policy on all unused garments. To initiate a return, visit your account dashboard or write to us at support@ssattire.com. We will arrange a free reverse pickup!");
+    } else if (text.includes('size') || text.includes('sizing') || text.includes('fit')) {
+      renderBotMessage("We have a dynamic Size Advisor on our product pages! Simply click the 'Size Guide' button on any garment, enter your height, and choose your fit preference (Slim, Regular, or Relaxed) for an instant calculation.");
+    } else if (text.includes('fabric') || text.includes('handloom') || text.includes('organic') || text.includes('silk')) {
+      renderBotMessage("Yes! All our products are sourced directly from weaver co-operatives and artisanal guilds across India. Every silk saree is Silk Mark Certified, and we utilize authentic organic hand-block vegetable dyes.");
+    } else if (text.includes('promo') || text.includes('discount') || text.includes('coupon') || text.includes('offer')) {
+      renderBotMessage("You can unlock 10% off your order using the promo code **LUXURY10** at checkout. We also offer Free Shipping on all orders above ₹3,000!");
+    } else if (text.includes('shipping') || text.includes('delivery') || text.includes('time')) {
+      renderBotMessage("Delivery typically takes 3-5 business days for major Indian cities, and 5-7 days for regional locations. Shipping is free for orders above ₹3,000; otherwise, a flat ₹149 delivery charge is applied.");
+    } else if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('namaste')) {
+      renderBotMessage("Namaste! How can I assist you with your Indian heritage styling journey today?");
+    } else {
+      renderBotMessage("I appreciate your question! For custom inquiries or order status, you can contact our 24/7 helpline at +91 1800-ATTIRE or email support@ssattire.com. Is there anything else I can guide you with?");
+    }
+  }
+}
+
