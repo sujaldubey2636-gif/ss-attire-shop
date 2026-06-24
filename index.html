@@ -164,32 +164,32 @@
           </div>
 
           <div class="categories-grid animate-on-scroll" style="grid-template-columns: repeat(3, 1fr);">
-            <div class="category-card" onclick="filterCategory('women')">
-              <img src="img/cat-women.png" alt="Women's Collection" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Women's Wear</h3>
-                <span class="category-count">186 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category-card" onclick="filterCategory('kids')">
-              <img src="img/cat-kids.png" alt="Kids' Collection" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Kids' Wear</h3>
-                <span class="category-count">94 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
-
-            <div class="category-card" onclick="filterCategory('unisex')">
-              <img src="img/cat-unisex.png" alt="Unisex Collection" loading="lazy" />
-              <div class="category-overlay">
-                <h3 class="category-name">Unisex Wear</h3>
-                <span class="category-count">112 Products</span>
-              </div>
-              <div class="category-arrow">→</div>
-            </div>
+             <div class="category-card" onclick="filterCategory('women')">
+               <img src="img/cat-women.png" alt="Women's Collection" loading="lazy" />
+               <div class="category-overlay">
+                 <h3 class="category-name">Women's Wear</h3>
+                 <span class="category-count" id="count-women-category">Loading...</span>
+               </div>
+               <div class="category-arrow">→</div>
+             </div>
+ 
+             <div class="category-card" onclick="filterCategory('kids')">
+               <img src="img/cat-kids.png" alt="Kids' Collection" loading="lazy" />
+               <div class="category-overlay">
+                 <h3 class="category-name">Kids' Wear</h3>
+                 <span class="category-count" id="count-kids-category">Loading...</span>
+               </div>
+               <div class="category-arrow">→</div>
+             </div>
+ 
+             <div class="category-card" onclick="filterCategory('unisex')">
+               <img src="img/cat-unisex.png" alt="Unisex Collection" loading="lazy" />
+               <div class="category-overlay">
+                 <h3 class="category-name">Unisex Wear</h3>
+                 <span class="category-count" id="count-unisex-category">Loading...</span>
+               </div>
+               <div class="category-arrow">→</div>
+             </div>
           </div>
         </div>
       </section>
@@ -484,6 +484,9 @@
             <div class="products-grid" id="plp-products-grid">
               <!-- Rendered dynamically by app.js -->
             </div>
+            <div class="load-more-container" id="load-more-container" style="text-align: center; margin-top: 3rem; display: none;">
+              <button class="btn btn-secondary" id="btn-load-more" style="padding: 1rem 3rem;">Load More Products</button>
+            </div>
           </div>
         </div>
       </div>
@@ -769,6 +772,17 @@
       </div>
       <button class="btn btn-primary" onclick="closeCart(); window.location.hash='#/checkout';" style="width:100%; margin-bottom:0.5rem;">Proceed to Checkout</button>
       <a href="#/cart" class="btn btn-outline" onclick="closeCart()" style="width:100%">View Shopping Bag Page</a>
+    </div>
+  </div>
+
+  <!-- ============ QUICK VIEW MODAL ============ -->
+  <div class="quickview-modal" id="quickview-modal">
+    <div class="quickview-overlay" id="quickview-overlay"></div>
+    <div class="quickview-content">
+      <button class="quickview-close-btn" id="quickview-close-btn">✕</button>
+      <div class="quickview-grid" id="quickview-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
     </div>
   </div>
 

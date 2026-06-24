@@ -368,6 +368,189 @@ const products = [
     warranty: '6 Months Zipper Warranty', availability: 'In Stock', care: 'Wipe with damp cloth. Do not machine wash.',
     sizes: ['One Size'], colors: [{name:'Indigo Dabu',hex:'#0F52BA'}],
     galleryImages: ['img/prod-bag.png','img/cat-accessories.png','img/cat-unisex.png']
+  },
+  // ---- WOMEN'S WEAR EXPANSION ----
+  {
+    id: 31, name: 'Pochampally Ikat Silk Saree', brand: 'SS Heritage',
+    price: 4599, oldPrice: 5299, category: 'women',
+    image: 'img/prod-women-ikat-saree.png', badge: 'new',
+    rating: 4.9, reviews: 14,
+    description: "A majestic double-ikat silk saree handwoven by Pochampally artisans. Showcases bold geometric patterns and a gold zari border, ideal for formal and festive celebrations.",
+    details: "Handloom double-ikat weave. 5.5 meters length with 0.8 meters blouse piece. Pure Mulberry Silk.",
+    sku: 'SS-WOM-IKAT-031', weight: '0.58 kg', material: 'Mulberry Silk, Zari threads', origin: 'Pochampally, Telangana, India',
+    warranty: 'Silk Mark Certified', availability: 'In Stock', care: 'Dry clean only. Iron on silk setting.',
+    sizes: ['One Size'], colors: [{name:'Royal Purple & Teal',hex:'#4B0082'}],
+    galleryImages: ['img/prod-women-ikat-saree.png','img/cat-women.png']
+  },
+  {
+    id: 32, name: 'Lucknowi Chikan Palazzo Suit Set', brand: 'SS Heritage',
+    price: 2899, oldPrice: 3499, category: 'women',
+    image: 'img/prod-women-palazzo-suit.png', badge: 'trending',
+    rating: 4.8, reviews: 26,
+    description: "A breezy georgette kurta and palazzo set with elaborate hand-embroidered Lucknowi Chikankari details. Includes a matching inner slip and semi-sheer chiffon dupatta.",
+    details: "Hand Chikankari embroidery. Set contains Kurta, Palazzo, Dupatta and Slip.",
+    sku: 'SS-WOM-CHIK-032', weight: '0.48 kg', material: 'Georgette Kurta & Palazzo, Cotton Slip, Chiffon Dupatta', origin: 'Lucknow, Uttar Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash in cold water with mild detergent.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Ivory White',hex:'#FFFFF0'}],
+    galleryImages: ['img/prod-women-palazzo-suit.png','img/cat-women.png']
+  },
+  {
+    id: 33, name: 'Kashmiri Aari Embroidered Kurti', brand: 'SS Heritage',
+    price: 3199, oldPrice: null, category: 'women',
+    image: 'img/prod-women-kashmiri-kurti.png', badge: 'new',
+    rating: 4.7, reviews: 18,
+    description: "A premium wool-blend winter kurti featuring colorful all-over Aari floral chain-stitch embroidery. Perfectly blend traditional Kashmiri craft with a modern straight silhouette.",
+    details: "Aari chain-stitch embroidery. Long sleeves. Mandarin collar.",
+    sku: 'SS-WOM-KASH-033', weight: '0.52 kg', material: '70% Wool, 30% Acrylic', origin: 'Srinagar, Jammu & Kashmir, India',
+    warranty: 'None', availability: 'In Stock', care: 'Dry clean only.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Crimson Maroon',hex:'#800000'}],
+    galleryImages: ['img/prod-women-kashmiri-kurti.png','img/cat-women.png']
+  },
+  {
+    id: 34, name: 'Mysore Crepe Silk Temple Saree', brand: 'SS Heritage',
+    price: 3999, oldPrice: 4799, category: 'women',
+    image: 'img/prod-women-temple-saree.png', badge: 'new',
+    rating: 4.9, reviews: 12,
+    description: "A soft, flowing crepe silk saree featuring authentic Mysore temple gold zari border. Excellent drape that stays elegant throughout long ceremonies.",
+    details: "Pure art crepe silk. Traditional temple border design. Comes with matching blouse fabric.",
+    sku: 'SS-WOM-MYSR-034', weight: '0.45 kg', material: 'Crepe Silk, Metallic Zari', origin: 'Mysore, Karnataka, India',
+    warranty: 'Silk Mark Certified', availability: 'In Stock', care: 'Dry clean only.',
+    sizes: ['One Size'], colors: [{name:'Marigold Gold',hex:'#FFD700'}],
+    galleryImages: ['img/prod-women-temple-saree.png','img/cat-women.png']
+  },
+  {
+    id: 35, name: 'Madhubani Printed Cotton Kurta Set', brand: 'SS Artisanal',
+    price: 1599, oldPrice: 1999, category: 'women',
+    image: 'img/prod-women-madhubani-kurta.png', badge: 'new',
+    rating: 4.6, reviews: 21,
+    description: "A daily wear pure cotton A-line kurta and trousers set adorned with authentic Madhubani paintings of peacocks and tree-of-life motifs printed using natural pigments.",
+    details: "A-line silhouette. Two side pockets. Matching printed trousers.",
+    sku: 'SS-WOM-MADH-035', weight: '0.38 kg', material: '100% Organic Cotton', origin: 'Madhubani, Bihar, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash inside out with mild liquid soap.',
+    sizes: ['S','M','L','XL','XXL'], colors: [{name:'Earthy Terracotta',hex:'#E2725B'}],
+    galleryImages: ['img/prod-women-madhubani-kurta.png','img/cat-women.png']
+  },
+  // ---- KIDS' WEAR EXPANSION ----
+  {
+    id: 36, name: 'Boys Rajasthani Bandhej Kurta Dhoti', brand: 'SS Junior',
+    price: 1599, oldPrice: 1899, category: 'kids',
+    image: 'img/prod-kids-bandhej-kurta.png', badge: 'new',
+    rating: 4.8, reviews: 14,
+    description: "A traditional tie-and-dye Rajasthani Bandhej cotton kurta paired with comfortable pre-stitched cowled dhoti pants, ideal for festive celebrations and cultural school events.",
+    details: "Pure cotton base. Pre-stitched dhoti pants. Hand-tied tie-dye pattern.",
+    sku: 'SS-KID-RAJ-036', weight: '0.22 kg', material: '100% Cotton', origin: 'Jaipur, Rajasthan, India',
+    warranty: 'None', availability: 'In Stock', care: 'Wash separately in cold water.',
+    sizes: ['2-3Y','3-4Y','5-6Y','7-8Y','9-10Y'], colors: [{name:'Festive Red & Yellow',hex:'#FF4500'}],
+    galleryImages: ['img/prod-kids-bandhej-kurta.png','img/cat-kids.png']
+  },
+  {
+    id: 37, name: 'Girls Kerala Kasavu Skirt & Blouse', brand: 'SS Junior',
+    price: 1799, oldPrice: null, category: 'kids',
+    image: 'img/prod-kids-kasavu-skirt.png', badge: 'new',
+    rating: 4.9, reviews: 9,
+    description: "A classic girls' Pattu Pavadai/Langa Voni set inspired by Kerala Kasavu style. Cream cotton with sparkling gold-threaded temple borders and cotton lining.",
+    details: "Soft cream cotton with golden tissue borders. Breathable inner lining.",
+    sku: 'SS-KID-KASV-037', weight: '0.25 kg', material: '100% South Cotton, Cotton Lining', origin: 'Kanchipuram, Tamil Nadu, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Warm iron.',
+    sizes: ['2-3Y','4-5Y','6-7Y','8-9Y'], colors: [{name:'Traditional Off-White & Gold',hex:'#F5F5DC'}],
+    galleryImages: ['img/prod-kids-kasavu-skirt.png','img/cat-kids.png']
+  },
+  {
+    id: 38, name: 'Kids Warli Print Cotton Jumpsuit', brand: 'SS Junior',
+    price: 1099, oldPrice: 1299, category: 'kids',
+    image: 'img/prod-kids-warli-jumpsuit.png', badge: 'trending',
+    rating: 4.5, reviews: 15,
+    description: "A fusion jumpsuit for kids featuring minimalist Warli tribal paintings printed on pure handloom cotton. Extremely comfortable with an elasticated waistband and back zip.",
+    details: "Handloom cotton fabric. Elasticated waist. YKK zipper closure.",
+    sku: 'SS-KID-WARL-038', weight: '0.19 kg', material: '100% Handloom Cotton', origin: 'Maharashtra, India',
+    warranty: 'None', availability: 'In Stock', care: 'Machine wash cold on gentle cycle.',
+    sizes: ['2-3Y','4-5Y','6-7Y','8-9Y','10-11Y'], colors: [{name:'Ecru & Charcoal Black',hex:'#FDF5E6'}],
+    galleryImages: ['img/prod-kids-warli-jumpsuit.png','img/cat-kids.png']
+  },
+  {
+    id: 39, name: 'Boys Assamese Gamosa Print Kurta Set', brand: 'SS Junior',
+    price: 1499, oldPrice: null, category: 'kids',
+    image: 'img/prod-kids-gamosa-kurta.png', badge: 'new',
+    rating: 4.7, reviews: 11,
+    description: "A smart cotton kurta set showcasing the red-and-white patterns of the Assamese Gamosa weave. Lightweight, comfortable, and perfect for national days and celebrations.",
+    details: "Includes Kurta and Pajama pants. Authentic red borders.",
+    sku: 'SS-KID-GAMO-039', weight: '0.24 kg', material: '100% Khadi Cotton', origin: 'Guwahati, Assam, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash separately.',
+    sizes: ['3-4Y','5-6Y','7-8Y','9-10Y'], colors: [{name:'Assamese Red & White',hex:'#FFFFFF'}],
+    galleryImages: ['img/prod-kids-gamosa-kurta.png','img/cat-kids.png']
+  },
+  {
+    id: 40, name: 'Girls Banarasi Brocade Ghagra Choli', brand: 'SS Junior',
+    price: 2499, oldPrice: 2999, category: 'kids',
+    image: 'img/prod-kids-brocade-ghagra.png', badge: 'new',
+    rating: 4.8, reviews: 20,
+    description: "A gorgeous Banarasi art brocade ghagra choli set for girls. Features heavy golden zari patterns, soft cotton lining, and a lightweight net dupatta with gota-patti border.",
+    details: "Heavy brocade pattern. Cotton lining for scratch-free comfort. Set of 3 pieces.",
+    sku: 'SS-KID-BANR-040', weight: '0.35 kg', material: 'Polyester Brocade, 100% Cotton Lining, Nylon Net Dupatta', origin: 'Varanasi, Uttar Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Dry clean only.',
+    sizes: ['4-5Y','6-7Y','8-9Y','10-11Y','12-13Y'], colors: [{name:'Festive Pink & Gold',hex:'#FF69B4'}],
+    galleryImages: ['img/prod-kids-brocade-ghagra.png','img/cat-kids.png']
+  },
+  // ---- UNISEX WEAR EXPANSION ----
+  {
+    id: 41, name: 'Unisex Bagru Block-Print Linen Shirt', brand: 'SS Street',
+    price: 2299, oldPrice: 2699, category: 'unisex',
+    image: 'img/prod-unisex-bagru-shirt.png', badge: 'new',
+    rating: 4.7, reviews: 17,
+    description: "A premium linen shirt featuring authentic Bagru hand-block prints using natural vegetable dyes. Designed with a relaxed unisex fit, chest pocket, and coconut shell buttons.",
+    details: "Linen cotton blend. Natural vegetable block printing. Chest pocket. Curved hem.",
+    sku: 'SS-UNI-BAGR-041', weight: '0.28 kg', material: '55% Linen, 45% Cotton', origin: 'Bagru, Rajasthan, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Dry in shade.',
+    sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Indigo & Ochre',hex:'#0F52BA'}],
+    galleryImages: ['img/prod-unisex-bagru-shirt.png','img/cat-unisex.png']
+  },
+  {
+    id: 42, name: 'Unisex Toda Embroidered Cotton Shawl', brand: 'SS Artisanal',
+    price: 3799, oldPrice: 4299, category: 'unisex',
+    image: 'img/prod-unisex-toda-shawl.png', badge: 'trending',
+    rating: 4.9, reviews: 13,
+    description: "An authentic Toda embroidered shawl (Pootkuly) hand-stitched by the Toda tribal community of Nilgiris. Features iconic red and black geometric bands on a cream cotton base.",
+    details: "Handmade Toda embroidery. Large wrap dimensions: 2.1 x 1.1 meters. Heavy woven cotton.",
+    sku: 'SS-UNI-TODA-042', weight: '0.65 kg', material: '100% Organic Woven Cotton', origin: 'Nilgiris, Tamil Nadu, India',
+    warranty: 'GI Tagged Craft Certificate', availability: 'In Stock', care: 'Dry clean only.',
+    sizes: ['One Size'], colors: [{name:'Toda Cream & Red',hex:'#FDF5E6'}],
+    galleryImages: ['img/prod-unisex-toda-shawl.png','img/cat-unisex.png']
+  },
+  {
+    id: 43, name: 'Unisex Chanderi Silk Scarf Set', brand: 'SS Accessories',
+    price: 1599, oldPrice: null, category: 'unisex',
+    image: 'img/prod-unisex-chanderi-scarf.png', badge: 'new',
+    rating: 4.6, reviews: 19,
+    description: "A luxurious pastel Chanderi silk scarf with fine golden zari weaving. Comes in a matching reusable silk drawstring pouch, making it the perfect gift set.",
+    details: "Chanderi silk-cotton weave. Golden zari threads. Set includes scarf and drawstring pouch.",
+    sku: 'SS-UNI-CHAN-043', weight: '0.12 kg', material: '60% Silk, 40% Cotton, Metallic Zari', origin: 'Chanderi, Madhya Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Gentle hand wash. Iron on low silk setting.',
+    sizes: ['One Size'], colors: [{name:'Pastel Lavender',hex:'#E6E6FA'}],
+    galleryImages: ['img/prod-unisex-chanderi-scarf.png','img/cat-unisex.png']
+  },
+  {
+    id: 44, name: 'Unisex Ajrakh Indigo Canvas Tote Bag', brand: 'SS Accessories',
+    price: 1999, oldPrice: 2499, category: 'unisex',
+    image: 'img/prod-unisex-ajrakh-tote.png', badge: 'new',
+    rating: 4.8, reviews: 22,
+    description: "A spacious and sturdy everyday canvas tote bag, block-printed in authentic Kutchi Ajrakh patterns. Features full cotton lining, interior zip pockets, and sturdy cotton-rope handles.",
+    details: "Ajrakh mud-resist block printing. Leather-reinforced handle bases. Heavy organic cotton canvas.",
+    sku: 'SS-UNI-AJRK-044', weight: '0.42 kg', material: 'Organic Cotton Canvas, Genuine Leather Details', origin: 'Kutch, Gujarat, India',
+    warranty: '3 Months Stitching Warranty', availability: 'In Stock', care: 'Spot clean only. Do not wash leather details.',
+    sizes: ['One Size'], colors: [{name:'Indigo & Madder Red',hex:'#002FA7'}],
+    galleryImages: ['img/prod-unisex-ajrakh-tote.png','img/cat-unisex.png']
+  },
+  {
+    id: 45, name: 'Unisex Mangalagiri Cotton Overshirt', brand: 'SS Street',
+    price: 2699, oldPrice: 3199, category: 'unisex',
+    image: 'img/prod-unisex-mangalagiri-overshirt.png', badge: 'new',
+    rating: 4.7, reviews: 16,
+    description: "A heavyweight shacket/overshirt made from authentic Mangalagiri handloom cotton. Showcases the signature golden-threaded Nizam border along the cuffs and interior placket.",
+    details: "Heavy Mangalagiri handloom weave. Golden Nizam border trims. Double chest pockets. Relaxed layering fit.",
+    sku: 'SS-UNI-MANG-045', weight: '0.38 kg', material: '100% Handloom Cotton, Zari border', origin: 'Mangalagiri, Andhra Pradesh, India',
+    warranty: 'None', availability: 'In Stock', care: 'Hand wash separately. Iron on cotton setting.',
+    sizes: ['XS','S','M','L','XL','XXL'], colors: [{name:'Sage Green',hex:'#8FBC8F'}],
+    galleryImages: ['img/prod-unisex-mangalagiri-overshirt.png','img/cat-unisex.png']
   }
 ];
 
@@ -463,6 +646,51 @@ const reviewDB = {
   ],
   30: [
     { author: 'Sneha L.', rating: 5, date: '2025-06-14', verified: true, helpful: 14, title: 'Extremely durable and aesthetic', text: 'Very spacious with a secure laptop sleeve. The indigo Dabu print pattern looks very sophisticated.' }
+  ],
+  31: [
+    { author: "Rajesh M.", rating: 5, date: "2025-06-20", verified: true, helpful: 15, title: "Exquisite silk work", text: "Magnificent saree. The geometric Ikat print has very crisp lines and the pure silk has a rich feel. Draped beautifully!" }
+  ],
+  32: [
+    { author: "Preeti D.", rating: 5, date: "2025-06-22", verified: true, helpful: 12, title: "Superb embroidery work", text: "Very fine Chikankari embroidery. Fabric is airy georgette, very light and elegant for family events. Extremely pleased." }
+  ],
+  33: [
+    { author: "Kiran G.", rating: 4, date: "2025-06-19", verified: true, helpful: 8, title: "Very warm and comfortable", text: "Heavy wool blend kurti. Perfect for winter evenings. Aari work looks very premium and colorful. Fit is accurate." }
+  ],
+  34: [
+    { author: "Sandhya R.", rating: 5, date: "2025-06-21", verified: true, helpful: 14, title: "Authentic temple border", text: "This Mysore crepe silk saree is beautiful. Soft art crepe silk that drapes cleanly. Elegant golden border." }
+  ],
+  35: [
+    { author: "Sunita B.", rating: 5, date: "2025-06-20", verified: true, helpful: 11, title: "Lovely art prints", text: "The peacock prints look exactly like original Madhubani art. 100% organic cotton is soft and comfortable." }
+  ],
+  36: [
+    { author: "Anil K.", rating: 5, date: "2025-06-18", verified: true, helpful: 9, title: "Very colorful festive set", text: "Dhoti kurta fits my 6-year old perfectly. The pre-stitched cowled dhoti is extremely comfortable and easy to wear." }
+  ],
+  37: [
+    { author: "Meenakshi N.", rating: 5, date: "2025-06-22", verified: true, helpful: 16, title: "Traditional Kerala elegance", text: "Beautiful Kasavu skirt set. Soft cotton lining and bright gold borders. My daughter wore it for Vishu and loved it." }
+  ],
+  38: [
+    { author: "Vandana S.", rating: 4, date: "2025-06-20", verified: true, helpful: 7, title: "Cute fusion jumpsuit", text: "Unique Warli prints. Pure cotton is comfortable for children. Sizing is accurate." }
+  ],
+  39: [
+    { author: "Gaurav B.", rating: 5, date: "2025-06-17", verified: true, helpful: 10, title: "Patriotic and cultural look", text: "Assamese Gamosa style kurta. Perfect for functions. Lightweight khadi cotton is very breathable." }
+  ],
+  40: [
+    { author: "Priyanka T.", rating: 5, date: "2025-06-21", verified: true, helpful: 15, title: "Breathtaking brocade", text: "Gorgeous pink and gold ghagra. Silk lining inside is soft and doesn't cause any scratchiness. Sizing fits nicely." }
+  ],
+  41: [
+    { author: "Suresh P.", rating: 5, date: "2025-06-19", verified: true, helpful: 14, title: "Amazing Bagru printing", text: "Authentic block print shirt. Fits nicely, very relaxed. Linen blend is high quality and breathes well." }
+  ],
+  42: [
+    { author: "Devendra A.", rating: 5, date: "2025-06-22", verified: true, helpful: 18, title: "Incredible tribal craftsmanship", text: "Truly authentic Toda embroidery shawl. Woven heavy cotton is warm and durable. An amazing heritage piece!" }
+  ],
+  43: [
+    { author: "Manish S.", rating: 4, date: "2025-06-18", verified: true, helpful: 11, title: "Excellent lavender silk scarf", text: "Chanderi silk has a very sophisticated sheen. The matching pouch is a lovely artisanal addition." }
+  ],
+  44: [
+    { author: "Renu V.", rating: 5, date: "2025-06-20", verified: true, helpful: 13, title: "Sturdy Ajrakh block prints", text: "Tote is highly functional and spacious. Canvas is thick, and the block print pattern is very beautiful." }
+  ],
+  45: [
+    { author: "Aman D.", rating: 5, date: "2025-06-22", verified: true, helpful: 10, title: "Excellent handloom overshirt", text: "Heavy Mangalagiri cotton fabric. Nizam border details on cuffs look outstanding. Highly recommend." }
   ]
 };
 
@@ -473,6 +701,7 @@ let activePLPFilter = 'all';
 let maxPriceFilter = 5000;
 let plpSortOrder = 'default';
 let plpSearchQuery = '';
+let plpVisibleCount = 12;
 
 // Active size and color for PDP
 let selectedPDPSize = 'M';
@@ -500,6 +729,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initMarquee();
   initWishlistBtn();
+
+  // Custom UX Updates
+  updateCategoryCounts();
+  initQuickView();
 });
 
 // Load state from localStorage
@@ -597,7 +830,7 @@ function handleRoute() {
   }
 
   // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   // Update navbar visual state
   updateNavbarVisuals(hash);
@@ -875,6 +1108,7 @@ if (!document.getElementById('injected-hero-keyframes')) {
 
 // ==================== PLP (PRODUCT LISTING VIEW) ====================
 function initShopView() {
+  plpVisibleCount = 12;
   const filterLinks = document.querySelectorAll('.shop-filter-link');
   const priceSlider = document.getElementById('price-range-slider');
   const priceValText = document.getElementById('price-max-val');
@@ -950,6 +1184,7 @@ function handleCategoryLinkClick(e) {
   document.querySelectorAll('.shop-filter-link').forEach(l => l.classList.remove('active'));
   link.classList.add('active');
   activePLPFilter = link.dataset.category;
+  plpVisibleCount = 12;
   
   // Update URL hash without breaking history, but keep it clean
   const currentCategory = activePLPFilter === 'all' ? '' : `?category=${activePLPFilter}`;
@@ -963,6 +1198,7 @@ function resetFilters() {
   maxPriceFilter = 50000;
   plpSortOrder = 'default';
   plpSearchQuery = '';
+  plpVisibleCount = 12;
 
   // Reset visual inputs
   document.querySelectorAll('.shop-filter-link').forEach(l => l.classList.remove('active'));
@@ -989,6 +1225,8 @@ function renderPLP() {
   const grid = document.getElementById('plp-products-grid');
   const countEl = document.getElementById('plp-results-count');
   const clearBtn = document.getElementById('btn-clear-filters');
+  const loadMoreContainer = document.getElementById('load-more-container');
+  const loadMoreBtn = document.getElementById('btn-load-more');
   if (!grid) return;
 
   // Filter products
@@ -1022,12 +1260,32 @@ function renderPLP() {
 
   // Update Count
   if (countEl) {
-    countEl.textContent = `Showing ${filtered.length} products`;
+    countEl.textContent = `Showing ${Math.min(plpVisibleCount, filtered.length)} of ${filtered.length} products`;
+  }
+
+  // Show/Hide Load More Button
+  if (loadMoreContainer) {
+    if (filtered.length > plpVisibleCount) {
+      loadMoreContainer.style.display = 'block';
+    } else {
+      loadMoreContainer.style.display = 'none';
+    }
+  }
+
+  // Attach Load More Event
+  if (loadMoreBtn) {
+    loadMoreBtn.onclick = () => {
+      plpVisibleCount += 12;
+      renderPLP();
+    };
   }
 
   // Animate grid transitions
   grid.style.opacity = '0';
   grid.style.transform = 'translateY(15px)';
+
+  // Slice for pagination
+  const visibleProducts = filtered.slice(0, plpVisibleCount);
 
   setTimeout(() => {
     if (filtered.length === 0) {
@@ -1038,7 +1296,7 @@ function renderPLP() {
         </div>
       `;
     } else {
-      grid.innerHTML = filtered.map(product => createProductCardMarkup(product)).join('');
+      grid.innerHTML = visibleProducts.map(product => createProductCardMarkup(product)).join('');
       attachProductCardEvents(grid);
     }
     
@@ -1064,6 +1322,10 @@ function createProductCardMarkup(product) {
           <button class="product-action-btn wishlist-btn-card ${isWishlisted ? 'wishlisted' : ''}" 
                   data-id="${product.id}" title="Add to Wishlist">
             ${isWishlisted ? '♥' : '♡'}
+          </button>
+          <button class="product-action-btn quick-view-btn-card" 
+                  data-id="${product.id}" title="Quick View">
+            👁
           </button>
         </div>
         <div class="product-quick-add">
@@ -1092,8 +1354,8 @@ function attachProductCardEvents(container) {
   // Navigate to PDP on card body click
   container.querySelectorAll('.product-card').forEach(card => {
     card.addEventListener('click', (e) => {
-      // Exclude clicks on cart and wishlist buttons
-      if (e.target.closest('.add-to-cart-btn-card') || e.target.closest('.wishlist-btn-card')) return;
+      // Exclude clicks on cart, wishlist, and quick view buttons
+      if (e.target.closest('.add-to-cart-btn-card') || e.target.closest('.wishlist-btn-card') || e.target.closest('.quick-view-btn-card')) return;
       const id = card.dataset.id;
       window.location.hash = `#/product/${id}`;
     });
@@ -1114,6 +1376,15 @@ function attachProductCardEvents(container) {
       e.stopPropagation();
       const id = parseInt(btn.dataset.id);
       toggleWishlist(id, btn);
+    });
+  });
+
+  // Quick View click trigger
+  container.querySelectorAll('.quick-view-btn-card').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = parseInt(btn.dataset.id);
+      openQuickView(id);
     });
   });
 }
@@ -2578,3 +2849,168 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 3200);
 }
+
+// ============ DYNAMIC CATEGORY COUNTS ============
+function updateCategoryCounts() {
+  const counts = { women: 0, kids: 0, unisex: 0 };
+  products.forEach(p => {
+    if (counts[p.category] !== undefined) {
+      counts[p.category]++;
+    }
+  });
+
+  const womenCountEl = document.getElementById('count-women-category');
+  const kidsCountEl = document.getElementById('count-kids-category');
+  const unisexCountEl = document.getElementById('count-unisex-category');
+
+  if (womenCountEl) womenCountEl.textContent = `${counts.women} Products`;
+  if (kidsCountEl) kidsCountEl.textContent = `${counts.kids} Products`;
+  if (unisexCountEl) unisexCountEl.textContent = `${counts.unisex} Products`;
+}
+
+// ============ QUICK VIEW MODAL LOGIC ============
+let quickViewQty = 1;
+let selectedQuickViewSize = 'M';
+let selectedQuickViewColor = '';
+
+function initQuickView() {
+  const modal = document.getElementById('quickview-modal');
+  const closeBtn = document.getElementById('quickview-close-btn');
+  const overlay = document.getElementById('quickview-overlay');
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeQuickView);
+  }
+  if (overlay) {
+    overlay.addEventListener('click', closeQuickView);
+  }
+
+  // Handle escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('open')) {
+      closeQuickView();
+    }
+  });
+}
+
+function openQuickView(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  quickViewQty = 1;
+  selectedQuickViewSize = product.sizes ? product.sizes[0] : 'M';
+  selectedQuickViewColor = product.colors ? product.colors[0].name : '';
+
+  const grid = document.getElementById('quickview-grid');
+  if (!grid) return;
+
+  const stars = '★'.repeat(Math.floor(product.rating)) + (product.rating % 1 >= 0.5 ? '½' : '');
+
+  // Sizes Markup
+  const sizesMarkup = product.sizes ? `
+    <div>
+      <div class="quickview-option-title">Size</div>
+      <div class="quickview-selectors">
+        ${product.sizes.map(s => `
+          <button class="quickview-size-btn ${s === selectedQuickViewSize ? 'active' : ''}" 
+                  onclick="selectQuickViewSize('${s}', this)">
+            ${s}
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  // Colors Markup
+  const colorsMarkup = product.colors ? `
+    <div>
+      <div class="quickview-option-title">Color: <span id="quickview-color-name">${selectedQuickViewColor}</span></div>
+      <div class="quickview-selectors">
+        ${product.colors.map(c => `
+          <button class="quickview-color-btn ${c.name === selectedQuickViewColor ? 'active' : ''}" 
+                  style="background-color: ${c.hex}" 
+                  title="${c.name}"
+                  onclick="selectQuickViewColor('${c.name}', this)">
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  grid.innerHTML = `
+    <div class="quickview-img-wrapper animate-on-scroll">
+      <img src="${product.image}" alt="${product.name}" />
+    </div>
+    <div class="quickview-details">
+      <span class="quickview-brand">${product.brand}</span>
+      <h2 class="quickview-title">${product.name}</h2>
+      
+      <div class="quickview-price-row">
+        <span class="quickview-price">₹${product.price.toLocaleString()}</span>
+        ${product.oldPrice ? `<span class="quickview-price-old">₹${product.oldPrice.toLocaleString()}</span>` : ''}
+      </div>
+
+      <div class="product-rating" style="margin-bottom: 1.25rem;">
+        <span class="stars">${stars}</span>
+        <span class="rating-count">(${product.reviews} customer reviews)</span>
+      </div>
+
+      <p class="quickview-desc">${product.description}</p>
+
+      <div class="quickview-options">
+        ${sizesMarkup}
+        ${colorsMarkup}
+      </div>
+
+      <div class="quickview-action-row">
+        <div class="quickview-qty-wrapper">
+          <button class="quickview-qty-btn" onclick="updateQuickViewQty(-1)">-</button>
+          <div class="quickview-qty-val" id="quickview-qty-val">1</div>
+          <button class="quickview-qty-btn" onclick="updateQuickViewQty(1)">+</button>
+        </div>
+        <button class="btn btn-primary" onclick="addQuickViewToCart(${product.id})">Add to Shopping Bag</button>
+      </div>
+
+      <a href="#/product/${product.id}" class="quickview-more-link" onclick="closeQuickView()">View Full Details & Reviews →</a>
+    </div>
+  `;
+
+  const modal = document.getElementById('quickview-modal');
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeQuickView() {
+  const modal = document.getElementById('quickview-modal');
+  if (modal) {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+window.selectQuickViewSize = function(size, btn) {
+  selectedQuickViewSize = size;
+  btn.parentElement.querySelectorAll('.quickview-size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+};
+
+window.selectQuickViewColor = function(color, btn) {
+  selectedQuickViewColor = color;
+  const label = document.getElementById('quickview-color-name');
+  if (label) label.textContent = color;
+  btn.parentElement.querySelectorAll('.quickview-color-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+};
+
+window.updateQuickViewQty = function(change) {
+  quickViewQty = Math.max(1, quickViewQty + change);
+  const valEl = document.getElementById('quickview-qty-val');
+  if (valEl) valEl.textContent = quickViewQty;
+};
+
+window.addQuickViewToCart = function(productId) {
+  addToCart(productId, quickViewQty, selectedQuickViewSize, selectedQuickViewColor);
+  closeQuickView();
+};
