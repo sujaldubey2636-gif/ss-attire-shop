@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SS Attire Shop — Premium luxury fashion for men, women, and everyone. Discover curated collections of clothing, footwear, accessories, and traditional wear." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>SS Attire Shop — Luxury Fashion & Premium Clothing</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👑</text></svg>" />
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#/" class="nav-logo">
+        <div class="logo-icon">SS</div>
+        <span>ATTIRE</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#/" class="nav-home-link active" data-scroll="categories">Collections</a>
+        <a href="#/shop" class="nav-shop-link">Shop</a>
+        <a href="#/" class="nav-home-link" data-scroll="new-arrivals">New Arrivals</a>
+        <a href="#/" class="nav-home-link" data-scroll="sale">Sale</a>
+        <a href="#/" class="nav-home-link" data-scroll="about">About</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="btn-icon" id="search-btn" title="Search" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="btn-icon" id="wishlist-btn" title="Wishlist" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+        <button class="btn-icon" id="cart-btn" title="Cart" aria-label="Cart" style="position:relative">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" style="display:none">0</span>
+        </button>
+        <div class="hamburger" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="#/" class="nav-home-link" data-scroll="categories">Collections</a>
+    <a href="#/shop" class="nav-shop-link">Shop</a>
+    <a href="#/" class="nav-home-link" data-scroll="new-arrivals">New Arrivals</a>
+    <a href="#/" class="nav-home-link" data-scroll="sale">Sale</a>
+    <a href="#/" class="nav-home-link" data-scroll="about">About</a>
+  </div>
+
+  <!-- ============ MAIN CONTENT (SPA VIEWS) ============ -->
+  <main id="app-content">
+
+    <!-- ============ VIEW: HOME ============ -->
+    <div id="view-home" class="app-view active">
+      
+      <!-- 3D HERO SECTION -->
+      <section class="hero" id="hero">
+        <div class="hero-perspective">
+          <div class="hero-scene">
+            
+            <!-- Layer 1: Background Gradient & 3D Particles -->
+            <div class="hero-layer layer-bg">
+              <div class="hero-bg-gradient"></div>
+              <div class="hero-particles-3d"></div>
+            </div>
+            
+            <!-- Layer 2: Deep Back Left Floating Image Card (Men's Look) -->
+            <div class="hero-layer layer-back-left">
+              <div class="floating-img-card">
+                <img src="img/cat-men.png" alt="SS Attire Men's Look" />
+                <div class="card-glow"></div>
+              </div>
+            </div>
+            
+            <!-- Layer 3: Deep Back Right Floating Image Card (Women's Look) -->
+            <div class="hero-layer layer-back-right">
+              <div class="floating-img-card">
+                <img src="img/cat-women.png" alt="SS Attire Women's Look" />
+                <div class="card-glow"></div>
+              </div>
+            </div>
+            
+            <!-- Layer 4: Focal Plane (Main Text Content & CTA) -->
+            <div class="hero-layer layer-middle">
+              <div class="hero-content">
+                <span class="hero-label">✦ New Season Collection 2025</span>
+                <h1 class="hero-title">
+                  Redefine Your<br />
+                  <span class="highlight">Elegance</span> with<br />
+                  Premium Fashion
+                </h1>
+                <p class="hero-description">
+                  Discover curated collections of luxury clothing, footwear, and 
+                  accessories. Crafted for those who refuse to compromise on style.
+                </p>
+                <div class="hero-actions">
+                  <a href="#/shop" class="btn btn-primary">Explore Collection</a>
+                  <a href="#/" class="btn btn-outline" onclick="scrollToElement('categories')">View Lookbook</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Layer 5: Foreground Left Card (Watch Detail) -->
+            <div class="hero-layer layer-front-left">
+              <div class="floating-img-card mini-card">
+                <img src="img/prod-watch.png" alt="Imperial Gold Chronograph" />
+                <div class="mini-card-label">Timeless Pieces</div>
+              </div>
+            </div>
+            
+            <!-- Layer 6: Foreground Right Card (Sneaker Detail) -->
+            <div class="hero-layer layer-front-right">
+              <div class="floating-img-card mini-card">
+                <img src="img/prod-sneakers.png" alt="Noir & Gold Sneakers" />
+                <div class="mini-card-label">Street Luxe</div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <!-- MARQUEE BANNER -->
+      <div class="marquee-banner">
+        <div class="marquee-track">
+          <span class="marquee-item">Free Shipping Over ₹10,000</span>
+          <span class="marquee-item">Premium Quality Guaranteed</span>
+          <span class="marquee-item">New Arrivals Every Week</span>
+          <span class="marquee-item">Exclusive Members Discounts</span>
+          <span class="marquee-item">Easy 30-Day Returns</span>
+          <span class="marquee-item">Handcrafted With Love</span>
+        </div>
+      </div>
+
+      <!-- CATEGORIES SECTION -->
+      <section class="section" id="categories">
+        <div class="container">
+          <div class="section-header animate-on-scroll">
+            <span class="section-label">Browse By Category</span>
+            <h2 class="section-title">Curated <span class="gold">Collections</span></h2>
+            <p class="section-subtitle">From timeless classics to contemporary streetwear — find your perfect style across our handpicked categories.</p>
+            <div class="gold-line"></div>
+          </div>
+
+          <div class="categories-grid animate-on-scroll">
+            <div class="category-card" onclick="filterCategory('men')">
+              <img src="img/cat-men.png" alt="Men's Collection" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Men's Wear</h3>
+                <span class="category-count">124 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category-card" onclick="filterCategory('women')">
+              <img src="img/cat-women.png" alt="Women's Collection" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Women's Wear</h3>
+                <span class="category-count">186 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category-card" onclick="filterCategory('footwear')">
+              <img src="img/cat-footwear.png" alt="Footwear Collection" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Footwear</h3>
+                <span class="category-count">93 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category-card" onclick="filterCategory('accessories')">
+              <img src="img/cat-accessories.png" alt="Accessories" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Accessories</h3>
+                <span class="category-count">157 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category-card" onclick="filterCategory('traditional')">
+              <img src="img/cat-traditional.png" alt="Traditional Wear" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Traditional Wear</h3>
+                <span class="category-count">78 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+
+            <div class="category-card" onclick="filterCategory('unisex')">
+              <img src="img/cat-unisex.png" alt="Unisex Collection" loading="lazy" />
+              <div class="category-overlay">
+                <h3 class="category-name">Unisex</h3>
+                <span class="category-count">112 Products</span>
+              </div>
+              <div class="category-arrow">→</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS PREVIEW SECTION -->
+      <section class="section" id="products" style="background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div class="section-header animate-on-scroll">
+            <span class="section-label">Handpicked For You</span>
+            <h2 class="section-title">Trending <span class="gold">Now</span></h2>
+            <p class="section-subtitle">Our most coveted pieces, loved by fashion connoisseurs worldwide.</p>
+            <div class="gold-line"></div>
+          </div>
+
+          <div class="product-filters animate-on-scroll">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="men">Men</button>
+            <button class="filter-btn" data-filter="women">Women</button>
+            <button class="filter-btn" data-filter="footwear">Footwear</button>
+            <button class="filter-btn" data-filter="accessories">Accessories</button>
+            <button class="filter-btn" data-filter="traditional">Traditional</button>
+            <button class="filter-btn" data-filter="unisex">Unisex</button>
+          </div>
+
+          <div class="products-grid" id="products-grid">
+            <!-- Products rendered by JS -->
+          </div>
+          
+          <div style="text-align: center; margin-top: 3rem;">
+            <a href="#/shop" class="btn btn-outline">View Full Catalog</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- SALE BANNER -->
+      <section class="sale-banner" id="sale">
+        <div class="container">
+          <div class="sale-content animate-on-scroll">
+            <span class="sale-tag">✦ Limited Time Offer</span>
+            <h2 class="sale-title">Monsoon <span class="gold">Sale</span> is Live</h2>
+            <p class="sale-subtitle">Up to 40% off on premium collections. Don't miss out!</p>
+
+            <div class="countdown">
+              <div class="countdown-item">
+                <span class="countdown-value" id="countdown-days">00</span>
+                <span class="countdown-label">Days</span>
+              </div>
+              <span class="countdown-separator">:</span>
+              <div class="countdown-item">
+                <span class="countdown-value" id="countdown-hours">00</span>
+                <span class="countdown-label">Hours</span>
+              </div>
+              <span class="countdown-separator">:</span>
+              <div class="countdown-item">
+                <span class="countdown-value" id="countdown-mins">00</span>
+                <span class="countdown-label">Minutes</span>
+              </div>
+              <span class="countdown-separator">:</span>
+              <div class="countdown-item">
+                <span class="countdown-value" id="countdown-secs">00</span>
+                <span class="countdown-label">Seconds</span>
+              </div>
+            </div>
+
+            <a href="#/shop" class="btn btn-primary">Shop the Sale</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED COLLECTIONS / NEW ARRIVALS -->
+      <section class="section" id="new-arrivals">
+        <div class="container">
+          <div class="section-header animate-on-scroll">
+            <span class="section-label">Just Landed</span>
+            <h2 class="section-title">New <span class="gold">Arrivals</span></h2>
+            <p class="section-subtitle">Fresh styles just dropped. Be the first to wear what's next.</p>
+            <div class="gold-line"></div>
+          </div>
+
+          <div class="collections-scroll animate-on-scroll">
+            <div class="collection-card" onclick="window.location.hash='#/product/1'">
+              <img src="img/prod-suit.png" alt="Signature Suits Collection" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">New</span>
+                <h3 class="collection-name">Signature Suits</h3>
+                <p class="collection-desc">Tailored to perfection for the modern gentleman</p>
+              </div>
+            </div>
+
+            <div class="collection-card" onclick="window.location.hash='#/product/4'">
+              <img src="img/prod-dress.png" alt="Evening Elegance Collection" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">Exclusive</span>
+                <h3 class="collection-name">Evening Elegance</h3>
+                <p class="collection-desc">Statement pieces for unforgettable nights</p>
+              </div>
+            </div>
+
+            <div class="collection-card" onclick="window.location.hash='#/product/7'">
+              <img src="img/prod-sneakers.png" alt="Street Luxe Collection" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">Limited</span>
+                <h3 class="collection-name">Street Luxe</h3>
+                <p class="collection-desc">Where high fashion meets street culture</p>
+              </div>
+            </div>
+
+            <div class="collection-card" onclick="window.location.hash='#/product/9'">
+              <img src="img/prod-watch.png" alt="Timeless Accessories" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">Curated</span>
+                <h3 class="collection-name">Timeless Pieces</h3>
+                <p class="collection-desc">Accessories that define your signature style</p>
+              </div>
+            </div>
+
+            <div class="collection-card" onclick="window.location.hash='#/product/11'">
+              <img src="img/prod-kurta.png" alt="Heritage Collection" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">Heritage</span>
+                <h3 class="collection-name">Royal Heritage</h3>
+                <p class="collection-desc">Traditional craft meets contemporary design</p>
+              </div>
+            </div>
+
+            <div class="collection-card" onclick="window.location.hash='#/product/13'">
+              <img src="img/prod-hoodie.png" alt="Urban Essentials" loading="lazy" />
+              <div class="collection-info">
+                <span class="collection-tag">Trending</span>
+                <h3 class="collection-name">Urban Essentials</h3>
+                <p class="collection-desc">Everyday luxury for the modern wardrobe</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section testimonials-section" id="about">
+        <div class="container">
+          <div class="section-header animate-on-scroll">
+            <span class="section-label">What Our Clients Say</span>
+            <h2 class="section-title">Loved by <span class="gold">Thousands</span></h2>
+            <div class="gold-line"></div>
+          </div>
+
+          <div class="testimonials-track animate-on-scroll">
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">The quality of SS Attire's suits is exceptional. The charcoal three-piece I ordered fits like it was custom-made. Absolutely premium experience from browsing to delivery.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">RK</div>
+                <div>
+                  <div class="testimonial-name">Rahul Kapoor</div>
+                  <div class="testimonial-role">Business Executive</div>
+                  <div class="testimonial-stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">I've been searching for luxury ethnic wear that doesn't compromise on modern aesthetics. SS Heritage collection is simply divine — the embroidery work is museum-quality.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">PS</div>
+                <div>
+                  <div class="testimonial-name">Priya Sharma</div>
+                  <div class="testimonial-role">Fashion Blogger</div>
+                  <div class="testimonial-stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">The gold chronograph watch exceeded every expectation. The attention to detail is remarkable, and the packaging felt like unwrapping a treasure. 10/10 luxury experience.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">AM</div>
+                <div>
+                  <div class="testimonial-name">Arjun Mehta</div>
+                  <div class="testimonial-role">Entrepreneur</div>
+                  <div class="testimonial-stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">From the silk dresses to the designer heels, everything screams quality. SS Attire has become my go-to for every special occasion. The emerald blouse is my absolute favorite.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">NR</div>
+                <div>
+                  <div class="testimonial-name">Neha Reddy</div>
+                  <div class="testimonial-role">Interior Designer</div>
+                  <div class="testimonial-stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card">
+              <div class="testimonial-quote">"</div>
+              <p class="testimonial-text">The streetwear collection is fire! The black premium hoodie with gold accents gets me compliments everywhere. Finally, a brand that understands luxury casual wear.</p>
+              <div class="testimonial-author">
+                <div class="testimonial-avatar">VK</div>
+                <div>
+                  <div class="testimonial-name">Vikram Kumar</div>
+                  <div class="testimonial-role">Content Creator</div>
+                  <div class="testimonial-stars">★★★★★</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEWSLETTER -->
+      <section class="section newsletter-section">
+        <div class="container">
+          <div class="newsletter-box animate-on-scroll">
+            <span class="section-label">Join the Inner Circle</span>
+            <h2 class="section-title">Get <span class="gold">Exclusive</span> Access</h2>
+            <p class="section-subtitle">Be the first to know about new drops, private sales, and styling tips from our fashion experts.</p>
+            <form class="newsletter-form" id="newsletter-form">
+              <input type="email" class="newsletter-input" placeholder="Enter your email address" required aria-label="Email address" />
+              <button type="submit" class="btn btn-primary">Subscribe</button>
+            </form>
+            <p class="newsletter-note">No spam, ever. Unsubscribe anytime. Join 25,000+ style enthusiasts.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ============ VIEW: SHOP (PLP) ============ -->
+    <div id="view-shop" class="app-view">
+      <div class="shop-header-banner">
+        <div class="container">
+          <span class="section-label">SS ATTIRE CATALOG</span>
+          <h1 class="shop-title">The Collection</h1>
+          <p class="shop-subtitle">Curated modern luxury essentials, meticulously crafted.</p>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="shop-layout">
+          <!-- Sidebar Filters -->
+          <aside class="shop-sidebar">
+            <div class="sidebar-widget">
+              <h4>Collections</h4>
+              <div class="filter-group category-links-filter">
+                <button class="shop-filter-link active" data-category="all">All Collections</button>
+                <button class="shop-filter-link" data-category="men">Men's Wear</button>
+                <button class="shop-filter-link" data-category="women">Women's Wear</button>
+                <button class="shop-filter-link" data-category="footwear">Footwear</button>
+                <button class="shop-filter-link" data-category="accessories">Accessories</button>
+                <button class="shop-filter-link" data-category="traditional">Traditional Wear</button>
+                <button class="shop-filter-link" data-category="unisex">Unisex</button>
+              </div>
+            </div>
+            
+            <div class="sidebar-widget">
+              <h4>Filter by Price</h4>
+              <div class="filter-group price-filter">
+                <input type="range" id="price-range-slider" min="4000" max="50000" step="1000" value="50000" />
+                <div class="price-range-values">
+                  <span>Min: ₹4,000</span>
+                  <span id="price-max-val">Max: ₹50,000</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="sidebar-widget">
+              <h4>Sort By</h4>
+              <div class="filter-group">
+                <select id="sort-selector" class="shop-select">
+                  <option value="default">Default (Popularity)</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Rating: High to Low</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="sidebar-widget">
+              <h4>Search Products</h4>
+              <div class="filter-group sidebar-search-wrapper">
+                <input type="text" id="plp-search-input" placeholder="Search in collection..." />
+              </div>
+            </div>
+          </aside>
+          
+          <!-- Product Grid -->
+          <div class="shop-main-content">
+            <div class="shop-results-bar">
+              <span class="results-count" id="plp-results-count">Showing all products</span>
+              <button class="btn-clear-filters" id="btn-clear-filters" style="display:none">Clear Filters ✕</button>
+            </div>
+            <div class="products-grid" id="plp-products-grid">
+              <!-- Rendered dynamically by app.js -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: PRODUCT DETAIL (PDP) ============ -->
+    <div id="view-product" class="app-view">
+      <div class="container">
+        <!-- Breadcrumbs -->
+        <div class="pdp-breadcrumbs">
+          <a href="#/">Home</a> / <a href="#/shop">Shop</a> / <span id="pdp-breadcrumb-active">Product Name</span>
+        </div>
+        
+        <div class="pdp-container" id="pdp-content-wrapper">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+        
+        <!-- Related Products Section -->
+        <div class="pdp-related-section">
+          <div class="section-header">
+            <span class="section-label">You May Also Like</span>
+            <h3 class="section-title">Complete The <span class="gold">Look</span></h3>
+            <div class="gold-line"></div>
+          </div>
+          <div class="products-grid" id="pdp-related-grid">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: CART ============ -->
+    <div id="view-cart" class="app-view">
+      <div class="container">
+        <h1 class="page-title">Shopping <span class="gold">Bag</span></h1>
+        <div class="gold-line" style="margin: 1rem 0 2rem;"></div>
+        
+        <div class="cart-page-layout">
+          <!-- Cart Items List -->
+          <div class="cart-page-items" id="cart-page-items-wrapper">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+          
+          <!-- Cart Summary Sidebar -->
+          <div class="cart-page-summary" id="cart-page-summary-wrapper">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: CHECKOUT ============ -->
+    <div id="view-checkout" class="app-view">
+      <div class="container">
+        <h1 class="page-title">Secure <span class="gold">Checkout</span></h1>
+        <div class="gold-line" style="margin: 1rem 0 2rem;"></div>
+        
+        <!-- Checkout Container (hidden when success is shown) -->
+        <div class="checkout-layout" id="checkout-main-flow">
+          <!-- Checkout Forms -->
+          <div class="checkout-forms-column">
+            <form id="checkout-form" onsubmit="processCheckout(event)">
+              <div class="checkout-section">
+                <h3>1. Contact Information</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="checkout-email">Email Address *</label>
+                    <input type="email" id="checkout-email" required placeholder="name@domain.com" />
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-phone">Phone Number *</label>
+                    <input type="tel" id="checkout-phone" required placeholder="10-digit mobile number" pattern="[0-9]{10}" />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="checkout-section">
+                <h3>2. Shipping Address</h3>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="checkout-first-name">First Name *</label>
+                    <input type="text" id="checkout-first-name" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-last-name">Last Name *</label>
+                    <input type="text" id="checkout-last-name" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="checkout-address">Address *</label>
+                  <input type="text" id="checkout-address" placeholder="Apartment, suite, street address" required />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="checkout-city">City *</label>
+                    <input type="text" id="checkout-city" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-state">State *</label>
+                    <input type="text" id="checkout-state" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="checkout-zip">ZIP / Postal Code *</label>
+                    <input type="text" id="checkout-zip" required pattern="[0-9]{6}" placeholder="6-digit PIN" />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="checkout-section">
+                <h3>3. Payment Method</h3>
+                <div class="payment-options">
+                  <label class="payment-option-card">
+                    <input type="radio" name="payment-method" value="card" checked onclick="togglePaymentFields('card')" />
+                    <span class="payment-option-label">Credit / Debit Card</span>
+                  </label>
+                  <label class="payment-option-card">
+                    <input type="radio" name="payment-method" value="upi" onclick="togglePaymentFields('upi')" />
+                    <span class="payment-option-label">UPI / QR Code</span>
+                  </label>
+                  <label class="payment-option-card">
+                    <input type="radio" name="payment-method" value="cod" onclick="togglePaymentFields('cod')" />
+                    <span class="payment-option-label">Cash on Delivery (COD)</span>
+                  </label>
+                </div>
+                
+                <!-- Card Inputs -->
+                <div class="payment-fields-wrapper" id="fields-card">
+                  <div class="form-group">
+                    <label for="card-number">Card Number *</label>
+                    <input type="text" id="card-number" placeholder="16-digit card number" pattern="[0-9]{16}" />
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="card-expiry">Expiry Date *</label>
+                      <input type="text" id="card-expiry" placeholder="MM/YY" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" />
+                    </div>
+                    <div class="form-group">
+                      <label for="card-cvv">CVV *</label>
+                      <input type="password" id="card-cvv" placeholder="3 digits" pattern="[0-9]{3}" />
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- UPI Inputs -->
+                <div class="payment-fields-wrapper" id="fields-upi" style="display:none">
+                  <div class="form-group">
+                    <label for="upi-id">UPI ID (VPA) *</label>
+                    <input type="text" id="upi-id" placeholder="username@upi" />
+                  </div>
+                  <p class="payment-note">Enter your UPI ID to receive a payment request on your mobile app.</p>
+                </div>
+                
+                <!-- COD Note -->
+                <div class="payment-fields-wrapper" id="fields-cod" style="display:none">
+                  <p class="payment-note">Pay with cash upon delivery. An additional ₹50 COD convenience charge applies.</p>
+                </div>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-checkout-submit">Place Order</button>
+            </form>
+          </div>
+          
+          <!-- Order Summary Column -->
+          <div class="checkout-summary-column" id="checkout-summary-wrapper">
+            <!-- Rendered dynamically by app.js -->
+          </div>
+        </div>
+        
+        <!-- Order Success State -->
+        <div class="order-success-screen" id="order-success-panel" style="display:none">
+          <div class="success-icon">✓</div>
+          <h2>Thank You For Your Order</h2>
+          <p class="order-id-label">Order Reference: <strong id="success-order-id">#SS-10023</strong></p>
+          <div class="gold-line"></div>
+          <p class="success-message">Your order has been placed successfully. A confirmation email and tracking link have been sent to your email address.</p>
+          <div class="success-actions">
+            <a href="#/shop" class="btn btn-primary">Continue Shopping</a>
+            <a href="#/" class="btn btn-outline">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#/" class="nav-logo">
+            <div class="logo-icon">SS</div>
+            <span>ATTIRE</span>
+          </a>
+          <p class="footer-desc">Premium luxury fashion house crafting timeless pieces for the modern individual. Quality, elegance, and sophistication in every stitch.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#/shop?category=men">Men's Wear</a></li>
+            <li><a href="#/shop?category=women">Women's Wear</a></li>
+            <li><a href="#/shop?category=footwear">Footwear</a></li>
+            <li><a href="#/shop?category=accessories">Accessories</a></li>
+            <li><a href="#/shop?category=traditional">Traditional Wear</a></li>
+            <li><a href="#/shop">New Arrivals</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#/">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Store Locations</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns & Exchange</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 SS Attire Shop. All rights reserved. Crafted with ♥</p>
+        <div class="footer-payments">
+          <div class="payment-icon">VISA</div>
+          <div class="payment-icon">MC</div>
+          <div class="payment-icon">AMEX</div>
+          <div class="payment-icon">UPI</div>
+          <div class="payment-icon">COD</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div class="cart-overlay"></div>
+  <div class="cart-drawer">
+    <div class="cart-header">
+      <h3>Shopping Bag <span class="cart-item-count">(0 items)</span></h3>
+      <button class="cart-close" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-items">
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <p style="font-size:0.8rem; margin-top:0.5rem; color: var(--text-muted);">Browse our collections to add items</p>
+      </div>
+    </div>
+    <div class="cart-footer" style="display:none">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span class="amount">₹0</span>
+      </div>
+      <div class="cart-subtotal cart-shipping">
+        <span>Shipping</span>
+        <span class="amount">₹499</span>
+      </div>
+      <div class="cart-total">
+        <span>Total</span>
+        <span class="amount">₹0</span>
+      </div>
+      <button class="btn btn-primary" onclick="closeCart(); window.location.hash='#/checkout';" style="width:100%; margin-bottom:0.5rem;">Proceed to Checkout</button>
+      <a href="#/cart" class="btn btn-outline" onclick="closeCart()" style="width:100%">View Shopping Bag Page</a>
+    </div>
+  </div>
+
+  <!-- ============ SEARCH MODAL ============ -->
+  <div class="search-overlay">
+    <div class="search-modal">
+      <div class="search-input-wrapper">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Search products, brands, categories..." autocomplete="off" />
+        <button class="search-close-btn">ESC</button>
+      </div>
+      <div class="search-results"></div>
+    </div>
+  </div>
+
+  <!-- ============ BACK TO TOP ============ -->
+  <button class="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ============ CATEGORY FILTER HELPER ============ -->
+  <script>
+    function filterCategory(category) {
+      window.location.hash = `#/shop?category=${category}`;
+    }
+
+    function scrollToElement(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 72; // Nav height
+        window.scrollTo({
+          top: el.offsetTop - offset,
+          behavior: 'smooth'
+        });
+      }
+    }
+  </script>
+
+  <!-- Main JS -->
+  <script src="app.js"></script>
+</body>
+</html>
