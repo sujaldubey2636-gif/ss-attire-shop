@@ -82,74 +82,74 @@ const products = [
   {
     id: 7, name: 'Boys Traditional Dhoti Kurta Set', brand: 'SS Heritage Kids',
     price: 1499, oldPrice: 1999, category: 'kids',
-    image: 'img/prod-kurta.png', badge: 'trending',
+    image: 'img/prod-kids-dhoti.png', badge: 'trending',
     rating: 4.8, reviews: 201,
     description: 'A charming traditional dhoti kurta set for boys. Features a soft cotton kurta with gold piping and a pre-stitched, easy-to-wear elasticated dhoti pant. Gentle on children\'s skin and ideal for family pujas and festivals.',
     details: 'Includes: 1 Kurta, 1 Pre-stitched Dhoti. Elasticated waistband. Front buttons on kurta.',
     sku: 'SS-KDS-DHOT-007', weight: '0.25 kg', material: '100% Breathable Cotton', origin: 'Handcrafted in India',
     warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Warm iron inside out.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Saffron Gold',hex:'#FFA500'},{name:'Emerald Green',hex:'#2E8B57'},{name:'Traditional Red',hex:'#B22222'}],
-    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/prod-shirt.png','img/hero.png']
+    galleryImages: ['img/prod-kids-dhoti.png','img/cat-kids.png','img/prod-kids-nehru.png','img/prod-kids-chikankari.png']
   },
   {
     id: 8, name: 'Girls Zari Border Pattu Pavadai Set', brand: 'SS Heritage Kids',
     price: 1999, oldPrice: 2499, category: 'kids',
-    image: 'img/cat-traditional.png', badge: 'new',
+    image: 'img/prod-kids-pattu.png', badge: 'new',
     rating: 4.9, reviews: 54,
     description: 'Traditional South Indian Pattu Pavadai set for girls, woven in rich art silk with a golden zari border. Includes an embellished crop-style top (choli) and a pleated skirt. Light, soft, and comfortable for all-day festive celebrations.',
     details: '2-piece set: Blouse and Pavadai Skirt. Fully lined with soft cotton for kid comfort.',
     sku: 'SS-KDS-PATT-008', weight: '0.35 kg', material: 'Art Silk, Cotton Inner Lining, Zari Thread', origin: 'Kanchipuram, Tamil Nadu, India',
     warranty: 'None', availability: 'In Stock', care: 'Dry clean or gentle hand wash only. Store wrapped in paper.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Fuchsia & Mustard',hex:'#FF00FF'},{name:'Green & Red',hex:'#008000'},{name:'Blue & Orange',hex:'#0000FF'}],
-    galleryImages: ['img/cat-traditional.png','img/prod-kurta.png','img/cat-women.png','img/hero.png']
+    galleryImages: ['img/prod-kids-pattu.png','img/cat-kids.png','img/prod-kids-lehenga.png','img/prod-kids-frock.png']
   },
   {
     id: 9, name: 'Kids Bandhani Nehru Jacket Set', brand: 'SS Heritage Kids',
     price: 2299, oldPrice: null, category: 'kids',
-    image: 'img/prod-shirt.png', badge: 'trending',
+    image: 'img/prod-kids-nehru.png', badge: 'trending',
     rating: 4.6, reviews: 42,
     description: 'A smart ethnic coordinates set for boys. Features a solid color cotton kurta, comfortable churidar pajama, and a printed silk Nehru jacket with Bandhani details and brass buttons.',
     details: '3-piece set: Kurta, Pyjama, and Nehru Jacket. Jacket features functional pockets.',
     sku: 'SS-KDS-NEHR-009', weight: '0.4 kg', material: 'Cotton Kurta/Pyjama, Art Silk Jacket', origin: 'Jaipur, Rajasthan, India',
     warranty: '6 Months Stitching Warranty', availability: 'In Stock', care: 'Dry clean recommended. Jacket dry clean only.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Teal & Orange',hex:'#008080'},{name:'Yellow & Royal Blue',hex:'#FFD700'},{name:'Peach & Maroon',hex:'#FFDAB9'}],
-    galleryImages: ['img/prod-shirt.png','img/cat-traditional.png','img/prod-kurta.png','img/hero.png']
+    galleryImages: ['img/prod-kids-nehru.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-chikankari.png']
   },
   {
     id: 10, name: 'Jaipuri Block Print Cotton Frock', brand: 'SS Essentials Kids',
     price: 999, oldPrice: 1299, category: 'kids',
-    image: 'img/cat-women.png', badge: 'sale',
+    image: 'img/prod-kids-frock.png', badge: 'sale',
     rating: 4.7, reviews: 83,
     description: 'A cute and breathable summer dress for girls, hand-block printed in traditional Jaipuri bootis using organic dyes. Features a comfortable round neck, adjustable back-tie sash, and soft cotton lace trims.',
     details: '100% Cotton. Knee-length. Back zipper. Soft cotton inner lining.',
     sku: 'SS-KDS-FRK-010', weight: '0.15 kg', material: '100% Hand-Block Cotton', origin: 'Jaipur, India',
     warranty: 'None', availability: 'In Stock', care: 'Machine wash cold. Line dry in shade.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y'], colors: [{name:'Turquoise Blue',hex:'#40E0D0'},{name:'Coral Pink',hex:'#F08080'},{name:'Sunny Yellow',hex:'#FFFFE0'}],
-    galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
+    galleryImages: ['img/prod-kids-frock.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-lehenga.png']
   },
   {
     id: 11, name: 'Kids Chikankari Cotton Kurta Set', brand: 'SS Essentials Kids',
     price: 1299, oldPrice: 1499, category: 'kids',
-    image: 'img/prod-kurta.png', badge: 'trending',
+    image: 'img/prod-kids-chikankari.png', badge: 'trending',
     rating: 4.7, reviews: 31,
     description: 'Chikankari-embroidered soft cotton kurta with matching pajama set. Features light shadow work around the neck, specially crafted for kids. Extremely soft and breathable for everyday comfort.',
     details: '2-piece set: Kurta and white pajama. Hand-embellished details.',
     sku: 'SS-KDS-CHIK-011', weight: '0.2 kg', material: '100% Soft Cotton', origin: 'Lucknow, Uttar Pradesh, India',
     warranty: 'None', availability: 'In Stock', care: 'Hand wash cold. Iron on reverse.',
     sizes: ['2-3 Y','4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Sky Blue',hex:'#87CEEB'},{name:'Baby Pink',hex:'#FFB6C1'},{name:'Butter Yellow',hex:'#FFFDD0'}],
-    galleryImages: ['img/prod-kurta.png','img/cat-traditional.png','img/prod-shirt.png','img/hero.png']
+    galleryImages: ['img/prod-kids-chikankari.png','img/cat-kids.png','img/prod-kids-dhoti.png','img/prod-kids-nehru.png']
   },
   {
     id: 12, name: 'Festive Silk Lehenga for Girls', brand: 'SS Heritage Kids',
     price: 2799, oldPrice: 3299, category: 'kids',
-    image: 'img/cat-women.png', badge: 'new',
+    image: 'img/prod-kids-lehenga.png', badge: 'new',
     rating: 4.8, reviews: 29,
     description: 'A beautiful art silk lehenga set for young girls. Includes a floral brocade skirt, a matching blouse with gold beadwork on the sleeves, and a soft net dupatta. Elasticated skirt for a comfortable fit.',
     details: 'Set includes: Blouse, Lehenga skirt, Net dupatta. Elasticated waist.',
     sku: 'SS-KDS-LEH-012', weight: '0.5 kg', material: 'Art Silk, Polyester Brocade, Net', origin: 'Made in India',
     warranty: '6 Months Quality Warranty', availability: 'In Stock', care: 'Gentle hand wash or dry clean. Do not rub metallic print.',
     sizes: ['4-5 Y','6-7 Y','8-9 Y','10-12 Y'], colors: [{name:'Rani Pink',hex:'#C71585'},{name:'Golden Yellow',hex:'#FFD700'},{name:'Royal Navy',hex:'#000080'}],
-    galleryImages: ['img/cat-women.png','img/prod-dress.png','img/prod-blouse.png','img/hero.png']
+    galleryImages: ['img/prod-kids-lehenga.png','img/cat-kids.png','img/prod-kids-pattu.png','img/prod-kids-frock.png']
   },
 
   // ---- UNISEX ----
