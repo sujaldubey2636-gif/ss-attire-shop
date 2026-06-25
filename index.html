@@ -434,6 +434,10 @@
         <div class="shop-layout">
           <!-- Sidebar Filters -->
           <aside class="shop-sidebar">
+            <div class="sidebar-header-mobile">
+              <h3>Filters & Sort</h3>
+              <button class="btn-close-sidebar" id="btn-close-sidebar">✕</button>
+            </div>
             <div class="sidebar-widget">
               <h4>Collections</h4>
               <div class="filter-group category-links-filter">
@@ -479,7 +483,10 @@
           <div class="shop-main-content">
             <div class="shop-results-bar">
               <span class="results-count" id="plp-results-count">Showing all products</span>
-              <button class="btn-clear-filters" id="btn-clear-filters" style="display:none">Clear Filters ✕</button>
+              <div class="shop-actions-mobile">
+                <button class="btn-toggle-filters" id="btn-toggle-filters">Filters & Sort ⚙️</button>
+                <button class="btn-clear-filters" id="btn-clear-filters" style="display:none">Clear Filters ✕</button>
+              </div>
             </div>
             <div class="products-grid" id="plp-products-grid">
               <!-- Rendered dynamically by app.js -->
@@ -663,7 +670,11 @@
           <div class="gold-line"></div>
           <p class="success-message">Your order has been placed successfully. A confirmation email and tracking link have been sent to your email address.</p>
           <div class="success-actions">
-            <a href="#/shop" class="btn btn-primary">Continue Shopping</a>
+            <button class="btn btn-primary" id="btn-print-invoice" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+              Print Invoice
+            </button>
+            <a href="#/shop" class="btn btn-outline">Continue Shopping</a>
             <a href="#/" class="btn btn-outline">Back to Home</a>
           </div>
         </div>
@@ -744,6 +755,7 @@
   </footer>
 
   <!-- ============ CART DRAWER ============ -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
   <div class="cart-overlay"></div>
   <div class="cart-drawer">
     <div class="cart-header">
@@ -761,7 +773,14 @@
       <div class="cart-empty">
         <div class="cart-empty-icon">🛒</div>
         <p>Your cart is empty</p>
-        <p style="font-size:0.8rem; margin-top:0.5rem; color: var(--text-muted);">Browse our collections to add items</p>
+        <p style="font-size:0.8rem; margin-top:0.5rem; color: var(--text-muted); margin-bottom: 1.25rem;">Browse our collections to add items</p>
+        
+        <div class="cart-empty-recommendations" id="cart-empty-recommendations">
+          <h4>Trending Under ₹2,000</h4>
+          <div class="recommendations-list" id="cart-recommendations-list">
+            <!-- Dynamically populated by JS -->
+          </div>
+        </div>
       </div>
     </div>
     <div class="cart-footer" style="display:none">
@@ -775,9 +794,22 @@
           <textarea id="cart-gifting-note" placeholder="Write your personalized greeting card message..." rows="2" style="width: 100%; padding: 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-size: 0.8rem; resize: none;"></textarea>
         </div>
       </div>
+      <!-- Coupon Code Section -->
+      <div class="cart-coupon-container" style="padding: 0.75rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0.75rem;">
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" id="cart-coupon-input" placeholder="Promo Code (e.g. LUXURY10)" style="flex: 1; padding: 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-size: 0.8rem; text-transform: uppercase;" />
+          <button id="btn-apply-cart-coupon" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: var(--gold); color: var(--gold);">Apply</button>
+        </div>
+        <div id="cart-coupon-message" style="font-size: 0.75rem; margin-top: 0.4rem; display: none;"></div>
+        <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.4rem;">Offers: <strong style="color: var(--gold); cursor: pointer;" onclick="document.getElementById('cart-coupon-input').value='LUXURY10';">LUXURY10</strong> (10% off) | <strong style="color: var(--gold); cursor: pointer;" onclick="document.getElementById('cart-coupon-input').value='ARTISAN5';">ARTISAN5</strong> (5% off)</div>
+      </div>
       <div class="cart-subtotal">
         <span>Subtotal</span>
         <span class="amount">₹0</span>
+      </div>
+      <div class="cart-subtotal cart-discount-row" id="cart-discount-row" style="display:none; color: var(--accent-green);">
+        <span>Discount (<span id="cart-coupon-badge">NONE</span>)</span>
+        <span class="amount">-₹0</span>
       </div>
       <div class="cart-subtotal cart-shipping">
         <span>Shipping</span>
@@ -811,7 +843,19 @@
         <input type="text" id="search-input" placeholder="Search products, brands, categories..." autocomplete="off" />
         <button class="search-close-btn">ESC</button>
       </div>
-      <div class="search-results"></div>
+      <div class="search-body">
+        <div class="trending-searches" id="trending-searches-box">
+          <h5>Trending Searches</h5>
+          <div class="trending-tags">
+            <span class="trending-tag" data-tag="Chikankari">Chikankari</span>
+            <span class="trending-tag" data-tag="Jaipuri">Jaipuri</span>
+            <span class="trending-tag" data-tag="Dhoti">Dhoti</span>
+            <span class="trending-tag" data-tag="Ikat">Ikat</span>
+            <span class="trending-tag" data-tag="Nehru">Nehru</span>
+          </div>
+        </div>
+        <div class="search-results" id="search-results-dropdown"></div>
+      </div>
     </div>
   </div>
 
@@ -846,6 +890,20 @@
       </form>
     </div>
   </div>
+
+  <!-- ============ ARTISAN SPOTLIGHT MODAL ============ -->
+  <div class="artisan-modal" id="artisan-spotlight-modal" style="display: none;">
+    <div class="artisan-modal-overlay" id="artisan-modal-overlay"></div>
+    <div class="artisan-modal-content">
+      <button class="artisan-modal-close" id="btn-close-artisan">✕</button>
+      <div class="artisan-modal-body" id="artisan-spotlight-body">
+        <!-- Dynamically populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ INVOICE PRINT AREA ============ -->
+  <div id="invoice-print-area" class="invoice-print-only"></div>
 
   <!-- ============ BACK TO TOP ============ -->
   <button class="back-to-top" aria-label="Back to top">

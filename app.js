@@ -736,6 +736,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCategoryCounts();
   initQuickView();
   initSupportChatbot();
+  initMobileSidebar();
 });
 
 // Load state from localStorage
@@ -855,7 +856,7 @@ function handleRoute() {
   }
 
   // Scroll to top
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo(0, 0);
 
   // Update navbar visual state
   updateNavbarVisuals(hash);
@@ -1576,7 +1577,7 @@ function renderProductDetails(product) {
       <div class="pdp-topline-meta" style="display:flex; align-items:center; gap:0.5rem">
         <span class="pdp-brand">${product.brand}</span>
         <span style="font-size: 0.8rem; color: var(--text-muted)">|</span>
-        <span style="font-size: 0.85rem; color: var(--gold); font-weight: 500">${product.originCompany}</span>
+        <button class="artisan-badge-link" onclick="openArtisanSpotlight('${product.name}')">🌾 Crafted by ${product.originCompany}</button>
         ${product.availability ? `<span class="pdp-availability ${product.availability.includes('Limited') ? 'limited' : 'in-stock'}">${product.availability}</span>` : ''}
       </div>
       <h1 class="pdp-title">${product.name}</h1>
@@ -2208,6 +2209,13 @@ function init360Viewer(product) {
   let currentRotation = 0;
   let autoRotateId = null;
   
+  // Inertia momentum variables
+  let velocity = 0;
+  let lastX = 0;
+  let lastTime = 0;
+  const friction = 0.96; // Smooth friction decay
+  let inertiaId = null;
+  
   // Apply initial transform
   const updateTransform = () => {
     image360.style.transform = `rotateY(${currentRotation}deg) scale(1.05)`;
@@ -2218,42 +2226,101 @@ function init360Viewer(product) {
   canvas.addEventListener('mousedown', (e) => {
     isDragging = true;
     startX = e.clientX;
+    lastX = e.clientX;
+    lastTime = performance.now();
+    velocity = 0;
     canvas.style.cursor = 'grabbing';
-    if (autoRotateId) { cancelAnimationFrame(autoRotateId); autoRotateId = null; }
+    if (autoRotateId) { cancelAnimationFrame(autoRotateId); autoRotateId = null; autoBtn?.classList.remove('active'); }
+    if (inertiaId) { cancelAnimationFrame(inertiaId); inertiaId = null; }
   });
   
   document.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
-    const dx = e.clientX - startX;
-    currentRotation += dx * 0.5;
-    startX = e.clientX;
+    const now = performance.now();
+    const dt = now - lastTime;
+    const dx = e.clientX - lastX;
+    
+    currentRotation += dx * 0.4;
+    
+    if (dt > 0) {
+      velocity = (dx * 0.4) / dt; // Velocity in degrees/ms
+    }
+    
+    lastX = e.clientX;
+    lastTime = now;
     updateTransform();
   });
   
   document.addEventListener('mouseup', () => {
+    if (!isDragging) return;
     isDragging = false;
     canvas.style.cursor = 'grab';
+    
+    // Trigger inertia spin loop
+    const decelerate = () => {
+      if (Math.abs(velocity) < 0.02) {
+        velocity = 0;
+        inertiaId = null;
+        return;
+      }
+      currentRotation += velocity * 16.67; // Scale to ~60fps frame delta
+      velocity *= friction;
+      updateTransform();
+      inertiaId = requestAnimationFrame(decelerate);
+    };
+    inertiaId = requestAnimationFrame(decelerate);
   });
   
   // Touch support
   canvas.addEventListener('touchstart', (e) => {
     isDragging = true;
     startX = e.touches[0].clientX;
-    if (autoRotateId) { cancelAnimationFrame(autoRotateId); autoRotateId = null; }
+    lastX = e.touches[0].clientX;
+    lastTime = performance.now();
+    velocity = 0;
+    if (autoRotateId) { cancelAnimationFrame(autoRotateId); autoRotateId = null; autoBtn?.classList.remove('active'); }
+    if (inertiaId) { cancelAnimationFrame(inertiaId); inertiaId = null; }
   }, { passive: true });
   
   canvas.addEventListener('touchmove', (e) => {
     if (!isDragging) return;
-    const dx = e.touches[0].clientX - startX;
-    currentRotation += dx * 0.5;
-    startX = e.touches[0].clientX;
+    const now = performance.now();
+    const dt = now - lastTime;
+    const dx = e.touches[0].clientX - lastX;
+    
+    currentRotation += dx * 0.4;
+    
+    if (dt > 0) {
+      velocity = (dx * 0.4) / dt;
+    }
+    
+    lastX = e.touches[0].clientX;
+    lastTime = now;
     updateTransform();
   }, { passive: true });
   
-  canvas.addEventListener('touchend', () => { isDragging = false; });
+  canvas.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    
+    // Trigger touch inertia
+    const decelerate = () => {
+      if (Math.abs(velocity) < 0.02) {
+        velocity = 0;
+        inertiaId = null;
+        return;
+      }
+      currentRotation += velocity * 16.67;
+      velocity *= friction;
+      updateTransform();
+      inertiaId = requestAnimationFrame(decelerate);
+    };
+    inertiaId = requestAnimationFrame(decelerate);
+  });
   
   // Auto-rotate
   if (autoBtn) autoBtn.addEventListener('click', () => {
+    if (inertiaId) { cancelAnimationFrame(inertiaId); inertiaId = null; }
     if (autoRotateId) {
       cancelAnimationFrame(autoRotateId);
       autoRotateId = null;
@@ -2272,7 +2339,9 @@ function init360Viewer(product) {
   // Reset
   if (resetBtn) resetBtn.addEventListener('click', () => {
     if (autoRotateId) { cancelAnimationFrame(autoRotateId); autoRotateId = null; autoBtn?.classList.remove('active'); }
+    if (inertiaId) { cancelAnimationFrame(inertiaId); inertiaId = null; }
     currentRotation = 0;
+    velocity = 0;
     updateTransform();
   });
   
@@ -2424,7 +2493,7 @@ function renderCartPage() {
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
   
   // Promo calculation
-  discountAmount = appliedPromo === 'LUXURY10' ? Math.round(subtotal * 0.1) : 0;
+  discountAmount = calculateDiscount(subtotal);
   
   // Shipping calculation (free over ₹3k)
   const shipping = subtotal > 3000 ? 0 : 149;
@@ -2441,7 +2510,7 @@ function renderCartPage() {
     
     ${discountAmount > 0 ? `
     <div class="summary-row" style="color: var(--accent-green)">
-      <span>Discount (LUXURY10)</span>
+      <span>Discount (${appliedPromo})</span>
       <span>- ₹${discountAmount.toLocaleString()}</span>
     </div>
     ` : ''}
@@ -2497,13 +2566,14 @@ window.applyPromoCode = function() {
   const input = document.getElementById('promo-input-field');
   const promo = input.value.trim().toUpperCase();
 
-  if (promo === 'LUXURY10') {
-    appliedPromo = 'LUXURY10';
-    showToast('Promo code applied! 10% discount subtracted.');
+  if (promo === 'LUXURY10' || promo === 'ARTISAN5') {
+    appliedPromo = promo;
+    const rate = promo === 'LUXURY10' ? '10%' : '5%';
+    showToast(`Promo code applied! ${rate} discount subtracted.`);
   } else if (promo === '') {
     appliedPromo = '';
   } else {
-    showToast('Invalid promo code. Try "LUXURY10"');
+    showToast('Invalid promo code. Try "LUXURY10" or "ARTISAN5"');
   }
   renderCartPage();
 };
@@ -2524,6 +2594,13 @@ function initCheckoutView() {
 
   // Attach default values if needed
   togglePaymentFields('card');
+
+  // Attach pincode auto-fill listener
+  const zipInput = document.getElementById('checkout-zip');
+  if (zipInput) {
+    zipInput.removeEventListener('input', handlePincodeAutofill);
+    zipInput.addEventListener('input', handlePincodeAutofill);
+  }
 }
 
 function renderCheckoutSummary() {
@@ -2531,9 +2608,10 @@ function renderCheckoutSummary() {
   if (!wrapper) return;
 
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const discount = calculateDiscount(subtotal);
   const shipping = subtotal > 3000 ? 0 : 149;
   const giftFee = isGiftOrder ? 99 : 0;
-  const finalTotal = subtotal - discountAmount + shipping + giftFee;
+  const finalTotal = subtotal - discount + shipping + giftFee;
 
   wrapper.innerHTML = `
     <h3 style="font-family: var(--font-display); font-size:1.3rem; border-bottom: 1px solid var(--border); padding-bottom:0.5rem; margin-bottom: 1.5rem">Summary</h3>
@@ -2555,10 +2633,10 @@ function renderCheckoutSummary() {
       <span>₹${subtotal.toLocaleString()}</span>
     </div>
     
-    ${discountAmount > 0 ? `
+    ${discount > 0 ? `
     <div class="summary-row" style="color:var(--accent-green)">
-      <span>Discount</span>
-      <span>- ₹${discountAmount.toLocaleString()}</span>
+      <span>Discount (${appliedPromo})</span>
+      <span>- ₹${discount.toLocaleString()}</span>
     </div>
     ` : ''}
 
@@ -2573,6 +2651,15 @@ function renderCheckoutSummary() {
       <span>₹99</span>
     </div>
     ` : ''}
+    
+    <!-- Checkout Promo Section -->
+    <div class="checkout-promo-container" style="margin-top: 1rem; border-top: 1px dashed var(--border); padding-top: 1rem; border-bottom: 1px dashed var(--border); padding-bottom: 1rem; margin-bottom: 1rem;">
+      <div style="display: flex; gap: 0.5rem;">
+        <input type="text" id="checkout-promo-input" placeholder="Promo Code" value="${appliedPromo}" style="flex: 1; padding: 0.5rem; background: var(--bg-body); border: 1px solid var(--border); border-radius: 4px; color: var(--text-primary); font-size: 0.8rem; text-transform: uppercase;" />
+        <button onclick="applyCheckoutPromo()" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.8rem; border-color: var(--gold); color: var(--gold);">Apply</button>
+      </div>
+      <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.4rem;">Offers: <strong style="color: var(--gold); cursor: pointer;" onclick="document.getElementById('checkout-promo-input').value='LUXURY10';">LUXURY10</strong> (10% off) | <strong style="color: var(--gold); cursor: pointer;" onclick="document.getElementById('checkout-promo-input').value='ARTISAN5';">ARTISAN5</strong> (5% off)</div>
+    </div>
     
     <div class="summary-row total" style="margin-top:1rem; padding-top:1rem">
       <span>Total</span>
@@ -2648,6 +2735,28 @@ window.processCheckout = function(e) {
     
     document.getElementById('order-success-panel').style.display = 'block';
 
+    // Save Last Order Details before clearing cart
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    lastOrderDetails = {
+      orderId: randomOrderId,
+      items: [...cart],
+      subtotal: subtotal,
+      discount: calculateDiscount(subtotal),
+      appliedPromo: appliedPromo,
+      shipping: subtotal > 3000 ? 0 : 149,
+      giftFee: isGiftOrder ? 99 : 0,
+      email: document.getElementById('checkout-email')?.value || '',
+      phone: document.getElementById('checkout-phone')?.value || '',
+      name: (document.getElementById('checkout-first-name')?.value || '') + ' ' + (document.getElementById('checkout-last-name')?.value || ''),
+      address: (document.getElementById('checkout-address')?.value || '') + ', ' + (document.getElementById('checkout-city')?.value || '') + ', ' + (document.getElementById('checkout-state')?.value || '') + ' - ' + (document.getElementById('checkout-zip')?.value || '')
+    };
+
+    // Bind print button on success card
+    const printBtn = document.getElementById('btn-print-invoice');
+    if (printBtn) {
+      printBtn.onclick = () => window.printInvoice();
+    }
+
     // Clear Cart State
     cart = [];
     appliedPromo = '';
@@ -2684,6 +2793,37 @@ function initCartDrawer() {
   if (cartBtn) cartBtn.addEventListener('click', openCart);
   if (cartClose) cartClose.addEventListener('click', closeCart);
   if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+  // Coupon apply handler
+  const couponBtn = document.getElementById('btn-apply-cart-coupon');
+  if (couponBtn) {
+    couponBtn.addEventListener('click', () => {
+      const input = document.getElementById('cart-coupon-input');
+      const msgEl = document.getElementById('cart-coupon-message');
+      if (!input) return;
+      const code = input.value.trim().toUpperCase();
+      if (code === 'LUXURY10' || code === 'ARTISAN5') {
+        appliedPromo = code;
+        if (msgEl) {
+          msgEl.style.display = 'block';
+          msgEl.style.color = 'var(--accent-green)';
+          msgEl.textContent = `Promo code "${code}" applied!`;
+        }
+        showToast(`Promo code "${code}" applied!`);
+      } else if (code === '') {
+        appliedPromo = '';
+        if (msgEl) msgEl.style.display = 'none';
+      } else {
+        if (msgEl) {
+          msgEl.style.display = 'block';
+          msgEl.style.color = 'red';
+          msgEl.textContent = 'Invalid promo code. Try LUXURY10 or ARTISAN5';
+        }
+        showToast('Invalid promo code');
+      }
+      renderDrawerCart();
+    });
+  }
 
   // Gifting Options Listeners
   const giftCheckbox = document.getElementById('cart-gifting-checkbox');
@@ -2773,11 +2913,30 @@ function renderDrawerCart() {
   if (itemCountEl) itemCountEl.textContent = `(${totalItems} items)`;
 
   if (cart.length === 0) {
+    const recProducts = products.filter(p => p.price < 2000).slice(0, 3);
+    const recsHtml = recProducts.map(p => `
+      <div class="rec-item-card">
+        <img src="${p.image}" class="rec-item-img" alt="${p.name}" />
+        <div class="rec-item-info">
+          <div class="rec-item-name">${p.name}</div>
+          <div class="rec-item-price">₹${p.price.toLocaleString()}</div>
+        </div>
+        <button class="rec-item-add-btn" onclick="addRecItemToCart(${p.id})">Add</button>
+      </div>
+    `).join('');
+
     cartItems.innerHTML = `
       <div class="cart-empty">
         <div class="cart-empty-icon">🛒</div>
         <p>Your cart is empty</p>
-        <p style="font-size:0.8rem; margin-top:0.5rem; color: var(--text-muted);">Browse our collections to add items</p>
+        <p style="font-size:0.8rem; margin-top:0.5rem; color: var(--text-muted); margin-bottom: 1.25rem;">Browse our collections to add items</p>
+        
+        <div class="cart-empty-recommendations" id="cart-empty-recommendations">
+          <h4>Trending Under ₹2,000</h4>
+          <div class="recommendations-list" id="cart-recommendations-list">
+            ${recsHtml}
+          </div>
+        </div>
       </div>
     `;
     if (cartFooter) cartFooter.style.display = 'none';
@@ -2809,9 +2968,10 @@ function renderDrawerCart() {
 
   // Update Drawer Totals
   const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const discount = calculateDiscount(subtotal);
   const shipping = subtotal > 3000 ? 0 : 149;
   const giftFee = isGiftOrder ? 99 : 0;
-  const total = subtotal + shipping + giftFee;
+  const total = subtotal - discount + shipping + giftFee;
 
   const subtotalEl = document.querySelector('.cart-subtotal .amount');
   const shippingEl = document.querySelector('.cart-shipping .amount');
@@ -2820,6 +2980,18 @@ function renderDrawerCart() {
   if (subtotalEl) subtotalEl.textContent = `₹${subtotal.toLocaleString()}`;
   if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `₹${shipping}`;
   if (totalEl) totalEl.textContent = `₹${total.toLocaleString()}`;
+
+  const discountRow = document.getElementById('cart-discount-row');
+  const discountBadge = document.getElementById('cart-coupon-badge');
+  if (discountRow) {
+    if (discount > 0) {
+      discountRow.style.display = 'flex';
+      if (discountBadge) discountBadge.textContent = appliedPromo;
+      discountRow.querySelector('.amount').textContent = `-₹${discount.toLocaleString()}`;
+    } else {
+      discountRow.style.display = 'none';
+    }
+  }
 
   // Gifting row toggle
   let giftFeeEl = document.getElementById('cart-drawer-gift-row');
@@ -2990,14 +3162,37 @@ function initSearchModal() {
 
   // Live search input
   if (searchInput) {
+    const trendingBox = document.getElementById('trending-searches-box');
+    const resultsDropdown = document.getElementById('search-results-dropdown');
+    
+    // Bind click events on trending tags
+    document.querySelectorAll('.trending-tag').forEach(tag => {
+      tag.addEventListener('click', () => {
+        const queryText = tag.dataset.tag;
+        if (searchInput) {
+          searchInput.value = queryText;
+          // Trigger input event manually
+          searchInput.dispatchEvent(new Event('input'));
+          searchInput.focus();
+        }
+      });
+    });
+
     searchInput.addEventListener('input', (e) => {
       const query = e.target.value.toLowerCase().trim();
-      const results = document.querySelector('.search-results');
       
       if (query.length < 2) {
-        results?.classList.remove('has-results');
+        if (trendingBox) trendingBox.style.display = 'block';
+        if (resultsDropdown) {
+          resultsDropdown.innerHTML = '';
+          resultsDropdown.style.display = 'none';
+        }
         return;
       }
+
+      // Hide trending, show results
+      if (trendingBox) trendingBox.style.display = 'none';
+      if (resultsDropdown) resultsDropdown.style.display = 'block';
 
       const matches = products.filter(p =>
         p.name.toLowerCase().includes(query) ||
@@ -3005,22 +3200,27 @@ function initSearchModal() {
         p.category.toLowerCase().includes(query)
       );
 
-      if (matches.length > 0 && results) {
-        results.classList.add('has-results');
-        results.innerHTML = matches.slice(0, 6).map(p => `
-          <div class="search-result-item" onclick="searchResultClick(${p.id})">
-            <div class="search-result-img">
-              <img src="${p.image}" alt="${p.name}" />
-            </div>
-            <div class="search-result-info">
-              <h4>${p.name}</h4>
-              <p>₹${p.price.toLocaleString()}</p>
-            </div>
+      if (matches.length > 0 && resultsDropdown) {
+        resultsDropdown.innerHTML = `
+          <div class="search-results-list">
+            ${matches.slice(0, 6).map(p => `
+              <a href="#/product/${p.id}" class="search-suggestion-item" onclick="closeSearch()">
+                <img src="${p.image}" class="search-suggestion-img" alt="${p.name}" />
+                <div class="search-suggestion-info">
+                  <div class="search-suggestion-name">${p.name}</div>
+                  <div class="search-suggestion-brand">${p.brand}</div>
+                </div>
+                <div class="search-suggestion-price">₹${p.price.toLocaleString()}</div>
+              </a>
+            `).join('')}
           </div>
-        `).join('');
-      } else if (results) {
-        results.classList.add('has-results');
-        results.innerHTML = `<div class="search-result-item"><div class="search-result-info"><h4>No results found</h4><p>Try a different search term</p></div></div>`;
+        `;
+      } else if (resultsDropdown) {
+        resultsDropdown.innerHTML = `
+          <div style="text-align: center; padding: 2rem 0; color: var(--text-muted);">
+            <p>No results found for "${e.target.value}"</p>
+          </div>
+        `;
       }
     });
   }
@@ -3031,7 +3231,13 @@ function closeSearch() {
   document.body.style.overflow = '';
   const input = document.getElementById('search-input');
   if (input) input.value = '';
-  document.querySelector('.search-results')?.classList.remove('has-results');
+  const trendingBox = document.getElementById('trending-searches-box');
+  const resultsDropdown = document.getElementById('search-results-dropdown');
+  if (trendingBox) trendingBox.style.display = 'block';
+  if (resultsDropdown) {
+    resultsDropdown.innerHTML = '';
+    resultsDropdown.style.display = 'none';
+  }
 }
 
 window.searchResultClick = function(productId) {
@@ -3257,7 +3463,7 @@ function openQuickView(productId) {
       <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.5rem;">
         <span class="quickview-brand" style="margin-bottom:0">${product.brand}</span>
         <span style="font-size: 0.75rem; color: var(--text-muted)">|</span>
-        <span style="font-size: 0.8rem; color: var(--gold); font-weight: 500">${product.originCompany}</span>
+        <button class="artisan-badge-link" onclick="closeQuickView(); openArtisanSpotlight('${product.name}')">🌾 Crafted by ${product.originCompany}</button>
       </div>
       <h2 class="quickview-title">${product.name}</h2>
       
@@ -3780,6 +3986,365 @@ window.copyPromoCode = function(code, buttonElement) {
   }).catch(err => {
     console.error("Could not copy code: ", err);
   });
+};
+
+// ==================== PREMIUM UPGRADE HELPER FUNCTIONS ====================
+
+let lastOrderDetails = null;
+
+function calculateDiscount(subtotal) {
+  if (appliedPromo === 'LUXURY10') {
+    return Math.round(subtotal * 0.1);
+  } else if (appliedPromo === 'ARTISAN5') {
+    return Math.round(subtotal * 0.05);
+  }
+  return 0;
+}
+
+function initMobileSidebar() {
+  const toggleBtn = document.getElementById('btn-toggle-filters');
+  const closeBtn = document.getElementById('btn-close-sidebar');
+  const overlay = document.getElementById('sidebar-overlay');
+  const sidebar = document.querySelector('.shop-sidebar');
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      sidebar?.classList.add('open');
+      overlay?.classList.add('active');
+    });
+  }
+
+  const closeSidebar = () => {
+    sidebar?.classList.remove('open');
+    overlay?.classList.remove('active');
+  };
+
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+  if (overlay) overlay.addEventListener('click', closeSidebar);
+}
+
+function handlePincodeAutofill(e) {
+  const pin = e.target.value.trim();
+  if (pin.length === 6 && /^\d{6}$/.test(pin)) {
+    const cityInput = document.getElementById('checkout-city');
+    const stateInput = document.getElementById('checkout-state');
+    
+    // Simple mock pincode lookup database for major Indian areas
+    const pinDb = {
+      '302001': { city: 'Jaipur', state: 'Rajasthan' },
+      '211019': { city: 'Prayagraj', state: 'Uttar Pradesh' },
+      '110001': { city: 'New Delhi', state: 'Delhi' },
+      '400001': { city: 'Mumbai', state: 'Maharashtra' },
+      '560001': { city: 'Bengaluru', state: 'Karnataka' },
+      '600001': { city: 'Chennai', state: 'Tamil Nadu' },
+      '700001': { city: 'Kolkata', state: 'West Bengal' },
+      '500001': { city: 'Hyderabad', state: 'Telangana' },
+      '380001': { city: 'Ahmedabad', state: 'Gujarat' },
+      '211001': { city: 'Prayagraj', state: 'Uttar Pradesh' },
+      '211010': { city: 'Prayagraj', state: 'Uttar Pradesh' },
+      '211002': { city: 'Prayagraj', state: 'Uttar Pradesh' }
+    };
+    
+    if (pinDb[pin]) {
+      if (cityInput) cityInput.value = pinDb[pin].city;
+      if (stateInput) stateInput.value = pinDb[pin].state;
+      showToast(`Autofilled City & State for PIN ${pin}`);
+    } else {
+      let guessedState = '';
+      let guessedCity = '';
+      if (pin.startsWith('30') || pin.startsWith('31') || pin.startsWith('32')) {
+        guessedState = 'Rajasthan';
+      } else if (pin.startsWith('20') || pin.startsWith('21') || pin.startsWith('22') || pin.startsWith('23') || pin.startsWith('24') || pin.startsWith('25') || pin.startsWith('26') || pin.startsWith('27') || pin.startsWith('28')) {
+        guessedState = 'Uttar Pradesh';
+      } else if (pin.startsWith('40') || pin.startsWith('41') || pin.startsWith('42') || pin.startsWith('43') || pin.startsWith('44')) {
+        guessedState = 'Maharashtra';
+      } else if (pin.startsWith('56') || pin.startsWith('57') || pin.startsWith('58') || pin.startsWith('59')) {
+        guessedState = 'Karnataka';
+      } else if (pin.startsWith('60') || pin.startsWith('61') || pin.startsWith('62') || pin.startsWith('63') || pin.startsWith('64')) {
+        guessedState = 'Tamil Nadu';
+      } else if (pin.startsWith('70') || pin.startsWith('71') || pin.startsWith('72') || pin.startsWith('73')) {
+        guessedState = 'West Bengal';
+      } else if (pin.startsWith('50') || pin.startsWith('51') || pin.startsWith('52')) {
+        guessedState = 'Telangana';
+      } else if (pin.startsWith('11')) {
+        guessedState = 'Delhi';
+        guessedCity = 'New Delhi';
+      }
+      
+      if (guessedState) {
+        if (stateInput) stateInput.value = guessedState;
+        if (guessedCity && cityInput) cityInput.value = guessedCity;
+        showToast(`PIN ${pin} resolved to ${guessedState}`);
+      }
+    }
+  }
+}
+
+window.addRecItemToCart = function(id) {
+  const product = products.find(p => p.id === id);
+  if (product) {
+    const size = product.sizes ? product.sizes[0] : 'M';
+    const color = product.colors ? product.colors[0].name : 'Default';
+    addToCart(product.id, 1, size, color);
+    renderDrawerCart();
+  }
+};
+
+window.applyCheckoutPromo = function() {
+  const input = document.getElementById('checkout-promo-input');
+  if (!input) return;
+  const promo = input.value.trim().toUpperCase();
+
+  if (promo === 'LUXURY10' || promo === 'ARTISAN5') {
+    appliedPromo = promo;
+    const rate = promo === 'LUXURY10' ? '10%' : '5%';
+    showToast(`Promo code applied! ${rate} discount subtracted.`);
+  } else if (promo === '') {
+    appliedPromo = '';
+  } else {
+    showToast('Invalid promo code. Try "LUXURY10" or "ARTISAN5"');
+  }
+  renderCheckoutSummary();
+};
+
+window.openArtisanSpotlight = function(productName) {
+  const modal = document.getElementById('artisan-spotlight-modal');
+  const body = document.getElementById('artisan-spotlight-body');
+  if (!modal || !body) return;
+
+  const fallbackArtisanStory = {
+    guild: "SS Attire Weaver Co-operative Alliance",
+    origin: "Uttar Pradesh & Rajasthan Handloom Clusters",
+    story: "SS Attire works directly with over 150 artisan families across traditional handloom clusters in Northern and Western India. Every purchase helps support fair-wage employment, preserve generational weaving crafts, and fund community educational initiatives for weavers' children.",
+    weavers: "Generational Master Weavers",
+    time: "Hand-crafted process",
+    wages: "Fair-trade certified (40% direct share)"
+  };
+
+  const story = artisanStories[productName] || fallbackArtisanStory;
+
+  body.innerHTML = `
+    <div class="artisan-spotlight-hero" style="background-image: url('img/cat-traditional.png')">
+      <div class="artisan-spotlight-header">
+        <h2 class="artisan-spotlight-title">${story.guild}</h2>
+        <span class="artisan-spotlight-origin">📍 ${story.origin}</span>
+      </div>
+    </div>
+    <div class="artisan-spotlight-details">
+      <p class="artisan-spotlight-story">${story.story}</p>
+      
+      <div class="artisan-metrics">
+        <div class="artisan-metric-card">
+          <div class="artisan-metric-value">${story.weavers.split(' ')[0]}</div>
+          <div class="artisan-metric-label">Artisans Helped</div>
+        </div>
+        <div class="artisan-metric-card">
+          <div class="artisan-metric-value">${story.time.split(' ')[0]}</div>
+          <div class="artisan-metric-label">${story.time.split(' ').slice(1).join(' ')}</div>
+        </div>
+        <div class="artisan-metric-card">
+          <div class="artisan-metric-value">Fair Pay</div>
+          <div class="artisan-metric-label">${story.wages.split('(')[1] ? story.wages.split('(')[1].replace(')', '') : 'Certified'}</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+
+  // Bind close buttons
+  const closeBtn = document.getElementById('btn-close-artisan');
+  const overlay = document.getElementById('artisan-modal-overlay');
+  
+  const closeModal = () => {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  };
+
+  if (closeBtn) closeBtn.onclick = closeModal;
+  if (overlay) overlay.onclick = closeModal;
+};
+
+window.printInvoice = function() {
+  if (!lastOrderDetails) {
+    showToast("No order details found to print.");
+    return;
+  }
+  
+  const printArea = document.getElementById('invoice-print-area');
+  if (!printArea) return;
+  
+  const tax = Math.round((lastOrderDetails.subtotal - lastOrderDetails.discount) * 0.18);
+  const total = lastOrderDetails.subtotal - lastOrderDetails.discount + lastOrderDetails.shipping + lastOrderDetails.giftFee;
+  
+  printArea.innerHTML = `
+    <div class="invoice-header">
+      <div class="invoice-logo">👑 SS ATTIRE SHOP</div>
+      <div style="text-align: right;">
+        <h2 style="margin: 0; color: #d4af37;">INVOICE</h2>
+        <p style="margin: 5px 0 0 0; font-size: 13px;">Order: <strong>#${lastOrderDetails.orderId}</strong></p>
+        <p style="margin: 3px 0 0 0; font-size: 12px; color: #666;">Date: ${new Date().toLocaleDateString()}</p>
+      </div>
+    </div>
+    
+    <div class="invoice-details" style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+      <div>
+        <h4 style="margin: 0 0 8px 0; font-size: 14px;">Billed To:</h4>
+        <p style="margin: 0; font-size: 13px;"><strong>${lastOrderDetails.name}</strong></p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555; max-width: 250px;">${lastOrderDetails.address}</p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Phone: ${lastOrderDetails.phone}</p>
+        <p style="margin: 2px 0 0 0; font-size: 13px; color: #555;">Email: ${lastOrderDetails.email}</p>
+      </div>
+      <div style="text-align: right;">
+        <h4 style="margin: 0 0 8px 0; font-size: 14px;">Shipped From:</h4>
+        <p style="margin: 0; font-size: 13px;"><strong>SS Attire & Collection</strong></p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">Jhunsi, Kanihar Road</p>
+        <p style="margin: 2px 0 0 0; font-size: 13px; color: #555;">Prayagraj, Uttar Pradesh - 211019</p>
+        <p style="margin: 4px 0 0 0; font-size: 13px; color: #555;">support@ssattire.com</p>
+      </div>
+    </div>
+    
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>Item Details</th>
+          <th>Size</th>
+          <th style="text-align: right;">Price</th>
+          <th style="text-align: center;">Qty</th>
+          <th style="text-align: right;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${lastOrderDetails.items.map(item => `
+          <tr>
+            <td>
+              <strong>${item.name}</strong>
+              <div style="font-size: 11px; color: #666; margin-top: 2px;">Brand: ${item.brand}</div>
+            </td>
+            <td>${item.size}</td>
+            <td style="text-align: right;">₹${item.price.toLocaleString()}</td>
+            <td style="text-align: center;">${item.qty}</td>
+            <td style="text-align: right;">₹${(item.price * item.qty).toLocaleString()}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+    
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 20px;">
+      <!-- Weaver Authenticity Seal -->
+      <div class="weaver-seal-container">
+        <div class="weaver-seal-gold">✓</div>
+        <div class="weaver-seal-text">
+          <h4>Weaver Co-operative Authenticity Seal</h4>
+          <p>Certified Handcrafted Handloom. This product is directly sourced from weavers. Woven with fair-trade wages and authentic traditional craftsmanship.</p>
+        </div>
+      </div>
+      
+      <div class="invoice-totals">
+        <div class="invoice-totals-row">
+          <span>Subtotal:</span>
+          <span>₹${lastOrderDetails.subtotal.toLocaleString()}</span>
+        </div>
+        ${lastOrderDetails.discount > 0 ? `
+          <div class="invoice-totals-row" style="color: #228b22;">
+            <span>Discount (${lastOrderDetails.appliedPromo}):</span>
+            <span>- ₹${lastOrderDetails.discount.toLocaleString()}</span>
+          </div>
+        ` : ''}
+        <div class="invoice-totals-row">
+          <span>Shipping:</span>
+          <span>${lastOrderDetails.shipping === 0 ? 'FREE' : `₹${lastOrderDetails.shipping}`}</span>
+        </div>
+        ${lastOrderDetails.giftFee > 0 ? `
+          <div class="invoice-totals-row">
+            <span>Potli Wrapping:</span>
+            <span>₹99</span>
+          </div>
+        ` : ''}
+        <div class="invoice-totals-row grand-total">
+          <span>Grand Total:</span>
+          <span>₹${total.toLocaleString()}</span>
+        </div>
+        <div style="font-size: 11px; color: #777; text-align: right; margin-top: 10px;">
+          Includes Estimated GST (18%): ₹${tax.toLocaleString()}
+        </div>
+      </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 60px; border-top: 1px solid #ddd; padding-top: 15px; font-size: 12px; color: #666;">
+      Thank you for supporting handloom weavers! "Your Happy Face Means a lot"
+    </div>
+  `;
+  
+  window.print();
+};
+
+const artisanStories = {
+  "Chikankari Handloom Anarkali Kurta": {
+    guild: "Lucknowi Handloom Chikankari Co-operative",
+    origin: "Lucknow, Uttar Pradesh",
+    story: "Chikankari is a traditional embroidery style from Lucknow. Believed to have been introduced by Noor Jahan, the queen of Mughal Emperor Jahangir, it features delicate and artistic hand embroidery. This specific piece was embroidered over 24 days by women artisans of the Kanihar weaver co-operative, using 36 unique stitch types.",
+    weavers: "24 women artisans",
+    time: "24 days of embroidery",
+    wages: "Fair-trade certified (40% direct share)"
+  },
+  "Jaipuri Block Print Cotton Suit Set": {
+    guild: "Jaipur Hand-Block Printing Guild",
+    origin: "Sanganer, Rajasthan",
+    story: "Hand-block printing is a century-old heritage craft of Rajasthan. Utilizing hand-carved teak wood blocks and organic vegetable dyes, the artisans stamp patterns onto fabrics with precision. This set features traditional indigo and madder root dyes stamped by the Chipa community, supporting 12 families of master craftsmen.",
+    weavers: "Chipa block print community",
+    time: "6 days of hand-stamping",
+    wages: "Fair-trade certified (35% direct share)"
+  },
+  "Boys Traditional Dhoti Kurta Set": {
+    guild: "Varanasi Silk and Zari Co-operative",
+    origin: "Varanasi, Uttar Pradesh",
+    story: "Varanasi handlooms represent some of India's finest weaving styles. This boys' traditional set combines soft, kid-friendly organic cotton with hand-spun Banarasi silk borders. Crafted by the Kabir Weaver Guild of Jhunsi, it uses traditional shuttle-weave techniques designed for durability and breathability.",
+    weavers: "Kabir Weavers Guild",
+    time: "3 days of shuttle weaving",
+    wages: "Fair-trade certified (38% direct share)"
+  },
+  "Kids Bandhani Nehru Jacket Set": {
+    guild: "Kutch Bandhani Artisan Guild",
+    origin: "Bhuj, Gujarat",
+    story: "Bandhani is the ancient art of tie-dye where fabrics are tightly tied with threads in intricate patterns before dyeing. The Nehru jacket in this set is tied by hand by Khatri tie-dye craftswomen and dyed with natural organic pigments, creating one-of-a-kind patterns that make every garment unique.",
+    weavers: "Khatri Tie-Dye Guild",
+    time: "8 days of hand-tying & dyeing",
+    wages: "Fair-trade certified (42% direct share)"
+  },
+  "Kids Chikankari Cotton Kurta Set": {
+    guild: "Lucknowi Handloom Chikankari Co-operative",
+    origin: "Lucknow, Uttar Pradesh",
+    story: "Crafted specifically for the sensitive skin of children, this kurta set features soft organic mulmul cotton hand-embroidered with classic shadow-work (Bakhiya) and herringbone stitches. Every stitch is completed under fair-trade co-operative guidelines, empowering rural craftswomen in Eastern UP.",
+    weavers: "Lucknowi Craftswomen Co-op",
+    time: "12 days of hand-embroidery",
+    wages: "Fair-trade certified (40% direct share)"
+  },
+  "Handloom Ikat Cotton Unisex Shirt": {
+    guild: "Pochampally Ikat Handloom Co-operative",
+    origin: "Pochampally, Telangana",
+    story: "Pochampally Ikat is famous for its geometric patterns hand-woven using double-tied warp and weft threads. The threads are dyed in precise bundles before being aligned on the handloom. This unisex shirt is woven on a traditional pit loom by the Pochampally Weaver Society, supporting sustainable local livelihoods.",
+    weavers: "Pochampally Weaver Society",
+    time: "5 days of double-ikat weaving",
+    wages: "Fair-trade certified (45% direct share)"
+  },
+  "Royal Handwoven Banarasi Saree": {
+    guild: "Varanasi Silk and Zari Co-operative",
+    origin: "Varanasi, Uttar Pradesh",
+    story: "Banarasi sarees are renowned for their gold and silver brocade or zari, fine silk, and opulent embroidery. This masterpiece is hand-woven on a traditional jacquard handloom using high-grade mulberry silk. The intricate floral motifs (Amru) are woven with pure silver threads wrapped in 24k gold leaf.",
+    weavers: "Varanasi Master Weavers",
+    time: "35 days of weaving",
+    wages: "Fair-trade certified (38% direct share)"
+  },
+  "Indigo Dabu Unisex Hoodie": {
+    guild: "Chhipa Dabu Printing Cooperative",
+    origin: "Akola, Rajasthan",
+    story: "Dabu is a mud-resist hand-block printing technique. A paste of clay, gum, and sawdust is stamped onto fabric, which is then sprinkled with sand and dried. The fabric is dyed in natural indigo vats, creating beautiful cracked blue details where the mud resist breaks.",
+    weavers: "Akola Dabu Artisans",
+    time: "10 days process",
+    wages: "Fair-trade certified (45% direct share)"
+  }
 };
 
 
