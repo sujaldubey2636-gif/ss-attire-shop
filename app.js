@@ -702,6 +702,7 @@ let maxPriceFilter = 5000;
 let plpSortOrder = 'default';
 let plpSearchQuery = '';
 let plpVisibleCount = 12;
+let activeSharedWishlist = null; // New global state for shared wishlist
 
 // Active size and color for PDP
 let selectedPDPSize = 'M';
@@ -830,6 +831,14 @@ function handleRoute() {
       activePLPFilter = categoryParam;
     }
     
+    // Check wishlist parameter
+    const wishlistParam = urlParams.get('wishlist');
+    if (wishlistParam) {
+      activeSharedWishlist = wishlistParam.split(',').map(x => parseInt(x.trim())).filter(x => !isNaN(x));
+    } else {
+      activeSharedWishlist = null;
+    }
+    
     initShopView();
   } else if (hash.startsWith('#/product/')) {
     activeViewId = 'view-product';
@@ -845,6 +854,13 @@ function handleRoute() {
   } else if (hash === '#/checkout') {
     activeViewId = 'view-checkout';
     initCheckoutView();
+  } else if (hash === '#/lookbook') {
+    activeViewId = 'view-lookbook';
+    initLookbookView();
+  } else if (hash === '#/track') {
+    activeViewId = 'view-track';
+    const orderIdParam = urlParams.get('id');
+    initTrackView(orderIdParam);
   } else {
     // Fallback
     window.location.hash = '#/';
@@ -880,9 +896,13 @@ function updateNavbarVisuals(hash) {
     navbar.classList.add('nav-solid');
     navbar.classList.add('scrolled');
     
-    // Highlight shop link if on shop or product pages
+    // Highlight links
     if (hash.startsWith('#/shop') || hash.startsWith('#/product')) {
       document.querySelectorAll('.nav-shop-link').forEach(a => a.classList.add('active'));
+    } else if (hash.startsWith('#/lookbook')) {
+      document.querySelectorAll('.nav-lookbook-link').forEach(a => a.classList.add('active'));
+    } else if (hash.startsWith('#/track')) {
+      document.querySelectorAll('.nav-track-link').forEach(a => a.classList.add('active'));
     }
   }
 }
@@ -1225,6 +1245,7 @@ function resetFilters() {
   plpSortOrder = 'default';
   plpSearchQuery = '';
   plpVisibleCount = 12;
+  activeSharedWishlist = null; // Clear shared wishlist filter
 
   // Reset visual inputs
   document.querySelectorAll('.shop-filter-link').forEach(l => l.classList.remove('active'));
@@ -1255,8 +1276,61 @@ function renderPLP() {
   const loadMoreBtn = document.getElementById('btn-load-more');
   if (!grid) return;
 
+  // Render or remove Shared Wishlist Banner
+  let banner = document.getElementById('shared-wishlist-banner-el');
+  if (activeSharedWishlist) {
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'shared-wishlist-banner-el';
+      banner.className = 'shared-wishlist-banner';
+      const mainContent = document.querySelector('.shop-main-content');
+      if (mainContent) {
+        mainContent.insertBefore(banner, mainContent.firstChild);
+      }
+    }
+    
+    // Check if the shared list matches user's actual wishlist exactly
+    const isOwnWishlist = activeSharedWishlist.length === wishlist.size && activeSharedWishlist.every(id => wishlist.has(id));
+    
+    if (isOwnWishlist) {
+      banner.innerHTML = `
+        <div class="shared-wishlist-text">
+          <h3>Your Curated Wishlist</h3>
+          <p>Here are your saved designs. You can copy the link below to share this wishlist with friends.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <button class="btn-wishlist-share" onclick="window.shareWishlist()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            Copy Share Link
+          </button>
+          <button class="btn-wishlist-move-all" onclick="window.moveWishlistToCart()">Move All to Cart</button>
+        </div>
+      `;
+    } else {
+      banner.innerHTML = `
+        <div class="shared-wishlist-text">
+          <h3>Shared Wishlist Collection</h3>
+          <p>Someone shared this curation of luxury handloom items with you.</p>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <button class="btn-wishlist-share" onclick="window.saveSharedWishlistToOwn()">
+            Save to My Wishlist
+          </button>
+          <button class="btn-wishlist-move-all" onclick="window.moveWishlistToCart()">Add All to Bag</button>
+        </div>
+      `;
+    }
+  } else {
+    if (banner) {
+      banner.remove();
+    }
+  }
+
   // Filter products
   let filtered = products.filter(product => {
+    if (activeSharedWishlist) {
+      return activeSharedWishlist.includes(product.id);
+    }
     // 1. Category Filter
     const matchCategory = activePLPFilter === 'all' || product.category === activePLPFilter;
     // 2. Price Filter
@@ -1503,6 +1577,7 @@ function renderProductDetails(product) {
   const reviews = reviewDB[product.id] || [];
   const ratingBreakdown = computeRatingBreakdown(reviews);
   const totalReviewCount = reviews.length;
+  const fit = getFitSummary(product.id);
 
   // Compute discount percentage
   const discountPct = product.oldPrice ? Math.round(((product.oldPrice - product.price) / product.oldPrice) * 100) : 0;
@@ -1837,6 +1912,47 @@ function renderProductDetails(product) {
           </div>
         </div>
 
+        <!-- Fit Summary -->
+        <div class="reviews-fit-summary">
+          <div class="reviews-fit-title">Size Fit Summary</div>
+          <div class="fit-row">
+            <span class="fit-label">Runs Small</span>
+            <div class="fit-bar-container">
+              <div class="fit-bar-fill" style="width: ${fit.runsSmall}%"></div>
+            </div>
+            <span class="fit-pct">${fit.runsSmall}%</span>
+          </div>
+          <div class="fit-row">
+            <span class="fit-label">True to Size</span>
+            <div class="fit-bar-container">
+              <div class="fit-bar-fill" style="width: ${fit.trueToSize}%"></div>
+            </div>
+            <span class="fit-pct">${fit.trueToSize}%</span>
+          </div>
+          <div class="fit-row">
+            <span class="fit-label">Runs Large</span>
+            <div class="fit-bar-container">
+              <div class="fit-bar-fill" style="width: ${fit.runsLarge}%"></div>
+            </div>
+            <span class="fit-pct">${fit.runsLarge}%</span>
+          </div>
+        </div>
+
+        <!-- Customer Gallery -->
+        <div class="reviews-buyer-gallery">
+          <h4 class="reviews-gallery-title">Customer Gallery</h4>
+          <div class="reviews-gallery-imgs">
+            ${galleryImages.map(img => `
+              <img src="${img}" alt="Customer photo" class="reviews-gallery-img" onclick="window.zoomReviewImage('${img}')" />
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Reviews Search -->
+        <div class="reviews-search-container">
+          <input type="text" class="reviews-search-input" id="reviews-search-input-field" placeholder="Search reviews by keyword (e.g. fabric, fit)..." oninput="window.filterReviews(this.value, ${product.id})" />
+        </div>
+
         <!-- Review List -->
         <div class="pdp-reviews-list" id="pdp-reviews-list-wrapper">
           ${renderReviewListMarkup(reviews, product.id)}
@@ -2112,38 +2228,7 @@ function renderProductDetails(product) {
   });
 
   // Review helpfulness voting
-  container.querySelectorAll('.pdp-helpful-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const reviewId = btn.dataset.reviewId;
-      const productId = parseInt(btn.dataset.productId);
-      const countEl = btn.querySelector('.helpful-count');
-      
-      if (countEl && !btn.classList.contains('voted')) {
-        const newCount = parseInt(countEl.textContent) + 1;
-        countEl.textContent = newCount;
-        btn.classList.add('voted');
-        btn.style.color = 'var(--gold)';
-        btn.style.pointerEvents = 'none';
-
-        // 1. Save voted state in localStorage
-        const votedReviews = JSON.parse(localStorage.getItem('ss-voted-reviews') || '{}');
-        votedReviews[reviewId] = true;
-        localStorage.setItem('ss-voted-reviews', JSON.stringify(votedReviews));
-
-        // 2. Save count in localStorage
-        const storedHelpfulCounts = JSON.parse(localStorage.getItem('ss-review-helpful-counts') || '{}');
-        storedHelpfulCounts[reviewId] = newCount;
-        localStorage.setItem('ss-review-helpful-counts', JSON.stringify(storedHelpfulCounts));
-
-        // 3. Update the in-memory reviewDB object so it's fresh in current session
-        const productReviews = reviewDB[productId] || [];
-        const revIndex = productReviews.findIndex((rev, idx) => rev.id === reviewId || `native-${productId}-${idx}` === reviewId);
-        if (revIndex !== -1) {
-          productReviews[revIndex].helpful = newCount;
-        }
-      }
-    });
-  });
+  window.bindReviewHelpfulEvents(product.id);
 
   // Review Form Submit handler
   const reviewForm = document.getElementById('pdp-review-submit-form');
@@ -2566,14 +2651,14 @@ window.applyPromoCode = function() {
   const input = document.getElementById('promo-input-field');
   const promo = input.value.trim().toUpperCase();
 
-  if (promo === 'LUXURY10' || promo === 'ARTISAN5') {
+  if (promo === 'LUXURY10' || promo === 'ARTISAN5' || promo === 'LOOKBOOK15') {
     appliedPromo = promo;
-    const rate = promo === 'LUXURY10' ? '10%' : '5%';
+    const rate = promo === 'LUXURY10' ? '10%' : (promo === 'LOOKBOOK15' ? '15%' : '5%');
     showToast(`Promo code applied! ${rate} discount subtracted.`);
   } else if (promo === '') {
     appliedPromo = '';
   } else {
-    showToast('Invalid promo code. Try "LUXURY10" or "ARTISAN5"');
+    showToast('Invalid promo code. Try "LUXURY10", "ARTISAN5" or "LOOKBOOK15"');
   }
   renderCartPage();
 };
@@ -2802,7 +2887,7 @@ function initCartDrawer() {
       const msgEl = document.getElementById('cart-coupon-message');
       if (!input) return;
       const code = input.value.trim().toUpperCase();
-      if (code === 'LUXURY10' || code === 'ARTISAN5') {
+      if (code === 'LUXURY10' || code === 'ARTISAN5' || code === 'LOOKBOOK15') {
         appliedPromo = code;
         if (msgEl) {
           msgEl.style.display = 'block';
@@ -2817,7 +2902,7 @@ function initCartDrawer() {
         if (msgEl) {
           msgEl.style.display = 'block';
           msgEl.style.color = 'red';
-          msgEl.textContent = 'Invalid promo code. Try LUXURY10 or ARTISAN5';
+          msgEl.textContent = 'Invalid promo code. Try LUXURY10, ARTISAN5 or LOOKBOOK15';
         }
         showToast('Invalid promo code');
       }
@@ -3064,35 +3149,11 @@ function initWishlistBtn() {
   const btn = document.getElementById('wishlist-btn');
   if (btn) {
     btn.addEventListener('click', () => {
-      // Toggle PLP showing only wishlisted items, or navigate to shop page and filter
       if (wishlist.size === 0) {
         showToast('Your Wishlist is currently empty.');
         return;
       }
-      
-      // Let shop page handle rendering wishlist items
-      window.location.hash = '#/shop';
-      
-      // Wait for PLP to initialize then render only wishlisted items
-      setTimeout(() => {
-        const grid = document.getElementById('plp-products-grid');
-        const countEl = document.getElementById('plp-results-count');
-        
-        const wishlistedItems = products.filter(p => wishlist.has(p.id));
-        
-        if (grid) {
-          grid.innerHTML = wishlistedItems.map(product => createProductCardMarkup(product)).join('');
-          attachProductCardEvents(grid);
-        }
-        
-        if (countEl) {
-          countEl.textContent = `Showing ${wishlistedItems.length} wishlisted items`;
-        }
-
-        document.getElementById('plp-search-input').value = 'Wishlist';
-        document.getElementById('btn-clear-filters').style.display = 'inline-block';
-        showToast('Displaying wishlisted items');
-      }, 100);
+      window.location.hash = `#/shop?wishlist=${Array.from(wishlist).join(',')}`;
     });
   }
 }
@@ -3811,13 +3872,15 @@ function initSupportChatbot() {
     const orderMatch = text.match(/(?:#?ss-)?(\d{5})/i);
     if (text.includes('track') || text.includes('status') || orderMatch) {
       if (orderMatch) {
+        const fullOrderId = `SS-${orderMatch[1]}`;
         renderBotMessage("Looking up order status in our secure database...");
         setTimeout(() => {
-          renderOrderTracker(`#SS-${orderMatch[1]}`);
+          renderBotMessage(`I found order **#${fullOrderId}**! You can track its live handcrafted journey on our interactive <a href="#/track?id=${fullOrderId}" style="color: var(--gold); font-weight: 600; text-decoration: underline;">Live Order Tracking Page</a>.`);
+          renderOrderTracker(fullOrderId);
         }, 800);
         return;
       } else {
-        renderBotMessage("Please provide your 5-digit Order Reference Number (e.g., #SS-10023) so I can fetch its real-time location for you.");
+        renderBotMessage("Please provide your 5-digit Order Reference Number (e.g., #SS-10023) so I can fetch its real-time location for you. You can also view live status directly on our <a href='#/track' style='color: var(--gold); font-weight: 600; text-decoration: underline;'>Order Tracking Page</a>.");
         return;
       }
     }
@@ -3997,6 +4060,8 @@ function calculateDiscount(subtotal) {
     return Math.round(subtotal * 0.1);
   } else if (appliedPromo === 'ARTISAN5') {
     return Math.round(subtotal * 0.05);
+  } else if (appliedPromo === 'LOOKBOOK15') {
+    return Math.round(subtotal * 0.15);
   }
   return 0;
 }
@@ -4095,14 +4160,14 @@ window.applyCheckoutPromo = function() {
   if (!input) return;
   const promo = input.value.trim().toUpperCase();
 
-  if (promo === 'LUXURY10' || promo === 'ARTISAN5') {
+  if (promo === 'LUXURY10' || promo === 'ARTISAN5' || promo === 'LOOKBOOK15') {
     appliedPromo = promo;
-    const rate = promo === 'LUXURY10' ? '10%' : '5%';
+    const rate = promo === 'LUXURY10' ? '10%' : (promo === 'LOOKBOOK15' ? '15%' : '5%');
     showToast(`Promo code applied! ${rate} discount subtracted.`);
   } else if (promo === '') {
     appliedPromo = '';
   } else {
-    showToast('Invalid promo code. Try "LUXURY10" or "ARTISAN5"');
+    showToast('Invalid promo code. Try "LUXURY10", "ARTISAN5" or "LOOKBOOK15"');
   }
   renderCheckoutSummary();
 };
@@ -4344,6 +4409,529 @@ const artisanStories = {
     weavers: "Akola Dabu Artisans",
     time: "10 days process",
     wages: "Fair-trade certified (45% direct share)"
+  }
+};
+
+// ==================== LOOKS & TRACKING DATABASE & UPGRADE CODE ====================
+
+const looksData = [
+  {
+    id: 1,
+    name: "The Royal Indigo Heritage",
+    description: "A premium block-printed ensemble featuring handcrafted indigo patterns, a classic cotton jacket, and a functional dabu print tote bag.",
+    image: "img/hero.png",
+    products: [8, 22, 44]
+  },
+  {
+    id: 2,
+    name: "Banarasi Elegance Set",
+    description: "Exquisite silk saree combined with matching premium accessories for wedding season.",
+    image: "img/cat-traditional.png",
+    products: [2, 43]
+  },
+  {
+    id: 3,
+    name: "Young Handloom Prince",
+    description: "Perfect festive wear combination for boys. Includes traditional dhoti kurta set and bandhani nehru jacket.",
+    image: "img/prod-kids-dhoti.png",
+    products: [11, 13]
+  }
+];
+
+const trackingDB = {
+  "SS-10023": {
+    id: "SS-10023",
+    status: "Shipped",
+    customer: "Preeti Sharma",
+    date: "June 24, 2026",
+    stageIndex: 2,
+    milestones: [
+      { label: "Confirmed", desc: "Order placed and design sent to weaver guild.", date: "June 22, 2026" },
+      { label: "Crafted", desc: "Handloom weaving and authenticity inspection completed.", date: "June 23, 2026" },
+      { label: "Shipped", desc: "Dispatched via Premium Artisan Carrier. In transit.", date: "June 24, 2026" },
+      { label: "Delivered", desc: "Estimated delivery: June 26, 2026", date: "June 26, 2026" }
+    ],
+    items: [
+      { name: "Chikankari Handloom Anarkali Kurta", qty: 1, price: 3499 }
+    ]
+  },
+  "SS-10024": {
+    id: "SS-10024",
+    status: "Crafted",
+    customer: "Amit Patel",
+    date: "June 25, 2026",
+    stageIndex: 1,
+    milestones: [
+      { label: "Confirmed", desc: "Order placed and design sent to weaver guild.", date: "June 24, 2026" },
+      { label: "Crafted", desc: "Handloom weaving completed. Authenticity Seal applied.", date: "June 25, 2026" },
+      { label: "Shipped", desc: "Preparing for dispatch.", date: "Pending" },
+      { label: "Delivered", desc: "Estimated delivery: June 28, 2026", date: "Pending" }
+    ],
+    items: [
+      { name: "Unisex Khadi Cotton Nehru Jacket", qty: 1, price: 2499 }
+    ]
+  },
+  "SS-10025": {
+    id: "SS-10025",
+    status: "Confirmed",
+    customer: "Rajesh Kumar",
+    date: "June 25, 2026",
+    stageIndex: 0,
+    milestones: [
+      { label: "Confirmed", desc: "Order placed and sent to Varanasi co-op.", date: "June 25, 2026" },
+      { label: "Crafted", desc: "Weaving scheduled to begin shortly.", date: "Pending" },
+      { label: "Shipped", desc: "Preparing for dispatch.", date: "Pending" },
+      { label: "Delivered", desc: "Estimated delivery: June 30, 2026", date: "Pending" }
+    ],
+    items: [
+      { name: "Banarasi Silk Festive Saree", qty: 1, price: 4999 }
+    ]
+  },
+  "SS-10022": {
+    id: "SS-10022",
+    status: "Delivered",
+    customer: "Sunita Rao",
+    date: "June 20, 2026",
+    stageIndex: 3,
+    milestones: [
+      { label: "Confirmed", desc: "Order placed and sent to Varanasi co-op.", date: "June 17, 2026" },
+      { label: "Crafted", desc: "Handloom weaving completed.", date: "June 18, 2026" },
+      { label: "Shipped", desc: "Dispatched from warehouse.", date: "June 19, 2026" },
+      { label: "Delivered", desc: "Package delivered safely.", date: "June 20, 2026" }
+    ],
+    items: [
+      { name: "Boys Traditional Dhoti Kurta Set", qty: 1, price: 1499 }
+    ]
+  }
+};
+
+// --- MIX & MATCH LOOKBOOK VIEW ---
+function initLookbookView() {
+  const container = document.getElementById('lookbook-grid-container');
+  if (!container) return;
+  
+  container.innerHTML = looksData.map(look => {
+    const resolvedProducts = look.products.map(id => products.find(p => p.id === id)).filter(Boolean);
+    const subtotal = resolvedProducts.reduce((sum, p) => sum + p.price, 0);
+    const bundleTotal = Math.round(subtotal * 0.85);
+    
+    const productsHtml = resolvedProducts.map(p => {
+      let sizeSelector = '';
+      if (p.sizes && p.sizes.length > 0) {
+        sizeSelector = `
+          <div class="lookbook-item-option" style="display:flex; align-items:center; gap:4px;">
+            <label style="font-size:0.75rem; color:var(--text-secondary);">Size:</label>
+            <select class="lookbook-size-select" data-product-id="${p.id}" style="padding: 2px 4px; font-size: 0.75rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); border-radius: 4px;">
+              ${p.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+            </select>
+          </div>
+        `;
+      }
+      
+      let colorSelector = '';
+      if (p.colors && p.colors.length > 0) {
+        colorSelector = `
+          <div class="lookbook-item-option" style="display:flex; align-items:center; gap:4px;">
+            <label style="font-size:0.75rem; color:var(--text-secondary);">Color:</label>
+            <select class="lookbook-color-select" data-product-id="${p.id}" style="padding: 2px 4px; font-size: 0.75rem; background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); border-radius: 4px;">
+              ${p.colors.map(c => `<option value="${c.name}">${c.name}</option>`).join('')}
+            </select>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="lookbook-product-card" style="display: flex; gap: 12px; align-items: center; background: rgba(255,255,255,0.02); padding: 8px; border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.05);">
+          <img src="${p.image}" alt="${p.name}" class="lookbook-product-img" style="width: 55px; height: 55px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);" />
+          <div class="lookbook-product-info" style="flex: 1;">
+            <h4 class="lookbook-product-name" style="font-size: 0.85rem; font-weight: 600; margin: 0; color: var(--text-primary);">${p.name}</h4>
+            <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; margin-top: 4px;">
+              <span>${p.brand} | ₹${p.price.toLocaleString()}</span>
+            </div>
+            <div class="lookbook-product-selectors" style="display: flex; gap: 8px; margin-top: 4px;">
+              ${sizeSelector}
+              ${colorSelector}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+    return `
+      <div class="lookbook-card" style="background: var(--black-light); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-lg); display: flex; flex-direction: column; gap: var(--space-md); box-shadow: var(--shadow-md);">
+        <div class="lookbook-card-header" style="display: flex; flex-direction: column; gap: var(--space-xs);">
+          <img src="${look.image}" alt="${look.name}" style="width: 100%; max-height: 200px; object-fit: cover; border-radius: var(--radius-md); border: 1px solid var(--border);" />
+          <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1.3rem; margin: 0.5rem 0 0.2rem 0;">${look.name}</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.4; margin: 0;">${look.description}</p>
+        </div>
+        
+        <div class="lookbook-products-list" style="display: flex; flex-direction: column; gap: 8px;">
+          ${productsHtml}
+        </div>
+        
+        <div class="lookbook-card-footer" style="margin-top: auto; padding-top: var(--space-sm); border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div class="lookbook-pricing">
+            <span style="font-size: 0.75rem; color: var(--text-muted); text-decoration: line-through; display: block;">Regular Price: ₹${subtotal.toLocaleString()}</span>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span style="font-size: 1.15rem; font-weight: 700; color: var(--gold);">Package: ₹${bundleTotal.toLocaleString()}</span>
+              <span class="discount-badge" style="background: var(--gold-glow); color: var(--gold); border: 1px solid var(--gold); padding: 1px 4px; font-size: 0.6rem; border-radius: 4px; font-weight: 600;">-15%</span>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="window.addLookToCart(${look.id}, this)" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Buy Outfit Bundle</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+window.addLookToCart = function(lookId, btn) {
+  const look = looksData.find(l => l.id === lookId);
+  if (!look) return;
+  
+  const lookCard = btn.closest('.lookbook-card');
+  const sizeSelects = lookCard.querySelectorAll('.lookbook-size-select');
+  const colorSelects = lookCard.querySelectorAll('.lookbook-color-select');
+  
+  look.products.forEach(id => {
+    const product = products.find(p => p.id === id);
+    if (!product) return;
+    
+    const sizeSelect = Array.from(sizeSelects).find(s => parseInt(s.dataset.productId) === id);
+    const colorSelect = Array.from(colorSelects).find(c => parseInt(c.dataset.productId) === id);
+    
+    const size = sizeSelect ? sizeSelect.value : (product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Free');
+    const color = colorSelect ? colorSelect.value : (product.colors && product.colors.length > 0 ? product.colors[0].name : 'Default');
+    
+    // Add directly to cart array to avoid spamming toasts
+    const existing = cart.find(item => item.id === product.id && item.size === size && item.color === color);
+    if (existing) {
+      existing.qty += 1;
+    } else {
+      cart.push({
+        id: product.id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        image: product.image,
+        size: size,
+        color: color,
+        qty: 1
+      });
+    }
+  });
+  
+  appliedPromo = 'LOOKBOOK15';
+  saveCart();
+  
+  // Pulse animation on navbar cart icon
+  const cartIconBtn = document.getElementById('cart-btn');
+  if (cartIconBtn) {
+    cartIconBtn.style.animation = 'none';
+    cartIconBtn.offsetHeight;
+    cartIconBtn.style.animation = 'pulse-gold 0.6s ease';
+  }
+  
+  showToast(`Outfit "${look.name}" added to bag. LOOKBOOK15 applied!`);
+  openCart();
+};
+
+
+// --- LIVE ORDER TRACKING ---
+function initTrackView(orderId) {
+  const input = document.getElementById('track-order-id');
+  if (input && orderId) {
+    input.value = orderId;
+  }
+  
+  const cleanId = orderId ? orderId.replace('#', '').trim().toUpperCase() : '';
+  const order = trackingDB[cleanId];
+  const resultsSection = document.getElementById('track-results-section');
+  
+  if (!orderId) {
+    if (resultsSection) resultsSection.style.display = 'none';
+    return;
+  }
+  
+  if (!order) {
+    if (resultsSection) {
+      resultsSection.style.display = 'block';
+      resultsSection.innerHTML = `
+        <div style="text-align: center; padding: 2rem; color: var(--text-secondary);">
+          <h3 style="color: red; margin-bottom: 0.5rem;">Order Not Found</h3>
+          <p>We couldn't find an order with Reference ID <strong>${orderId}</strong>.</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem;">For testing, please search: <strong>#SS-10023</strong>, <strong>#SS-10024</strong>, <strong>#SS-10025</strong>, or <strong>#SS-10022</strong>.</p>
+        </div>
+      `;
+    }
+    return;
+  }
+  
+  const percentages = [15, 40, 65, 90];
+  const activePct = percentages[order.stageIndex];
+  
+  const stepsHtml = order.milestones.map((milestone, idx) => {
+    let nodeClass = '';
+    if (idx < order.stageIndex) {
+      nodeClass = 'completed';
+    } else if (idx === order.stageIndex) {
+      nodeClass = 'active';
+    }
+    
+    return `
+      <div class="track-step-node ${nodeClass}">
+        <div class="track-step-circle">${idx < order.stageIndex ? '✓' : idx + 1}</div>
+        <span class="track-step-label">${milestone.label}</span>
+        <span class="track-step-date">${milestone.date}</span>
+      </div>
+    `;
+  }).join('');
+
+  const mapNodesHtml = order.milestones.map((milestone, idx) => {
+    const reached = idx <= order.stageIndex ? 'reached' : '';
+    const leftPos = percentages[idx];
+    return `
+      <div class="track-map-node ${reached}" style="left: ${leftPos}%;">
+        <span class="track-map-node-label">${milestone.label}</span>
+      </div>
+    `;
+  }).join('');
+  
+  const itemsHtml = order.items.map(item => `
+    <tr>
+      <td>${item.name}</td>
+      <td>${item.qty}</td>
+      <td>₹${item.price.toLocaleString()}</td>
+    </tr>
+  `).join('');
+
+  resultsSection.style.display = 'block';
+  resultsSection.innerHTML = `
+    <div style="border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-md);">
+      <div>
+        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase;">ORDER ID</span>
+        <h2 style="font-family: var(--font-display); color: var(--gold); margin: 0; font-size: 1.5rem;">#${order.id}</h2>
+      </div>
+      <div>
+        <span style="font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; display: block; text-align: right;">STATUS</span>
+        <span class="badge" style="background: var(--gold-glow); color: var(--gold); border: 1px solid var(--gold); font-size: 0.85rem; padding: 4px 12px; border-radius: 4px; font-weight: 600;">${order.status}</span>
+      </div>
+    </div>
+    
+    <div class="track-timeline-wrapper">
+      <div class="track-timeline-steps">
+        <div class="track-timeline-bar-fill" id="track-progress-bar" style="width: 0%;"></div>
+        ${stepsHtml}
+      </div>
+    </div>
+    
+    <!-- Animated Map -->
+    <div class="track-map-wrapper">
+      <div class="track-map-road"></div>
+      <div class="track-map-progress-road" id="track-map-progress-road" style="width: 0%;"></div>
+      <div class="track-map-truck" id="track-map-truck" style="left: 0%;">🚚</div>
+      ${mapNodesHtml}
+    </div>
+    
+    <div style="margin-top: 2rem; background: var(--black-light); border: 1px solid var(--border); border-radius: var(--radius-md); padding: var(--space-lg);">
+      <h3 style="font-family: var(--font-display); color: var(--gold); font-size: 1.1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">Weaver & Dispatch Milestone Details</h3>
+      <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: 12px;">
+        ${order.milestones.map((m, idx) => `
+          <li style="display: flex; gap: var(--space-md); align-items: flex-start; opacity: ${idx <= order.stageIndex ? 1 : 0.4};">
+            <span style="color: ${idx <= order.stageIndex ? 'var(--gold)' : 'var(--text-muted)'}; font-weight: 600; width: 90px; flex-shrink: 0;">${m.label}:</span>
+            <div>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--text-primary);">${m.desc}</p>
+              ${m.date !== 'Pending' ? `<span style="font-size: 0.75rem; color: var(--text-muted);">${m.date}</span>` : ''}
+            </div>
+          </li>
+        `).join('')}
+      </ul>
+    </div>
+    
+    <table class="track-details-table">
+      <thead>
+        <tr>
+          <th>Garment Details</th>
+          <th>Qty</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${itemsHtml}
+      </tbody>
+    </table>
+  `;
+  
+  // Trigger animations in the next frame
+  setTimeout(() => {
+    const progressBar = document.getElementById('track-progress-bar');
+    const mapProgressRoad = document.getElementById('track-map-progress-road');
+    const mapTruck = document.getElementById('track-map-truck');
+    
+    if (progressBar) progressBar.style.width = `${activePct}%`;
+    if (mapProgressRoad) mapProgressRoad.style.width = `${activePct}%`;
+    if (mapTruck) mapTruck.style.left = `${activePct}%`;
+  }, 100);
+}
+
+window.processOrderTracking = function(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('track-order-id');
+  if (!input) return;
+  const orderId = input.value.trim().toUpperCase();
+  initTrackView(orderId);
+};
+
+
+// --- CUSTOMER REVIEWS IMPROVEMENTS ---
+function getFitSummary(productId) {
+  const runsSmall = (productId * 7) % 20 + 5; 
+  const trueToSize = 65 + (productId * 3) % 15; 
+  const runsLarge = 100 - runsSmall - trueToSize;
+  return { runsSmall, trueToSize, runsLarge };
+}
+
+window.zoomReviewImage = function(imgUrl) {
+  let overlay = document.getElementById('review-image-zoom-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'review-image-zoom-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.background = 'rgba(0, 0, 0, 0.85)';
+    overlay.style.zIndex = '10000';
+    overlay.style.display = 'flex';
+    overlay.style.alignItems = 'center';
+    overlay.style.justifyContent = 'center';
+    overlay.style.cursor = 'zoom-out';
+    overlay.onclick = () => { overlay.style.display = 'none'; };
+    
+    const img = document.createElement('img');
+    img.id = 'review-image-zoom-img';
+    img.style.maxWidth = '90%';
+    img.style.maxHeight = '90%';
+    img.style.borderRadius = '8px';
+    img.style.border = '2px solid var(--gold)';
+    img.style.boxShadow = '0 0 20px rgba(212, 175, 55, 0.3)';
+    overlay.appendChild(img);
+    
+    document.body.appendChild(overlay);
+  }
+  
+  const img = document.getElementById('review-image-zoom-img');
+  if (img) img.src = imgUrl;
+  overlay.style.display = 'flex';
+};
+
+window.filterReviews = function(query, productId) {
+  const cleanQuery = query.toLowerCase().trim();
+  const allReviews = reviewDB[productId] || [];
+  const filtered = allReviews.filter(r => {
+    return r.text.toLowerCase().includes(cleanQuery) || 
+           (r.title && r.title.toLowerCase().includes(cleanQuery)) ||
+           r.author.toLowerCase().includes(cleanQuery);
+  });
+  
+  const listWrapper = document.getElementById('pdp-reviews-list-wrapper');
+  if (listWrapper) {
+    listWrapper.innerHTML = renderReviewListMarkup(filtered, productId);
+    window.bindReviewHelpfulEvents(productId);
+  }
+};
+
+window.bindReviewHelpfulEvents = function(productId) {
+  const container = document.getElementById('pdp-reviews-list-wrapper');
+  if (!container) return;
+  
+  container.querySelectorAll('.pdp-helpful-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const reviewId = btn.dataset.reviewId;
+      const countEl = btn.querySelector('.helpful-count');
+      
+      if (countEl && !btn.classList.contains('voted')) {
+        const newCount = parseInt(countEl.textContent) + 1;
+        countEl.textContent = newCount;
+        btn.classList.add('voted');
+        btn.style.color = 'var(--gold)';
+        btn.style.pointerEvents = 'none';
+
+        const votedReviews = JSON.parse(localStorage.getItem('ss-voted-reviews') || '{}');
+        votedReviews[reviewId] = true;
+        localStorage.setItem('ss-voted-reviews', JSON.stringify(votedReviews));
+
+        const storedHelpfulCounts = JSON.parse(localStorage.getItem('ss-review-helpful-counts') || '{}');
+        storedHelpfulCounts[reviewId] = newCount;
+        localStorage.setItem('ss-review-helpful-counts', JSON.stringify(storedHelpfulCounts));
+
+        const productReviews = reviewDB[productId] || [];
+        const revIndex = productReviews.findIndex((rev, idx) => rev.id === reviewId || `native-${productId}-${idx}` === reviewId);
+        if (revIndex !== -1) {
+          productReviews[revIndex].helpful = newCount;
+        }
+      }
+    });
+  });
+};
+
+
+// --- SHAREABLE WISHLIST ADVANCED ACTION ---
+window.shareWishlist = function() {
+  const shareUrl = `${window.location.origin}${window.location.pathname}#/shop?wishlist=${Array.from(wishlist).join(',')}`;
+  navigator.clipboard.writeText(shareUrl).then(() => {
+    showToast('Wishlist link copied to clipboard!');
+  }).catch(err => {
+    showToast('Failed to copy link automatically.');
+  });
+};
+
+window.saveSharedWishlistToOwn = function() {
+  if (activeSharedWishlist) {
+    activeSharedWishlist.forEach(id => wishlist.add(id));
+    saveWishlist();
+    showToast('Collection saved to your profile wishlist!');
+    renderPLP();
+  }
+};
+
+window.moveWishlistToCart = function() {
+  const itemsToAdd = activeSharedWishlist || Array.from(wishlist);
+  if (itemsToAdd.length === 0) {
+    showToast('No items in wishlist to add.');
+    return;
+  }
+  
+  let addedCount = 0;
+  itemsToAdd.forEach(id => {
+    const product = products.find(p => p.id === id);
+    if (product) {
+      const defaultSize = product.sizes && product.sizes.length > 0 ? product.sizes[0] : 'Free';
+      const defaultColor = product.colors && product.colors.length > 0 ? product.colors[0].name : 'Default';
+      
+      const existing = cart.find(item => item.id === product.id && item.size === defaultSize && item.color === defaultColor);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          id: product.id,
+          name: product.name,
+          brand: product.brand,
+          price: product.price,
+          image: product.image,
+          size: defaultSize,
+          color: defaultColor,
+          qty: 1
+        });
+      }
+      addedCount++;
+    }
+  });
+  
+  if (addedCount > 0) {
+    saveCart();
+    showToast(`Added ${addedCount} items to your shopping bag!`);
+    openCart();
   }
 };
 

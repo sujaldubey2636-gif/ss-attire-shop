@@ -5267,5 +5267,610 @@ input, textarea, select {
   }
 }
 
+/* ==========================================================================
+   LOOKBOOK, ORDER TRACKING, REVIEWS & WISHLIST STYLES
+   ========================================================================== */
+
+/* 1. Mix & Match Lookbook */
+.lookbook-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2xl);
+  margin-bottom: var(--space-4xl);
+}
+
+@media (max-width: 768px) {
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+.look-card {
+  background: var(--black-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.look-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-xl), var(--shadow-gold);
+}
+
+.look-hero {
+  position: relative;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+}
+
+.look-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.95));
+}
+
+.look-header {
+  position: absolute;
+  bottom: var(--space-md);
+  left: var(--space-xl);
+  right: var(--space-xl);
+  z-index: 5;
+}
+
+.look-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--gold);
+  margin: 0;
+}
+
+.look-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.look-body {
+  padding: var(--space-xl);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.look-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.look-item-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: var(--space-sm);
+}
+
+.look-item-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.look-item-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.look-item-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.look-item-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.look-item-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.look-item-swatches {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.look-item-size-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  padding: 2px 6px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.look-item-size-btn.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--gold-glow);
+}
+
+.look-item-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.look-pricing-footer {
+  border-top: 1px solid var(--border);
+  padding-top: var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.look-price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.look-bundle-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.look-regular-price {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.look-savings-badge {
+  background: var(--accent-green, #228b22);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
+/* 2. Order Tracking Page */
+.track-card {
+  background: var(--black-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-2xl);
+  margin-bottom: var(--space-4xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.track-timeline-wrapper {
+  margin-top: var(--space-2xl);
+  position: relative;
+}
+
+.track-timeline-steps {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 3rem;
+}
+
+.track-timeline-steps::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--border);
+  z-index: 1;
+}
+
+.track-timeline-bar-fill {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  height: 4px;
+  background: var(--gold);
+  z-index: 2;
+  transition: width 1s ease-out;
+}
+
+.track-step-node {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+}
+
+.track-step-circle {
+  width: 34px;
+  height: 34px;
+  background: var(--bg-body);
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.track-step-node.active .track-step-circle {
+  border-color: var(--gold);
+  color: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+}
+
+.track-step-node.completed .track-step-circle {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-body);
+}
+
+.track-step-label {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.track-step-node.active .track-step-label {
+  color: var(--gold);
+}
+
+.track-step-date {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Styled Map Container */
+.track-map-wrapper {
+  position: relative;
+  height: 180px;
+  background: var(--black-light);
+  background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin: 3rem 0;
+  overflow: hidden;
+}
+
+.track-map-road {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  transform: translateY(-50%);
+}
+
+.track-map-road::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent 50%, var(--black-light) 50%);
+  background-size: 15px 100%;
+}
+
+.track-map-progress-road {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 3px;
+  transform: translateY(-50%);
+  transition: width 1s ease-out;
+}
+
+.track-map-truck {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  font-size: 2.2rem;
+  z-index: 10;
+  transition: left 1s ease-out;
+}
+
+.track-map-node {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-body);
+  border: 2px solid var(--border);
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+
+.track-map-node.reached {
+  border-color: var(--gold);
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.track-map-node-label {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .track-timeline-steps {
+    flex-direction: column;
+    gap: var(--space-xl);
+    align-items: flex-start;
+    padding-left: 2rem;
+  }
+  .track-timeline-steps::before {
+    top: 0;
+    bottom: 0;
+    left: 17px;
+    width: 4px;
+    height: 100%;
+  }
+  .track-timeline-bar-fill {
+    top: 0;
+    left: 17px;
+    width: 4px;
+    height: 0;
+    transition: height 1s ease-out;
+  }
+  .track-step-node {
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    gap: var(--space-md);
+  }
+  .track-step-label {
+    margin-top: 0;
+    text-align: left;
+  }
+  .track-map-wrapper {
+    display: none;
+  }
+}
+
+.track-details-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.track-details-table th, .track-details-table td {
+  padding: var(--space-md);
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.track-details-table th {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.track-details-table td {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 3. Advanced Reviews Upgrades */
+.reviews-fit-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  background: var(--black-light);
+  border: 1px solid var(--border);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xl);
+  max-width: 400px;
+}
+
+.reviews-fit-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.fit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.fit-label {
+  width: 80px;
+}
+
+.fit-bar-container {
+  flex: 1;
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  margin: 0 var(--space-md);
+  overflow: hidden;
+}
+
+.fit-bar-fill {
+  height: 100%;
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+.fit-pct {
+  width: 30px;
+  text-align: right;
+  font-weight: 600;
+}
+
+.reviews-buyer-gallery {
+  margin-bottom: var(--space-xl);
+}
+
+.reviews-gallery-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: var(--space-md);
+}
+
+.reviews-gallery-imgs {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.reviews-gallery-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  cursor: zoom-in;
+  transition: border-color 0.2s ease;
+}
+
+.reviews-gallery-img:hover {
+  border-color: var(--gold);
+}
+
+.reviews-search-container {
+  margin-bottom: var(--space-lg);
+}
+
+.reviews-search-input {
+  width: 100%;
+  max-width: 350px;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  outline: none;
+  font-size: 0.85rem;
+  transition: border-color 0.2s ease;
+}
+
+.reviews-search-input:focus {
+  border-color: var(--gold);
+}
+
+/* 4. Shareable Wishlist */
+.btn-wishlist-share {
+  background: var(--gold-glow);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  transition: all 0.2s ease;
+  margin-top: 1rem;
+}
+
+.btn-wishlist-share:hover {
+  background: var(--gold);
+  color: var(--bg-body);
+}
+
+.shared-wishlist-banner {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), transparent);
+  border: 1px solid var(--gold);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-2xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shared-wishlist-text h3 {
+  font-family: var(--font-display);
+  color: var(--gold);
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.shared-wishlist-text p {
+  margin: var(--space-xs) 0 0 0;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.btn-wishlist-move-all {
+  background: var(--gold);
+  color: var(--bg-body);
+  border: 1px solid var(--gold);
+  padding: 8px 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-wishlist-move-all:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
 
 

@@ -30,11 +30,12 @@
       <div class="nav-links">
         <a href="#/" class="nav-home-link active" data-scroll="categories">Collections</a>
         <a href="#/shop" class="nav-shop-link">Shop</a>
+        <a href="#/lookbook" class="nav-lookbook-link">Lookbook</a>
+        <a href="#/track" class="nav-track-link">Track Order</a>
         <a href="#/" class="nav-home-link" data-scroll="new-arrivals">New Arrivals</a>
-        <a href="#/" class="nav-home-link" data-scroll="sale">Sale</a>
         <a href="#/" class="nav-home-link" data-scroll="about">About</a>
       </div>
-
+      
       <div class="nav-actions">
         <button class="btn-icon" id="search-btn" title="Search" aria-label="Search">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
@@ -59,8 +60,9 @@
   <div class="mobile-menu">
     <a href="#/" class="nav-home-link" data-scroll="categories">Collections</a>
     <a href="#/shop" class="nav-shop-link">Shop</a>
+    <a href="#/lookbook" class="nav-lookbook-link">Lookbook</a>
+    <a href="#/track" class="nav-track-link">Track Order</a>
     <a href="#/" class="nav-home-link" data-scroll="new-arrivals">New Arrivals</a>
-    <a href="#/" class="nav-home-link" data-scroll="sale">Sale</a>
     <a href="#/" class="nav-home-link" data-scroll="about">About</a>
   </div>
 
@@ -676,6 +678,48 @@
             </button>
             <a href="#/shop" class="btn btn-outline">Continue Shopping</a>
             <a href="#/" class="btn btn-outline">Back to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: LOOKBOOK ============ -->
+    <div id="view-lookbook" class="app-view">
+      <div class="shop-header-banner">
+        <div class="container">
+          <span class="section-label">SS ATTIRE EDITORIAL</span>
+          <h1 class="shop-title">Mix & Match Lookbook</h1>
+          <p class="shop-subtitle">Coordinate authentic handloom layers for a complete, curated style. Save 15% on complete looks.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="lookbook-grid" id="lookbook-grid-container">
+          <!-- Rendered dynamically by app.js -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ VIEW: ORDER TRACKING ============ -->
+    <div id="view-track" class="app-view">
+      <div class="shop-header-banner">
+        <div class="container">
+          <span class="section-label">TRACK YOUR ORDER</span>
+          <h1 class="shop-title">Live Order Status</h1>
+          <p class="shop-subtitle">Track the journey of your handcrafted garment from weaver co-op to your doorstep.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="track-card">
+          <div class="track-search-box" id="track-search-section">
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-secondary);">Enter your Order Reference number below to see live shipping updates.</p>
+            <form id="order-track-form" onsubmit="window.processOrderTracking(event)" style="display: flex; gap: 0.5rem; max-width: 500px; margin: 0 auto;">
+              <input type="text" id="track-order-id" placeholder="Order ID (e.g. #SS-10023)" required style="flex: 1; padding: 0.75rem var(--space-md); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); outline: none; font-size: 0.95rem;" />
+              <button type="submit" class="btn btn-primary" style="padding: 0 1.5rem;">Track Status</button>
+            </form>
+          </div>
+          
+          <div class="track-results-box" id="track-results-section" style="display: none;">
+            <!-- Rendered dynamically by app.js -->
           </div>
         </div>
       </div>
