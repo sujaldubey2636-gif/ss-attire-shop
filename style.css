@@ -4538,4 +4538,165 @@ input, textarea, select {
   }
 }
 
+/* ==================== ADVANCED CHATBOT & INTERACTIVE UX STYLES ==================== */
+
+/* 1. Chatbot Product Cards Carousel */
+.chat-prod-carousel {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding: 0.25rem 0;
+  margin-top: 0.5rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold) transparent;
+}
+
+.chat-prod-carousel::-webkit-scrollbar {
+  height: 4px;
+}
+
+.chat-prod-carousel::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.chat-prod-card {
+  flex: 0 0 140px;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.chat-prod-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+}
+
+.chat-prod-img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.chat-prod-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin-bottom: 0.4rem;
+}
+
+.chat-prod-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+
+.chat-prod-price {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: left;
+}
+
+.chat-prod-action {
+  width: 100%;
+  padding: 0.3rem 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chat-prod-card:hover .chat-prod-action {
+  background: var(--gold);
+  color: var(--bg-body);
+}
+
+/* 2. Chatbot Copy Promo Button */
+.chatbot-copy-code-btn {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bg-body);
+  background: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.chatbot-copy-code-btn:hover {
+  background: var(--gold-light);
+  border-color: var(--gold-light);
+}
+
+.chatbot-copy-code-btn.copied {
+  background: var(--accent-green, #228B22) !important;
+  border-color: var(--accent-green, #228B22) !important;
+  color: #fff !important;
+}
+
+/* 3. Review Helpful Voted State */
+.pdp-helpful-btn.voted {
+  color: var(--gold) !important;
+  pointer-events: none;
+}
+
+.pdp-helpful-btn.voted svg {
+  fill: var(--gold);
+  stroke: var(--gold);
+}
+
+/* 4. Interactive Pricing Click State */
+.pdp-pricing-item-clickable {
+  cursor: pointer !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdp-pricing-item-clickable::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(197, 168, 128, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.pdp-pricing-item-clickable:hover::after {
+  opacity: 1;
+}
+
+.pdp-pricing-item-clickable:active {
+  transform: scale(0.98);
+}
+
+
 

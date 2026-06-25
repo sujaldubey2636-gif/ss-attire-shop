@@ -1466,23 +1466,23 @@ function generatePricingBreakdownMarkup(product) {
           <span class="pdp-pricing-item-value">₹${product.price.toLocaleString()}</span>
           <span class="pdp-pricing-item-note">Inclusive of GST</span>
         </div>
-        <div class="pdp-pricing-item">
+        <div class="pdp-pricing-item pdp-pricing-item-clickable" onclick="triggerPrepaidDiscountClick()">
           <span class="pdp-pricing-item-label">Prepaid Special Discount</span>
           <span class="pdp-pricing-item-value">
             ₹${prepaidPrice.toLocaleString()} 
             <span class="pdp-pricing-badge">Save 5%</span>
           </span>
-          <span class="pdp-pricing-item-note">Auto-applied for Online Payments</span>
+          <span class="pdp-pricing-item-note">Auto-applied for Online Payments (Click for info)</span>
         </div>
         <div class="pdp-pricing-item">
           <span class="pdp-pricing-item-label">Cash on Delivery (COD)</span>
           <span class="pdp-pricing-item-value">₹${codPrice.toLocaleString()}</span>
           <span class="pdp-pricing-item-note">Includes ₹50 COD convenience fee</span>
         </div>
-        <div class="pdp-pricing-item">
+        <div class="pdp-pricing-item pdp-pricing-item-clickable" onclick="triggerGiftPricingClick()">
           <span class="pdp-pricing-item-label">Premium Gift Wrap Price</span>
           <span class="pdp-pricing-item-value">₹${giftPrice.toLocaleString()}</span>
-          <span class="pdp-pricing-item-note">Includes Silk Potli wrapping + Card</span>
+          <span class="pdp-pricing-item-note">Includes Silk Potli wrapping + Card (Click to toggle)</span>
         </div>
         <div class="pdp-pricing-item pdp-pricing-item-emi" style="grid-column: span 2;">
           <span class="pdp-pricing-item-label">Flexible No-Cost EMI Options</span>
@@ -1838,7 +1838,7 @@ function renderProductDetails(product) {
 
         <!-- Review List -->
         <div class="pdp-reviews-list" id="pdp-reviews-list-wrapper">
-          ${renderReviewListMarkup(reviews)}
+          ${renderReviewListMarkup(reviews, product.id)}
         </div>
 
         <!-- Review Form -->
@@ -2010,7 +2010,10 @@ function renderProductDetails(product) {
       }
 
       if (resultDiv) {
-        resultDiv.innerHTML = `Recommended Size: <span style="font-weight:700; color:var(--text-primary);">${recommended}</span>`;
+        resultDiv.innerHTML = `
+          <div>Recommended Size: <span style="font-weight:700; color:var(--text-primary);">${recommended}</span></div>
+          <button type="button" class="btn btn-secondary" onclick="applyAdvisorSize('${recommended}')" style="margin-top: 0.5rem; font-size: 0.75rem; padding: 0.35rem 0.75rem; height: auto; display: inline-block; width: auto; text-transform: none; letter-spacing: 0;">Apply & Close Guide</button>
+        `;
         resultDiv.style.display = 'block';
         resultDiv.style.color = 'var(--gold)';
         
@@ -2110,11 +2113,33 @@ function renderProductDetails(product) {
   // Review helpfulness voting
   container.querySelectorAll('.pdp-helpful-btn').forEach(btn => {
     btn.addEventListener('click', () => {
+      const reviewId = btn.dataset.reviewId;
+      const productId = parseInt(btn.dataset.productId);
       const countEl = btn.querySelector('.helpful-count');
+      
       if (countEl && !btn.classList.contains('voted')) {
-        countEl.textContent = parseInt(countEl.textContent) + 1;
+        const newCount = parseInt(countEl.textContent) + 1;
+        countEl.textContent = newCount;
         btn.classList.add('voted');
-        btn.style.color = 'var(--accent-gold)';
+        btn.style.color = 'var(--gold)';
+        btn.style.pointerEvents = 'none';
+
+        // 1. Save voted state in localStorage
+        const votedReviews = JSON.parse(localStorage.getItem('ss-voted-reviews') || '{}');
+        votedReviews[reviewId] = true;
+        localStorage.setItem('ss-voted-reviews', JSON.stringify(votedReviews));
+
+        // 2. Save count in localStorage
+        const storedHelpfulCounts = JSON.parse(localStorage.getItem('ss-review-helpful-counts') || '{}');
+        storedHelpfulCounts[reviewId] = newCount;
+        localStorage.setItem('ss-review-helpful-counts', JSON.stringify(storedHelpfulCounts));
+
+        // 3. Update the in-memory reviewDB object so it's fresh in current session
+        const productReviews = reviewDB[productId] || [];
+        const revIndex = productReviews.findIndex((rev, idx) => rev.id === reviewId || `native-${productId}-${idx}` === reviewId);
+        if (revIndex !== -1) {
+          productReviews[revIndex].helpful = newCount;
+        }
       }
     });
   });
@@ -2131,6 +2156,7 @@ function renderProductDetails(product) {
     if (!authorVal || !textVal || !titleVal) return;
 
     const newReview = { 
+      id: 'custom-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
       author: authorVal, 
       rating: ratingVal, 
       title: titleVal, 
@@ -2268,7 +2294,7 @@ function renderStarsSVG(rating) {
   return html;
 }
 
-function renderReviewListMarkup(reviews) {
+function renderReviewListMarkup(reviews, productId) {
   if (reviews.length === 0) {
     return `<div style="text-align:center; padding: 3rem 0; color: var(--text-muted);">
       <p style="font-size: 1.1rem; margin-bottom: 0.5rem;">No reviews yet</p>
@@ -2276,29 +2302,42 @@ function renderReviewListMarkup(reviews) {
     </div>`;
   }
 
-  return reviews.map(r => `
-    <div class="pdp-review-card">
-      <div class="pdp-review-header">
-        <div class="pdp-review-avatar">${r.author.charAt(0).toUpperCase()}</div>
-        <div class="pdp-review-author-info">
-          <div class="pdp-review-author-line">
-            <span class="pdp-review-author">${r.author}</span>
-            ${r.verified ? '<span class="pdp-verified-badge">✓ Verified Purchase</span>' : ''}
+  return reviews.map((r, index) => {
+    const reviewId = r.id || `native-${productId}-${index}`;
+    const storedHelpfulCounts = JSON.parse(localStorage.getItem('ss-review-helpful-counts') || '{}');
+    const currentHelpful = storedHelpfulCounts[reviewId] !== undefined ? storedHelpfulCounts[reviewId] : (r.helpful || 0);
+
+    const votedReviews = JSON.parse(localStorage.getItem('ss-voted-reviews') || '{}');
+    const hasVoted = votedReviews[reviewId] ? true : false;
+
+    return `
+      <div class="pdp-review-card">
+        <div class="pdp-review-header">
+          <div class="pdp-review-avatar">${r.author.charAt(0).toUpperCase()}</div>
+          <div class="pdp-review-author-info">
+            <div class="pdp-review-author-line">
+              <span class="pdp-review-author">${r.author}</span>
+              ${r.verified ? '<span class="pdp-verified-badge">✓ Verified Purchase</span>' : ''}
+            </div>
+            <div class="pdp-review-date">${formatReviewDate(r.date)}</div>
           </div>
-          <div class="pdp-review-date">${formatReviewDate(r.date)}</div>
+          <div class="pdp-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
         </div>
-        <div class="pdp-review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
+        ${r.title ? `<h5 class="pdp-review-title">${r.title}</h5>` : ''}
+        <p class="pdp-review-text">${r.text}</p>
+        <div class="pdp-review-footer">
+          <button class="pdp-helpful-btn ${hasVoted ? 'voted' : ''}" 
+                  data-review-id="${reviewId}" 
+                  data-product-id="${productId}" 
+                  title="Mark as helpful"
+                  ${hasVoted ? 'style="color: var(--gold); pointer-events: none;"' : ''}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
+            Helpful (<span class="helpful-count">${currentHelpful}</span>)
+          </button>
+        </div>
       </div>
-      ${r.title ? `<h5 class="pdp-review-title">${r.title}</h5>` : ''}
-      <p class="pdp-review-text">${r.text}</p>
-      <div class="pdp-review-footer">
-        <button class="pdp-helpful-btn" title="Mark as helpful">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg>
-          Helpful (<span class="helpful-count">${r.helpful || 0}</span>)
-        </button>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 }
 
 function renderRelatedProducts(product) {
@@ -3423,24 +3462,324 @@ function initSupportChatbot() {
     }, 1000);
   };
 
+  function searchProductsForChatbot(userText) {
+    const text = userText.toLowerCase();
+    
+    // Determine category
+    let category = null;
+    if (text.includes('women') || text.includes('girl') || text.includes('saree') || text.includes('lehenga') || text.includes('kurti')) {
+      category = 'women';
+    } else if (text.includes('kid') || text.includes('boy') || text.includes('child') || text.includes('frock')) {
+      category = 'kids';
+    } else if (text.includes('unisex') || text.includes('bag') || text.includes('shawl') || text.includes('scarf') || text.includes('tote')) {
+      category = 'unisex';
+    }
+    
+    // Extract price cap (e.g. "under 3000", "below 2000")
+    let priceCap = null;
+    const priceMatch = text.match(/(?:under|below|less than|within|caps?|max|Rs\.?|INR|₹)?\s*(\d{3,5})/i);
+    if (priceMatch) {
+      priceCap = parseInt(priceMatch[1]);
+    }
+    
+    // Keywords for specific terms
+    const keywords = [];
+    const possibleKeywords = ['saree', 'kurta', 'lehenga', 'suit', 'dupatta', 'kurti', 'jumpsuit', 'shawl', 'scarf', 'bag', 'shirt', 'jacket', 'dhoti', 'traditional', 'kasavu', 'bandhej', 'chikankari', 'ajrakh', 'ikat', 'chanderi'];
+    possibleKeywords.forEach(kw => {
+      if (text.includes(kw)) {
+        keywords.push(kw);
+      }
+    });
+
+    // Filter products
+    let results = products;
+    if (category) {
+      results = results.filter(p => p.category === category);
+    }
+    if (priceCap) {
+      results = results.filter(p => p.price <= priceCap);
+    }
+    if (keywords.length > 0) {
+      results = results.filter(p => {
+        const nameLower = p.name.toLowerCase();
+        const descLower = p.description.toLowerCase();
+        return keywords.some(kw => nameLower.includes(kw) || descLower.includes(kw));
+      });
+    }
+
+    return results.slice(0, 5);
+  }
+
+  function renderChatbotProducts(productsList) {
+    if (!messagesContainer) return;
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message bot';
+    
+    const cardsMarkup = productsList.map(p => `
+      <div class="chat-prod-card" onclick="triggerChatProdQuickView(${p.id})">
+        <img src="${p.image}" alt="${p.name}" class="chat-prod-img" />
+        <div class="chat-prod-info">
+          <div class="chat-prod-name">${p.name}</div>
+          <div class="chat-prod-price">₹${p.price.toLocaleString()}</div>
+        </div>
+        <button class="chat-prod-action">Quick View</button>
+      </div>
+    `).join('');
+    
+    msgDiv.innerHTML = `
+      <div class="chat-avatar-mini">👑</div>
+      <div class="chat-bubble" style="max-width: 85%;">
+        <p style="margin: 0 0 0.5rem 0; font-weight: 500; font-size: 0.85rem;">Here are some perfect matches I found for you:</p>
+        <div class="chat-prod-carousel" style="display: flex; gap: 0.5rem; overflow-x: auto; padding: 0.25rem 0;">
+          ${cardsMarkup}
+        </div>
+      </div>
+    `;
+    messagesContainer.appendChild(msgDiv);
+    scrollChatToBottom();
+  }
+
+  function renderOrderTracker(orderId) {
+    if (!messagesContainer) return;
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'chat-message bot';
+    
+    // Simulate some status based on the orderId digits
+    const cleanId = orderId.replace(/\D/g, '');
+    const lastDigit = cleanId ? parseInt(cleanId.slice(-1)) : 3;
+    let statusText = "In Transit";
+    let step = 3; 
+    if (lastDigit % 4 === 0) {
+      statusText = "Out for Delivery";
+      step = 4;
+    } else if (lastDigit % 3 === 0) {
+      statusText = "Shipped / In Transit";
+      step = 3;
+    } else if (lastDigit % 2 === 0) {
+      statusText = "Packed & Ready";
+      step = 2;
+    } else {
+      statusText = "Order Confirmed";
+      step = 1;
+    }
+
+    const steps = [
+      { name: "Order Placed", desc: "Confirmed & payment verified", done: step >= 1 },
+      { name: "Handcrafted & Packed", desc: "Sourced from artisan weavers", done: step >= 2 },
+      { name: "Dispatched", desc: "In transit via Premium Courier", done: step >= 3 },
+      { name: "Out for Delivery", desc: "Expected today by 8:00 PM", done: step >= 4 }
+    ];
+
+    const timelineMarkup = steps.map((s, idx) => `
+      <div class="tracker-step ${s.done ? 'active' : ''}" style="display: flex; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <div class="tracker-node-wrapper" style="display: flex; flex-direction: column; align-items: center; width: 24px;">
+          <div class="tracker-node" style="width: 20px; height: 20px; border-radius: 50%; background: ${s.done ? 'var(--gold)' : 'var(--border)'}; color: ${s.done ? 'var(--bg-body)' : 'var(--text-muted)'}; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; font-weight: bold;">
+            ${s.done ? '✓' : idx + 1}
+          </div>
+          ${idx < 3 ? `<div class="tracker-line" style="width: 2px; flex: 1; background: ${s.done && steps[idx+1].done ? 'var(--gold)' : 'var(--border)'}; min-height: 20px;"></div>` : ''}
+        </div>
+        <div class="tracker-info" style="flex: 1; padding-top: 2px;">
+          <div class="tracker-name" style="font-size: 0.8rem; font-weight: 600; color: ${s.done ? 'var(--text-primary)' : 'var(--text-muted)'};">${s.name}</div>
+          <div class="tracker-desc" style="font-size: 0.7rem; color: var(--text-muted);">${s.desc}</div>
+        </div>
+      </div>
+    `).join('');
+
+    msgDiv.innerHTML = `
+      <div class="chat-avatar-mini">👑</div>
+      <div class="chat-bubble" style="max-width: 85%;">
+        <p style="margin: 0 0 0.75rem 0; font-size: 0.85rem;">Status for Order <strong>${orderId}</strong>: <span class="tracker-status-tag" style="background: var(--gold-light); color: var(--gold); padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: 600; font-size: 0.75rem;">${statusText}</span></p>
+        <div class="tracker-timeline" style="margin-top: 0.5rem;">
+          ${timelineMarkup}
+        </div>
+      </div>
+    `;
+    messagesContainer.appendChild(msgDiv);
+    scrollChatToBottom();
+  }
+
   function processBotReply(userText) {
     const text = userText.toLowerCase();
     
+    // Check if user is tracking an order
+    const orderMatch = text.match(/(?:#?ss-)?(\d{5})/i);
+    if (text.includes('track') || text.includes('status') || orderMatch) {
+      if (orderMatch) {
+        renderBotMessage("Looking up order status in our secure database...");
+        setTimeout(() => {
+          renderOrderTracker(`#SS-${orderMatch[1]}`);
+        }, 800);
+        return;
+      } else {
+        renderBotMessage("Please provide your 5-digit Order Reference Number (e.g., #SS-10023) so I can fetch its real-time location for you.");
+        return;
+      }
+    }
+
+    // Check for product search queries
+    const searchKeywords = ['saree', 'kurta', 'lehenga', 'suit', 'dupatta', 'kurti', 'jumpsuit', 'shawl', 'scarf', 'bag', 'shirt', 'jacket', 'dhoti', 'pants'];
+    const hasSearchKeyword = searchKeywords.some(kw => text.includes(kw)) || text.includes('show') || text.includes('find') || text.includes('search') || text.includes('product');
+    
+    if (hasSearchKeyword) {
+      const matches = searchProductsForChatbot(userText);
+      if (matches.length > 0) {
+        renderBotMessage("Let me search our catalog for your request...");
+        setTimeout(() => {
+          renderChatbotProducts(matches);
+        }, 800);
+        return;
+      } else {
+        renderBotMessage("I couldn't find products matching that query. Try asking for specific items like 'sarees under 4000' or 'kids wear'.");
+        return;
+      }
+    }
+
+    // Styling & Wedding Advice
+    if (text.includes('wedding') || text.includes('festive') || text.includes('occasion') || text.includes('styling') || text.includes('wear') || text.includes('suggest')) {
+      renderBotMessage("For grand weddings and festive occasions, we highly recommend our exquisite **Banarasi Silk Festive Saree** (₹4,999) or the **Kanjeevaram Art Silk Saree** (₹4,799). For kids, the **Bandhej Kurta Dhoti Set** is highly popular. For a contemporary touch, pair a linen Ajrakh shirt with tailored trousers.");
+      return;
+    }
+
+    // FAQs
     if (text.includes('return') || text.includes('refund') || text.includes('exchange')) {
       renderBotMessage("We offer an easy 30-day return and exchange policy on all unused garments. To initiate a return, visit your account dashboard or write to us at support@ssattire.com. We will arrange a free reverse pickup!");
     } else if (text.includes('size') || text.includes('sizing') || text.includes('fit')) {
       renderBotMessage("We have a dynamic Size Advisor on our product pages! Simply click the 'Size Guide' button on any garment, enter your height, and choose your fit preference (Slim, Regular, or Relaxed) for an instant calculation.");
-    } else if (text.includes('fabric') || text.includes('handloom') || text.includes('organic') || text.includes('silk')) {
+    } else if (text.includes('fabric') || text.includes('handloom') || text.includes('organic') || text.includes('silk') || text.includes('purity')) {
       renderBotMessage("Yes! All our products are sourced directly from weaver co-operatives and artisanal guilds across India. Every silk saree is Silk Mark Certified, and we utilize authentic organic hand-block vegetable dyes.");
     } else if (text.includes('promo') || text.includes('discount') || text.includes('coupon') || text.includes('offer')) {
-      renderBotMessage("You can unlock 10% off your order using the promo code **LUXURY10** at checkout. We also offer Free Shipping on all orders above ₹3,000!");
+      renderBotMessage(`
+        <p style="margin:0 0 0.5rem 0;">You can unlock 10% off your order using the promo code **LUXURY10** at checkout. We also offer Free Shipping on all orders above ₹3,000!</p>
+        <button class="chatbot-copy-code-btn" onclick="copyPromoCode('LUXURY10', this)">Copy Code: LUXURY10</button>
+      `);
     } else if (text.includes('shipping') || text.includes('delivery') || text.includes('time')) {
       renderBotMessage("Delivery typically takes 3-5 business days for major Indian cities, and 5-7 days for regional locations. Shipping is free for orders above ₹3,000; otherwise, a flat ₹149 delivery charge is applied.");
     } else if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('namaste')) {
-      renderBotMessage("Namaste! How can I assist you with your Indian heritage styling journey today?");
+      const checkFirst = document.getElementById('checkout-first-name');
+      let nameStr = "";
+      if (checkFirst && checkFirst.value.trim()) {
+        nameStr = `, ${checkFirst.value.trim()}`;
+      }
+      renderBotMessage(`Namaste${nameStr}! I am Aria, your Heritage Stylist Guide. How can I assist you with your Indian heritage styling journey today?`);
     } else {
-      renderBotMessage("I appreciate your question! For custom inquiries or order status, you can contact our 24/7 helpline at +91 1800-ATTIRE or email support@ssattire.com. Is there anything else I can guide you with?");
+      renderBotMessage("I appreciate your question! For custom inquiries or order status, you can contact our 24/7 helpline at +91 8009496152 or email support@ssattire.com. Is there anything else I can guide you with?");
     }
   }
 }
+
+// ==================== PREMIUM INTERACTIVE UX UTILITIES ====================
+
+// Floating Toast Notification
+function showFloatingToast(message) {
+  let toastContainer = document.getElementById('floating-toast-container');
+  if (!toastContainer) {
+    toastContainer = document.createElement('div');
+    toastContainer.id = 'floating-toast-container';
+    toastContainer.style.cssText = `
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--gold, #C5A880);
+      color: var(--bg-body, #0A0A0A);
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 99999;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+    `;
+    document.body.appendChild(toastContainer);
+  }
+  
+  toastContainer.textContent = message;
+  
+  setTimeout(() => {
+    toastContainer.style.transform = 'translateX(-50%) translateY(0)';
+    toastContainer.style.opacity = '1';
+  }, 50);
+  
+  setTimeout(() => {
+    toastContainer.style.transform = 'translateX(-50%) translateY(100px)';
+    toastContainer.style.opacity = '0';
+  }, 3000);
+}
+
+// Prepaid Pricing Info click handler
+window.triggerPrepaidDiscountClick = function() {
+  showFloatingToast("✨ 5% Discount auto-applied at checkout when paying online!");
+};
+
+// Gift Pricing toggle handler
+window.triggerGiftPricingClick = function() {
+  const checkbox = document.getElementById('cart-gifting-checkbox');
+  if (checkbox) {
+    checkbox.checked = !checkbox.checked;
+    checkbox.dispatchEvent(new Event('change'));
+    showFloatingToast(checkbox.checked ? "🎁 Premium Gift Wrapping added to bag!" : "🎁 Gift Wrapping removed.");
+  } else {
+    // If cart empty, suggest adding items first
+    showFloatingToast("Add items to your bag first to select Gift Wrapping!");
+  }
+};
+
+// Size Advisor Apply recommended size & close guide
+window.applyAdvisorSize = function(size) {
+  // Select on PDP
+  const pdpBtns = document.querySelectorAll('.pdp-size-btn');
+  pdpBtns.forEach(btn => {
+    if (btn.textContent.trim() === size) {
+      btn.click();
+    }
+  });
+
+  // Select on Quick View
+  const qvBtns = document.querySelectorAll('.quickview-size-btn');
+  qvBtns.forEach(btn => {
+    if (btn.textContent.trim() === size) {
+      btn.click();
+    }
+  });
+
+  // Close guide
+  const sizeGuide = document.getElementById('pdp-size-guide');
+  if (sizeGuide) {
+    sizeGuide.style.display = 'none';
+  }
+  
+  showFloatingToast(`📏 Size ${size} applied successfully!`);
+};
+
+// Chatbot product card click handler -> opens Quick View & closes chat
+window.triggerChatProdQuickView = function(productId) {
+  openQuickView(productId);
+  const chatbotPanel = document.getElementById('chatbot-panel');
+  if (chatbotPanel) {
+    chatbotPanel.classList.remove('open');
+  }
+};
+
+// Promo code clipboard copier
+window.copyPromoCode = function(code, buttonElement) {
+  navigator.clipboard.writeText(code).then(() => {
+    const originalText = buttonElement.textContent;
+    buttonElement.textContent = "✓ Copied!";
+    buttonElement.style.background = "var(--accent-green, #228B22)";
+    buttonElement.style.borderColor = "var(--accent-green, #228B22)";
+    
+    showFloatingToast(`✨ Promo code "${code}" copied to clipboard!`);
+    
+    setTimeout(() => {
+      buttonElement.textContent = originalText;
+      buttonElement.style.background = "";
+      buttonElement.style.borderColor = "";
+    }, 2000);
+  }).catch(err => {
+    console.error("Could not copy code: ", err);
+  });
+};
+
 
